@@ -1,5 +1,4 @@
-#page-header,
-#page-header:before {
+#page-header {
   background: transparent !important;
 }
 #page-header.post-bg,
@@ -8,6 +7,7 @@
 }
 #page-header #post-info {
   bottom: 40px !important;
+  text-align: center;
 }
 #page-header #page-site-info {
   top: 140px !important;
