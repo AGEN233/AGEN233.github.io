@@ -1,0 +1,330 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>在Win10及Win11下开启蓝牙耳机的LADC和aptXHD高质量音频协议 | 御枫林下的小站</title><meta name="author" content="御枫林下"><meta name="copyright" content="御枫林下"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文章搭配Redmi Buds 4 Pro偷渡和开启LDAC食用更佳  之前说到，通过偷渡到国际版的方法，成功开启了RB4P的LDAC模式。但是Win10仍然只支持低质量的SBC，而Win11也只是只支持48Khz的AAC，更不提LDAC这些高品质音频协议。但是经过我的一番Google和Gihub之后，发现了一个好东西《Alternative A2DP Driver》可以通过这个第三方的蓝牙音频驱动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Win10及Win11下开启蓝牙耳机的LADC和aptXHD高质量音频协议">
+<meta property="og:url" content="https://agen233.top/posts/5335a18c/index.html">
+<meta property="og:site_name" content="御枫林下的小站">
+<meta property="og:description" content="文章搭配Redmi Buds 4 Pro偷渡和开启LDAC食用更佳  之前说到，通过偷渡到国际版的方法，成功开启了RB4P的LDAC模式。但是Win10仍然只支持低质量的SBC，而Win11也只是只支持48Khz的AAC，更不提LDAC这些高品质音频协议。但是经过我的一番Google和Gihub之后，发现了一个好东西《Alternative A2DP Driver》可以通过这个第三方的蓝牙音频驱动">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2024/06/13/666ae7fa5688e.webp">
+<meta property="article:published_time" content="2024-04-16T17:05:19.000Z">
+<meta property="article:modified_time" content="2024-07-31T02:56:22.971Z">
+<meta property="article:author" content="御枫林下">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="耳机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2024/06/13/666ae7fa5688e.webp"><link rel="shortcut icon" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg"><link rel="canonical" href="https://agen233.top/posts/5335a18c/index.html"><link rel="preconnect" href="//cdnjs.cloudflare.com"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"NTABD03MUI","apiKey":"b9edcdc52526245cf090759020f838cd","indexName":"HEXO","hits":{"per_page":3},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":40,"position":"top","messagePrev":"自从文章最后一次更新已经过了","messageNext":"536 天啦，本文有可能失效了哦"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdnjs.cloudflare.com/ajax/libs/egjs-infinitegrid/4.11.1/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '在Win10及Win11下开启蓝牙耳机的LADC和aptXHD高质量音频协议',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-31 10:56:22'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/transpancy.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.2.0"><link rel="alternate" href="/atom.xml" title="御枫林下的小站" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc539646.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-folder"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-comments"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-solid fa-address-book"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa fa-user-plus"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa fa-paper-plane"></i><span> 虫洞</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://storeweb.cn/s/2125"><i class="fa-fw fas fa-solid fa-globe"></i><span> 个站虫洞</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://www.boyouquan.com/planet-shuttle"><i class="fa-fw fas fa fa-life-ring"></i><span> 星球穿梭</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://umami.agen233.top/share/sLvlamVW8ArWTwbH/agen233.top"><i class="fa-fw fas fa fa-bar-chart"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://bu.dusays.com/2024/06/13/666ae7fa5688e.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="御枫林下的小站"><span class="site-name">御枫林下的小站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-folder"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-comments"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-solid fa-address-book"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa fa-user-plus"></i><span> 朋友圈</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa fa-paper-plane"></i><span> 虫洞</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://storeweb.cn/s/2125"><i class="fa-fw fas fa-solid fa-globe"></i><span> 个站虫洞</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://www.boyouquan.com/planet-shuttle"><i class="fa-fw fas fa fa-life-ring"></i><span> 星球穿梭</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://umami.agen233.top/share/sLvlamVW8ArWTwbH/agen233.top"><i class="fa-fw fas fa fa-bar-chart"></i><span> 统计</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">在Win10及Win11下开启蓝牙耳机的LADC和aptXHD高质量音频协议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-16T17:05:19.000Z" title="发表于 2024-04-17 01:05:19">2024-04-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-31T02:56:22.971Z" title="更新于 2024-07-31 10:56:22">2024-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%94%B5%E8%84%91%E6%8A%98%E8%85%BE%E5%BD%95/">电脑折腾录</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note success flat"><p>文章搭配<a href="../4bcd4505/">Redmi Buds 4 Pro偷渡和开启LDAC</a>食用更佳</p>
+</div>
+<p>之前说到，通过偷渡到国际版的方法，成功开启了RB4P的LDAC模式。但是Win10仍然只支持低质量的SBC，而Win11也只是只支持48Khz的AAC，更不提LDAC这些高品质音频协议。但是经过我的一番Google和Gihub之后，发现了一个好东西《<a target="_blank" rel="noopener" href="https://www.tjsky.net/goto/?url=https://www.bluetoothgoodies.com/a2dp/">Alternative A2DP Driver</a>》可以通过这个第三方的蓝牙音频驱动，让Win10和Win11支持LDAC和aptXHD，并且可以选择更高的采样频率或编码质量。</p>
+<p>网上有个观点是AAC之后感知不强，emmmm这点我觉得还是得看个人感受和耳朵敏感度，如果你的蓝牙耳机不是特别拉胯，那从SBC换成LDAC或者是aptXHD感知还是相当明显的，</p>
+<h1 id="Alternative-A2DP-Driver介绍和安装"><a href="#Alternative-A2DP-Driver介绍和安装" class="headerlink" title="Alternative A2DP Driver介绍和安装"></a>Alternative A2DP Driver介绍和安装</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>总所周知LDAC编解码完全通过软件实现，是完全意义的软件编码器，只需要支持蓝牙EDR（满足带宽要求）即可</p>
+<blockquote>
+<ul>
+<li>LDAC is compatible with a wide range of devices, because LDAC is a software codec.</li>
+</ul>
+</blockquote>
+<p><strong>Alternative A2DP Driver</strong>本质上是个第三方驱动，旨在通过代替Windows系统默认的A2DP驱动，从而支持更多的音频编码，并且可以让你调节更多的参数，进而提升蓝牙音频体验</p>
+<div class="note warning flat"><p>注意，软件是付费软件，如果喜欢请购买正版，注意留意版权问题<br><a target="_blank" rel="noopener" href="https://www.bluetoothgoodies.com/a2dp/purchase/?licensed_software=Alternative%20A2DP%20Driver%20Version">购买Alternative A2DP Driver许可证</a></p>
+</div>
+<h2 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h2><ul>
+<li><p>软件方面仅支持</p>
+<ul>
+<li>Windows10  1903以上</li>
+<li>Windows11  21H2以上</li>
+<li>且仅支持64位操作系统（现在应该已经很少人用32位了吧）</li>
+</ul>
+</li>
+<li><p>硬件方面</p>
+<ul>
+<li><p>需要蓝牙适配器支持EDR，以满足速度要求。</p>
+<p>EDR自蓝牙2.0开始使用，实装已经接近20年了，理论上现代的蓝牙适配器和基于无线网卡的蓝牙适配器都支持了。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.tjsky.net/goto/?url=https://www.bluetoothgoodies.com/a2dp/download/">Alternative A2DP Driver</a></p>
+</li>
+<li><p>无脑下一步，完成安装（软件会安装驱动，要注意杀毒软件和防火墙要放行）</p>
+</li>
+<li><p>打开软件，在软件的左侧选择要设置的设备，在右侧选择Alternative A2DP Driver</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abdcdbb35.png" alt="image-20240417205010033"></p>
+</li>
+<li><p>点击安装，同意UAC提权，等待安装成功</p>
+</li>
+<li><p>调节好参数，重新连接耳机</p>
+</li>
+<li><p>尽情享受高品质音乐！</p>
+</li>
+</ol>
+<h1 id="参数调整"><a href="#参数调整" class="headerlink" title="参数调整"></a>参数调整</h1><p>这些参数都是基于我的日常使用得出来的结论，仅供参考，具体音质表现和稳定与否，取决于蓝牙耳机、蓝牙N电环境和蓝牙适配器本身</p>
+<ul>
+<li><p>编码器：LDAC</p>
+</li>
+<li><p>声道模式：立体声</p>
+</li>
+<li><p>采样率：96khz</p>
+</li>
+<li><p>分辨率：24位</p>
+</li>
+<li><p>立体声模式：Store</p>
+</li>
+<li><p>编码质量：HQ（高）</p>
+</li>
+<li><p>√无线电质量差时自动降低编码质量</p>
+</li>
+</ul>
+<p>注意，如果不勾选自动降低编码质量，会发现设备在双联双LDAC的时候声音异常的很卡，断断续续的，勾选上自动降低的时候后，在双联的时候会自动降低码率，保证连接质量稳定而不卡</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abdd49498.png" alt="image-20240417231610315"></p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><h2 id="关于破解版"><a href="#关于破解版" class="headerlink" title="关于破解版"></a>关于破解版</h2><p>我本人是强烈反对使用盗版软件的，但是你确实囊中羞涩的话，他是个常见的倒计时试用制的软件，有的软件可以修改时间错，让Alternative A2DP Driver一直认为你在试用期，但bug是肯定有的，至于具体的，那你试一下就知道了（</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abdceb43e.webp" alt="PixPin2024-04-1821-56-51-imageonline.co-3437699"></p>
+<h2 id="是否值得买"><a href="#是否值得买" class="headerlink" title="是否值得买"></a>是否值得买</h2><ul>
+<li><p>如果你是win11，win11原生支持AAC和LC3，而你又觉得AAC和LC3够用了不需要LDAC，那我的建议是不用买</p>
+</li>
+<li><p>如果你是Win10，由于Win10只支持SBC，而你用蓝牙耳机特别多且耳机支持LDAC，我的建议是购买普通版，但如果你的耳机不支持LDAC只支持AAC，那只能买8.99美刀的版本。</p>
+</li>
+<li><p>如果你是Win8.1以下或者Win10 1155之类的这个软件不支持的版本，那可定是不用买的，没意义。</p>
+</li>
+</ul>
+<h2 id="两种许可证有什么区别"><a href="#两种许可证有什么区别" class="headerlink" title="两种许可证有什么区别"></a>两种许可证有什么区别</h2><p>这个软件购买的时候有两种许可证，一种是带AAC编码器的，一种不带，由于AAC编码器是Via Licensing的专利付费编码器，所以如果使用AAC就必须向Via Licensing支付费用。如果你是Win11原生支持AAC，或者使用Win10但耳机都支持LDAC等更高哦质量的编码器而不需要AAC，那则可以不买AAC的许可。</p>
+<h2 id="为什么我的耳机连接很不稳定、声音断断续续的"><a href="#为什么我的耳机连接很不稳定、声音断断续续的" class="headerlink" title="为什么我的耳机连接很不稳定、声音断断续续的"></a>为什么我的耳机连接很不稳定、声音断断续续的</h2><p>蓝牙高码率需要非常干净的无线电环境，而LDAC的990kbps几乎已经榨干了，所以为了蓝牙稳定性，建议勾选<strong>无线电质量差时自动降低编码质量</strong>以提升连接质量和稳定性。</p>
+<h2 id="为什么我的耳机打不开LDAC？"><a href="#为什么我的耳机打不开LDAC？" class="headerlink" title="为什么我的耳机打不开LDAC？"></a>为什么我的耳机打不开LDAC？</h2><ul>
+<li>如果你的耳机支持LDAC，但是软件内LDAC不可选，可能是因为耳机处于非LDAC或者叫重连接质量、低功耗、连接稳定性优先（类似的）模式，此时耳机可能为了各种目的而关闭LDAC，你需要把耳机改成音质有限之类的。</li>
+<li>有的耳机在设备双联之下，为了保持连接稳定性，会禁用LDAC。有的耳机的LDAC还可能是付费的增值服务。</li>
+</ul>
+<h2 id="即便打开了LDAC码率也不高？"><a href="#即便打开了LDAC码率也不高？" class="headerlink" title="即便打开了LDAC码率也不高？"></a>即便打开了LDAC码率也不高？</h2><ul>
+<li>在开了无线电质量差时自动降低编码质量的情况下，可能由于蓝牙信号环境不足以支撑高码率音频，驱动程序会从驱动层面主动降低码率。</li>
+<li>有的耳机开启了设备双联且双LDAC后，为了保证连接质量，会从耳机端主动降低码率。</li>
+</ul>
+<p>如果你非要开启高码率，可以关闭<strong>无线电质量差时自动降低编码质量</strong>并手动选择SQ（高），这样则会锁死990kbps但是这样一来连接稳定性没法保证，二来可能会出现音频卡顿，再者还可能会出现失真。</p>
+<h2 id="如果我主要使用LE-Audio（LC3）那我有必要买吗"><a href="#如果我主要使用LE-Audio（LC3）那我有必要买吗" class="headerlink" title="如果我主要使用LE Audio（LC3）那我有必要买吗"></a>如果我主要使用LE Audio（LC3）那我有必要买吗</h2><p>Win11已经全面支持LE Audio，所以如果你用Win11，则没必要买。</p>
+<p>如果你用Win10，由于LE Audio和广泛使用的Classic Audio处于不相同的协议栈，而Alternative A2DP Driver不能也没有计划在A2DP中对LE Aduio</p>
+<blockquote>
+<p>截至 2023 年 6 月，Windows 11 已经支持 LE Audio。对于 Windows 10，添加对 LE Audio 的支持需要更换整个蓝牙堆栈，这是一项艰巨而危险的任务。</p>
+<p>因此，没有计划在替代 A2DP 驱动程序中对 LE Audio 执行任何操作。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://agen233.top">御枫林下</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://agen233.top/posts/5335a18c/">https://agen233.top/posts/5335a18c/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://agen233.top" target="_blank">御枫林下的小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Windows/">Windows</a><a class="post-meta__tags" href="/tags/%E8%80%B3%E6%9C%BA/">耳机</a></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2024/06/13/666ae7fa5688e.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/butterfly-extsrc/1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/8884a040/" title="Keil5烧录报错Connection refused due to device mismatch的玄学问题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abb3a729f.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Keil5烧录报错Connection refused due to device mismatch的玄学问题</div></div></a></div><div class="next-post pull-right"><a href="/posts/4bcd4505/" title="Redmi Buds 4 Pro偷渡和开启LDAC"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abb659333.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Redmi Buds 4 Pro偷渡和开启LDAC</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/d661a42a/" title="Dell Latitude E6440折腾记"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abb28db5c.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-14</div><div class="title">Dell Latitude E6440折腾记</div></div></a></div><div><a href="/posts/28f20c60/" title="Win10LTSC基于MAS工具的数字权利激活方案"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/21/66755ae0cf74b.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-16</div><div class="title">Win10LTSC基于MAS工具的数字权利激活方案</div></div></a></div><div><a href="/posts/8406b2e/" title="Windows7光盘的真伪对比"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/posts/8406b2e/top.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-03</div><div class="title">Windows7光盘的真伪对比</div></div></a></div><div><a href="/posts/de4a5a44/" title="WindowsME开启DOS实模式"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abb9a5733.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2018-05-06</div><div class="title">WindowsME开启DOS实模式</div></div></a></div><div><a href="/posts/bb683f89/" title="Windows命令行维护"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abbd98842.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-03</div><div class="title">Windows命令行维护</div></div></a></div><div><a href="/posts/8be11e9d/" title="Windows策略组维护"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abb9f3c5e.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-06</div><div class="title">Windows策略组维护</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc539646.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">御枫林下</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alternative-A2DP-Driver%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">Alternative A2DP Driver介绍和安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">系统要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%B0%83%E6%95%B4"><span class="toc-number">2.</span> <span class="toc-text">参数调整</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">3.</span> <span class="toc-text">写在最后</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%A0%B4%E8%A7%A3%E7%89%88"><span class="toc-number">3.1.</span> <span class="toc-text">关于破解版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E5%80%BC%E5%BE%97%E4%B9%B0"><span class="toc-number">3.2.</span> <span class="toc-text">是否值得买</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E8%AE%B8%E5%8F%AF%E8%AF%81%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">3.3.</span> <span class="toc-text">两种许可证有什么区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84%E8%80%B3%E6%9C%BA%E8%BF%9E%E6%8E%A5%E5%BE%88%E4%B8%8D%E7%A8%B3%E5%AE%9A%E3%80%81%E5%A3%B0%E9%9F%B3%E6%96%AD%E6%96%AD%E7%BB%AD%E7%BB%AD%E7%9A%84"><span class="toc-number">3.4.</span> <span class="toc-text">为什么我的耳机连接很不稳定、声音断断续续的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E7%9A%84%E8%80%B3%E6%9C%BA%E6%89%93%E4%B8%8D%E5%BC%80LDAC%EF%BC%9F"><span class="toc-number">3.5.</span> <span class="toc-text">为什么我的耳机打不开LDAC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B3%E4%BE%BF%E6%89%93%E5%BC%80%E4%BA%86LDAC%E7%A0%81%E7%8E%87%E4%B9%9F%E4%B8%8D%E9%AB%98%EF%BC%9F"><span class="toc-number">3.6.</span> <span class="toc-text">即便打开了LDAC码率也不高？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E6%88%91%E4%B8%BB%E8%A6%81%E4%BD%BF%E7%94%A8LE-Audio%EF%BC%88LC3%EF%BC%89%E9%82%A3%E6%88%91%E6%9C%89%E5%BF%85%E8%A6%81%E4%B9%B0%E5%90%97"><span class="toc-number">3.7.</span> <span class="toc-text">如果我主要使用LE Audio（LC3）那我有必要买吗</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/b2ce6d03/" title="软件方向软考学习记录（一）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/07/11/668fc0f50ee73.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="软件方向软考学习记录（一）"/></a><div class="content"><a class="title" href="/posts/b2ce6d03/" title="软件方向软考学习记录（一）">软件方向软考学习记录（一）</a><time datetime="2024-07-11T10:18:40.000Z" title="发表于 2024-07-11 18:18:40">2024-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8e2d59a8/" title="旗帜鲜明地反对基于运营商PON方案的FTTR"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/07/03/66854bbdc6f73.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="旗帜鲜明地反对基于运营商PON方案的FTTR"/></a><div class="content"><a class="title" href="/posts/8e2d59a8/" title="旗帜鲜明地反对基于运营商PON方案的FTTR">旗帜鲜明地反对基于运营商PON方案的FTTR</a><time datetime="2024-07-03T12:59:41.000Z" title="发表于 2024-07-03 20:59:41">2024-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/824ac3d0/" title="上手GY-30(BH1750)光强度传感器和相关程序代码"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/17/666f25704406c.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="上手GY-30(BH1750)光强度传感器和相关程序代码"/></a><div class="content"><a class="title" href="/posts/824ac3d0/" title="上手GY-30(BH1750)光强度传感器和相关程序代码">上手GY-30(BH1750)光强度传感器和相关程序代码</a><time datetime="2024-06-17T08:17:59.000Z" title="发表于 2024-06-17 16:17:59">2024-06-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b8ae5ec7/" title="imgtp图床寄了"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/posts/b8ae5ec7/top.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="imgtp图床寄了"/></a><div class="content"><a class="title" href="/posts/b8ae5ec7/" title="imgtp图床寄了">imgtp图床寄了</a><time datetime="2024-06-10T17:14:26.000Z" title="发表于 2024-06-11 01:14:26">2024-06-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ffd0ec44/" title="资中筠：休将明月照沟渠，莫与脑残争高低"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bu.dusays.com/2024/06/14/666bdee293676.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="资中筠：休将明月照沟渠，莫与脑残争高低"/></a><div class="content"><a class="title" href="/posts/ffd0ec44/" title="资中筠：休将明月照沟渠，莫与脑残争高低">资中筠：休将明月照沟渠，莫与脑残争高低</a><time datetime="2024-05-29T03:28:19.000Z" title="发表于 2024-05-29 11:28:19">2024-05-29</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 御枫林下</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="https://cdn.bootcdn.net/ajax/libs/hexo-theme-butterfly/4.13.0/js/main.min.js"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/19.1.3/lazyload.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.bootcdn.net/ajax/libs/pangu/4.0.7/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://blogverceltwkioo.agen233.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://blogverceltwkioo.agen233.top/',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.36/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script src="https://cdn.bootcdn.net/ajax/libs/pace/1.2.4/pace.min.js"></script><script defer pjax src="/js/custom.js"></script><script defer src="https://umami.agen233.top/custom" data-website-id="d0872472-8a0d-469d-b6b9-4d73180a446b"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.bootcdn.net/ajax/libs/algoliasearch/4.23.3/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/instantsearch.js/4.71.1/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.13.0"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客由HEXO强劲驱动" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="Butterfly主题提供页面支持" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://icp.gov.moe/?keyword=20240079" style="margin-inline:5px" data-title="萌国IPC备案20240079" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/%E8%90%8CICP%E5%A4%87-20240079-fe1384?style-flat&amp;logo=data:image/png;base64,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" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
