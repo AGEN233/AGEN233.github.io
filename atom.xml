@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>御枫林下的小站</title>
+  
+  
+  <link href="https://agen233.top/atom.xml" rel="self"/>
+  
+  <link href="https://agen233.top/"/>
+  <updated>2024-09-09T15:29:28.717Z</updated>
+  <id>https://agen233.top/</id>
+  
+  <author>
+    <name>御枫林下</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://agen233.top/posts/16107/"/>
+    <id>https://agen233.top/posts/16107/</id>
+    <published>2024-09-05T13:50:30.126Z</published>
+    <updated>2024-09-09T15:29:28.717Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>软件方向软考学习记录（一）</title>
+    <link href="https://agen233.top/posts/b2ce6d03/"/>
+    <id>https://agen233.top/posts/b2ce6d03/</id>
+    <published>2024-07-11T10:18:40.000Z</published>
+    <updated>2024-09-10T08:46:15.705Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="比赛、考证和学习记录" scheme="https://agen233.top/categories/%E6%AF%94%E8%B5%9B%E3%80%81%E8%80%83%E8%AF%81%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="持续更新" scheme="https://agen233.top/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    
+    <category term="软考" scheme="https://agen233.top/tags/%E8%BD%AF%E8%80%83/"/>
+    
+    <category term="计算机系统基础" scheme="https://agen233.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>旗帜鲜明地反对基于运营商PON方案的FTTR</title>
+    <link href="https://agen233.top/posts/8e2d59a8/"/>
+    <id>https://agen233.top/posts/8e2d59a8/</id>
+    <published>2024-07-03T12:59:41.000Z</published>
+    <updated>2024-07-31T02:56:22.986Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="网络" scheme="https://agen233.top/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="软路由" scheme="https://agen233.top/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>上手GY-30(BH1750)光强度传感器和相关程序代码</title>
+    <link href="https://agen233.top/posts/824ac3d0/"/>
+    <id>https://agen233.top/posts/824ac3d0/</id>
+    <published>2024-06-17T08:17:59.000Z</published>
+    <updated>2024-07-31T02:56:22.969Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
+    
+    <category term="传感器" scheme="https://agen233.top/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>imgtp图床寄了</title>
+    <link href="https://agen233.top/posts/b8ae5ec7/"/>
+    <id>https://agen233.top/posts/b8ae5ec7/</id>
+    <published>2024-06-10T17:14:26.000Z</published>
+    <updated>2024-07-31T02:56:22.968Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="碎碎念" scheme="https://agen233.top/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    
+    <category term="Hexo" scheme="https://agen233.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>资中筠：休将明月照沟渠，莫与脑残争高低</title>
+    <link href="https://agen233.top/posts/ffd0ec44/"/>
+    <id>https://agen233.top/posts/ffd0ec44/</id>
+    <published>2024-05-29T03:28:19.000Z</published>
+    <updated>2024-09-10T08:29:31.498Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="碎碎念" scheme="https://agen233.top/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    
+    <category term="转载" scheme="https://agen233.top/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>揪出Windows上阻止你屏幕自动睡眠的程序</title>
+    <link href="https://agen233.top/posts/3087054e/"/>
+    <id>https://agen233.top/posts/3087054e/</id>
+    <published>2024-05-22T16:59:31.000Z</published>
+    <updated>2024-07-31T02:56:22.983Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“送去大学的外卖基本没有差评”</title>
+    <link href="https://agen233.top/posts/66b5bdfd/"/>
+    <id>https://agen233.top/posts/66b5bdfd/</id>
+    <published>2024-05-14T16:53:05.000Z</published>
+    <updated>2024-09-10T08:07:01.299Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我们那丢人又幸福的不完美的人生——米奇与达利</title>
+    <link href="https://agen233.top/posts/4dc3a1af/"/>
+    <id>https://agen233.top/posts/4dc3a1af/</id>
+    <published>2024-05-07T08:17:59.000Z</published>
+    <updated>2024-07-31T02:56:22.982Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="碎碎念" scheme="https://agen233.top/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ESP-01S基于AT+MQTT速通华为云</title>
+    <link href="https://agen233.top/posts/639e78a0/"/>
+    <id>https://agen233.top/posts/639e78a0/</id>
+    <published>2024-05-04T14:21:47.000Z</published>
+    <updated>2024-07-31T02:56:22.926Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于algolia自动上传</title>
+    <link href="https://agen233.top/posts/e4d8f98b/"/>
+    <id>https://agen233.top/posts/e4d8f98b/</id>
+    <published>2024-05-03T15:47:29.000Z</published>
+    <updated>2024-07-31T02:56:22.970Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="前端开发" scheme="https://agen233.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="Hexo" scheme="https://agen233.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows7光盘的真伪对比</title>
+    <link href="https://agen233.top/posts/8406b2e/"/>
+    <id>https://agen233.top/posts/8406b2e/</id>
+    <published>2024-05-03T13:13:10.000Z</published>
+    <updated>2024-09-11T02:34:46.831Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+    <category term="转载" scheme="https://agen233.top/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Keil5烧录报错Connection refused due to device mismatch的玄学问题</title>
+    <link href="https://agen233.top/posts/8884a040/"/>
+    <id>https://agen233.top/posts/8884a040/</id>
+    <published>2024-04-18T12:42:00.000Z</published>
+    <updated>2024-07-31T02:56:22.926Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
+    
+    <category term="ESP8266/ESP32" scheme="https://agen233.top/tags/ESP8266-ESP32/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Win10及Win11下开启蓝牙耳机的LADC和aptXHD高质量音频协议</title>
+    <link href="https://agen233.top/posts/5335a18c/"/>
+    <id>https://agen233.top/posts/5335a18c/</id>
+    <published>2024-04-16T17:05:19.000Z</published>
+    <updated>2024-09-10T08:48:52.758Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="电脑折腾录" scheme="https://agen233.top/categories/%E7%94%B5%E8%84%91%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+    <category term="耳机" scheme="https://agen233.top/tags/%E8%80%B3%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redmi Buds 4 Pro偷渡和开启LDAC</title>
+    <link href="https://agen233.top/posts/4bcd4505/"/>
+    <id>https://agen233.top/posts/4bcd4505/</id>
+    <published>2024-04-16T15:33:15.000Z</published>
+    <updated>2024-09-09T15:42:52.574Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="手机和平板" scheme="https://agen233.top/categories/%E6%89%8B%E6%9C%BA%E5%92%8C%E5%B9%B3%E6%9D%BF/"/>
+    
+    
+    <category term="耳机" scheme="https://agen233.top/tags/%E8%80%B3%E6%9C%BA/"/>
+    
+    <category term="小米" scheme="https://agen233.top/tags/%E5%B0%8F%E7%B1%B3/"/>
+    
+    <category term="澎湃OS|HyperOS" scheme="https://agen233.top/tags/%E6%BE%8E%E6%B9%83OS-HyperOS/"/>
+    
+    <category term="MIUI14" scheme="https://agen233.top/tags/MIUI14/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>引入MeuiCat的Banner样式和食用方式</title>
+    <link href="https://agen233.top/posts/67432090/"/>
+    <id>https://agen233.top/posts/67432090/</id>
+    <published>2024-04-15T15:20:14.000Z</published>
+    <updated>2024-09-09T15:49:25.246Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="前端开发" scheme="https://agen233.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="转载" scheme="https://agen233.top/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+    <category term="Hexo" scheme="https://agen233.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于abbrlink和asset-image不兼容问题</title>
+    <link href="https://agen233.top/posts/df9fba50/"/>
+    <id>https://agen233.top/posts/df9fba50/</id>
+    <published>2024-04-13T14:26:59.000Z</published>
+    <updated>2024-09-10T08:02:42.033Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="前端开发" scheme="https://agen233.top/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="Hexo" scheme="https://agen233.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GPIO和输入输出模式</title>
+    <link href="https://agen233.top/posts/b8441c09/"/>
+    <id>https://agen233.top/posts/b8441c09/</id>
+    <published>2024-03-22T07:12:37.000Z</published>
+    <updated>2024-07-31T02:56:22.926Z</updated>
+    
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
+    
+    <category term="ESP8266/ESP32" scheme="https://agen233.top/tags/ESP8266-ESP32/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于OSI七层模型</title>
+    <link href="https://agen233.top/posts/9ee79452/"/>
+    <id>https://agen233.top/posts/9ee79452/</id>
+    <published>2024-03-19T16:43:48.000Z</published>
+    <updated>2024-07-31T02:56:22.969Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    
+    <category term="网络" scheme="https://agen233.top/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>非小米电脑安装小米电脑管家</title>
+    <link href="https://agen233.top/posts/6680ffdf/"/>
+    <id>https://agen233.top/posts/6680ffdf/</id>
+    <published>2024-02-27T05:40:37.000Z</published>
+    <updated>2024-09-10T08:09:06.212Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="电脑折腾录" scheme="https://agen233.top/categories/%E7%94%B5%E8%84%91%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="小米" scheme="https://agen233.top/tags/%E5%B0%8F%E7%B1%B3/"/>
+    
+    <category term="澎湃OS|HyperOS" scheme="https://agen233.top/tags/%E6%BE%8E%E6%B9%83OS-HyperOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Win10LTSC基于MAS工具的数字权利激活方案</title>
+    <link href="https://agen233.top/posts/28f20c60/"/>
+    <id>https://agen233.top/posts/28f20c60/</id>
+    <published>2024-02-15T18:13:28.000Z</published>
+    <updated>2024-09-11T02:34:49.108Z</updated>
+    
+    
+    <summary type="html">基于Windows10LTSC的转换为LTSC IOT的数字激活工具，采用MAS工具包</summary>
+    
+    
+    
+    <category term="电脑折腾录" scheme="https://agen233.top/categories/%E7%94%B5%E8%84%91%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于ESP-IDF+VSCODE的ESP32开发环境搭建</title>
+    <link href="https://agen233.top/posts/88fe7ba4/"/>
+    <id>https://agen233.top/posts/88fe7ba4/</id>
+    <published>2024-02-04T09:01:36.000Z</published>
+    <updated>2024-07-31T02:56:22.971Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="ESP32" scheme="https://agen233.top/tags/ESP32/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小米平板6降级MIUI14</title>
+    <link href="https://agen233.top/posts/d9334dc1/"/>
+    <id>https://agen233.top/posts/d9334dc1/</id>
+    <published>2024-01-26T06:02:05.000Z</published>
+    <updated>2024-09-10T06:39:50.248Z</updated>
+    
+    
+    <summary type="html">由澎湃OS内测降级为MIUI14正式版</summary>
+    
+    
+    
+    <category term="手机和平板" scheme="https://agen233.top/categories/%E6%89%8B%E6%9C%BA%E5%92%8C%E5%B9%B3%E6%9D%BF/"/>
+    
+    
+    <category term="小米" scheme="https://agen233.top/tags/%E5%B0%8F%E7%B1%B3/"/>
+    
+    <category term="澎湃OS|HyperOS" scheme="https://agen233.top/tags/%E6%BE%8E%E6%B9%83OS-HyperOS/"/>
+    
+    <category term="MIUI14" scheme="https://agen233.top/tags/MIUI14/"/>
+    
+    <category term="小米平板6" scheme="https://agen233.top/tags/%E5%B0%8F%E7%B1%B3%E5%B9%B3%E6%9D%BF6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows策略组维护</title>
+    <link href="https://agen233.top/posts/8be11e9d/"/>
+    <id>https://agen233.top/posts/8be11e9d/</id>
+    <published>2024-01-06T13:37:40.000Z</published>
+    <updated>2024-09-10T06:38:31.104Z</updated>
+    
+    
+    <summary type="html">Windows维护策略组维护系属windows维护的，模块内内容比较繁多和杂乱。</summary>
+    
+    
+    
+    <category term="比赛、考证和学习记录" scheme="https://agen233.top/categories/%E6%AF%94%E8%B5%9B%E3%80%81%E8%80%83%E8%AF%81%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+    <category term="ChinaSkills" scheme="https://agen233.top/tags/ChinaSkills/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows命令行维护</title>
+    <link href="https://agen233.top/posts/bb683f89/"/>
+    <id>https://agen233.top/posts/bb683f89/</id>
+    <published>2024-01-03T13:37:40.000Z</published>
+    <updated>2024-09-10T06:38:53.701Z</updated>
+    
+    
+    <summary type="html">Windows维护策略组维护系属windows维护的，模块内内容比较繁多和杂乱。</summary>
+    
+    
+    
+    <category term="比赛、考证和学习记录" scheme="https://agen233.top/categories/%E6%AF%94%E8%B5%9B%E3%80%81%E8%80%83%E8%AF%81%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+    <category term="ChinaSkills" scheme="https://agen233.top/tags/ChinaSkills/"/>
+    
+    <category term="持续更新" scheme="https://agen233.top/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Dell Latitude E6440折腾记</title>
+    <link href="https://agen233.top/posts/d661a42a/"/>
+    <id>https://agen233.top/posts/d661a42a/</id>
+    <published>2023-11-14T08:17:59.000Z</published>
+    <updated>2024-07-31T02:56:22.919Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="电脑折腾录" scheme="https://agen233.top/categories/%E7%94%B5%E8%84%91%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WindowsME开启DOS实模式</title>
+    <link href="https://agen233.top/posts/de4a5a44/"/>
+    <id>https://agen233.top/posts/de4a5a44/</id>
+    <published>2018-05-06T15:29:00.000Z</published>
+    <updated>2024-07-31T02:56:22.957Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="电脑折腾录" scheme="https://agen233.top/categories/%E7%94%B5%E8%84%91%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+  </entry>
+  
+</feed>
