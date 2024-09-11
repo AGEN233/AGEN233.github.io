@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>关于OSI七层模型 | 御枫林下的小站</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=2.0.12"><!-- inject head--><link rel="canonical" href="https://agen233.top/posts/9ee79452/"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!-- aplayer--><!-- swiper--><!-- fancybox ui--><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="前言 开放式系统互联模型（英语：Open System Interconnection Model，缩写：OSI；简称为OSI模型）是一种概念模型，由国际标准化组织提出，一个试图使各种计算机在世界范围内互连为网络的标准框架。定义于ISO&amp;#x2F;IEC 7498。 该模型将通信系统中的数据流划分为七个不同的"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="御枫林下的小站"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg"><link rel="apple-touch-icon" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg" sizes="180x180"><script>console.log(' %c Solitude %c ' + '2.0.12' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script src="https://at.alicdn.com/t/c/font_4420046_w2c8zo5chlb.js"></script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+          },
+        }
+    })()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: {"appId":"NTABD03MUI","apiKey":"b9edcdc52526245cf090759020f838cd","indexName":"HEXO","hits":{"per_page":10}},
+    localsearch: undefined,
+    runtime: '2022-04-20 00:00:00',
+    lazyload: {
+        enable: true,
+        error: '/img/error_load.avif'
+    },
+    copyright: {"limit":50,"author":"作者: 御枫林下","link":"链接: ","source":"来源: 御枫林下的小站","info":"著作权归作者所有。 商业转载请联系作者获得授权，非商业转载请注明出处。"},
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。"}},
+    aside: {
+        sayhello: {
+            morning: "✨ Good morning. It's a new day",
+            noon: "It's time for a midday break",
+            afternoon: "Tea time. 🍵",
+            night: "early bedtime",
+            goodnight: "Good night 😴",
+        },
+        sayhello2: ["You'll make it.","You're gonna make it.","Good luck, stranger."],
+        sayhello3: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: true
+    },
+    comment: false,
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: {"mode":{"dark":"深色模式","light":"浅色模式"},"img_error":"此图片无法复制与下载","translate":{"translateDelay":0,"defaultEncoding":2}},
+    lure: false,
+    expire: false,
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false,
+    color: false,
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body id="body"><!-- universe--><!-- background img--><div id="global_bg"></div><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fa-solid fa-circle-half-stroke"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>枫之作</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>林之交</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人帐</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="solitude  fas fa-users"></i><span>朋友圈</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://storeweb.cn/s/2125"><i class="solitude  fas fa-earth-americas"></i><span>个站虫洞</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>藏宝阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/equipment/"><i class="solitude  fas fa-laptop"></i><span>Equipment</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>枫于林</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>关于本人</span></a></li><li><a class="site-page child" href="/copyright/"><i class="solitude  fas fa-unlock-keyhole"></i><span>版权声明</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://umami.agen233.top/share/sLvlamVW8ArWTwbH/agen233.top"><i class="solitude  fas fa fa-bar-chart"></i><span>统计信息</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-widget card-tags card-archives card-webinfo card-allinfo"><div class="card-tag-cloud"><a href="/tags/STM32/">STM32<sup>3</sup></a><a href="/tags/ESP8266-ESP32/">ESP8266/ESP32<sup>2</sup></a><a href="/tags/%E8%80%B3%E6%9C%BA/">耳机<sup>2</sup></a><a href="/tags/%E5%B0%8F%E7%B1%B3/">小米<sup>3</sup></a><a href="/tags/%E6%BE%8E%E6%B9%83OS-HyperOS/">澎湃OS|HyperOS<sup>3</sup></a><a href="/tags/MIUI14/">MIUI14<sup>2</sup></a><a href="/tags/Windows/">Windows<sup>8</sup></a><a href="/tags/%E8%BD%AC%E8%BD%BD/">转载<sup>3</sup></a><a href="/tags/ChinaSkills/">ChinaSkills<sup>2</sup></a><a href="/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">持续更新<sup>2</sup></a><a href="/tags/Hexo/">Hexo<sup>4</sup></a><a href="/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/">传感器<sup>1</sup></a><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式<sup>2</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/">网络<sup>2</sup></a><a href="/tags/ESP32/">ESP32<sup>1</sup></a><a href="/tags/%E5%B0%8F%E7%B1%B3%E5%B9%B3%E6%9D%BF6/">小米平板6<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/">软考<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/">计算机系统基础<sup>1</sup></a></div></div></div></div><!-- keyboard--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">御枫林下的小站</span><i class="solitude fa-solid fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">关于OSI七层模型</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>枫之作</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>林之交</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人帐</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="solitude  fas fa-users"></i><span>朋友圈</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://storeweb.cn/s/2125"><i class="solitude  fas fa-earth-americas"></i><span>个站虫洞</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>藏宝阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/equipment/"><i class="solitude  fas fa-laptop"></i><span>Equipment</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>枫于林</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>关于本人</span></a></li><li><a class="site-page child" href="/copyright/"><i class="solitude  fas fa-unlock-keyhole"></i><span>版权声明</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://umami.agen233.top/share/sLvlamVW8ArWTwbH/agen233.top"><i class="solitude  fas fa fa-bar-chart"></i><span>统计信息</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="solitude fas fa-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="solitude fa-solid fa-dice-d6"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude fa-solid fa-magnifying-glass"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fa-solid fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fa-solid fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://bu.dusays.com/2024/06/12/6669abc66c3f5.webp" alt="关于OSI七层模型"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tags-name tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>网络</span></a></div></div></div></div><h1 class="post-title">关于OSI七层模型</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-03-20 00:43:48"><i class="post-meta-icon solitude fa-solid fa-calendar-days"></i><time datetime="2024-03-19T16:43:48.000Z">2024-03-19T16:43:48.000Z</time></span><span class="post-meta-date" title="最后更新于 2024-07-31 10:56:22"><i class="post-meta-icon solitude fa-solid fa-arrow-rotate-right"></i><time datetime="2024-07-31T02:56:22.969Z">2024-07-31T02:56:22.969Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fa-solid fa-file-word" title="文章字数"></i><span class="word-count">2.1k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fa-solid fa-clock" title="阅读耗时"></i><span>7 min</span></span><span class="post-meta-position" title="作者IP归属地为广东・新会"><i class="post-meta-icon solitude fas fa-location-dot"></i><span>广东・新会</span></span><a class="post-meta-pv" href="/posts/9ee79452/" title="文章热度"><i class="post-meta-icon solitude fa-solid fa-fire-flame-curved"></i></a></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p><strong>开放式系统互联模型</strong>（英语：<strong>O</strong>pen <strong>S</strong>ystem <strong>I</strong>nterconnection Model，缩写：OSI；简称为<strong>OSI模型</strong>）是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/概念模型">概念模型</a>，由<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/国际标准化组织">国际标准化组织</a>提出，一个试图使各种计算机在世界范围内互连为网络的标准框架。定义于ISO/IEC 7498。</p>
+<p>该模型将通信系统中的数据流划分为七个不同的抽象层：物理层、数据链路层、网络层、传输层、会话层、表示层和应用程序层。</p>
+</blockquote>
+<p>最近学了计网和OSI模型，对这个有了点初步的了解，在这里聊聊个人的理解和看法。<br>OSI为计算机网络通信提供了一个<strong>标准的体系结构</strong>，使不同厂商和组织能够在相同的基础上进行设计、开发和实现网络协议和设备，从而实现互操作性。在此基础上，OSI提出了<strong>结构化</strong>的七个抽象层，使得网络设计和维护，故障排查和检修变得简单和清晰明了。在设计网络的时候可以根据OSI进行精细而有目的的协同和设计，而当网络出现问题的时候，OSI的抽象层使得可以清晰地根据不同的故障进行有针对性的且是不同的层级划分的基础上进行具体的定位和解决。</p>
+<h1 id="标准规范性文件"><a href="#标准规范性文件" class="headerlink" title="标准规范性文件"></a>标准规范性文件</h1><p>OSI 模型在 <strong>ISO/IEC 7498</strong> 中定义，由以下部分组成：</p>
+<ul>
+<li><p>ISO/IEC 7498-1 基本模型</p>
+</li>
+<li><p>ISO/IEC 7498-2 安全架构</p>
+</li>
+<li><p>ISO/IEC 7498-3 命名和寻址</p>
+</li>
+<li><p>ISO/IEC 7498-4 管理框架</p>
+<p>ISO/IEC 7498-1 也作为 ITU-T 建议书 X.200 发布。</p>
+</li>
+</ul>
+<h1 id="层构架"><a href="#层构架" class="headerlink" title="层构架"></a>层构架</h1><p>根据ISO/IEC 7498-1，OSI模型分为七个抽象层，标记为从1到7，第一层是最底层。</p>
+<ul>
+<li>7 应用层（Application）</li>
+<li>6 表示层（Presentation）</li>
+<li>5 会话层（Session）</li>
+<li>4 传输层（Transport）</li>
+<li>3 网络层（NetWork）</li>
+<li>2 数据链路层（Data Link）</li>
+<li>1 物理层（Physical）</li>
+</ul>
+<p><strong>在OSI中，底三层为媒体层（Media layers），上四层为主机层（Host layers）。</strong></p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc6e42a3.webp" alt="v2-c29b86bf577e18f4c94bef7b84d590e9_r.jpg"></p>
+<h1 id="从数据流的发送端的流方向角度看"><a href="#从数据流的发送端的流方向角度看" class="headerlink" title="从数据流的发送端的流方向角度看"></a>从数据流的发送端的流方向角度看</h1><p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc55e653.webp" alt="image-20240320222359815.png"></p>
+<h2 id="第七层：应用层"><a href="#第七层：应用层" class="headerlink" title="第七层：应用层"></a>第七层：应用层</h2><p>数据出现于<strong>应用层</strong>中，诸如QQ、网页、TG等应用以及应用程序都属于应用层的内容。    </p>
+<p>应用层准备好数据后，开始像表示层解释。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc652d4d.png" alt="image-20240320223416280" style="zoom:50%;" /></p>
+<h2 id="第六层：表示层"><a href="#第六层：表示层" class="headerlink" title="第六层：表示层"></a>第六层：表示层</h2><p><strong>应用层</strong>收到从应用层送来的文件后，会对数据进行编码、加密、压缩，转换为对方应用层兼容且适合的形式。因此表示层也叫语法层。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc47db33.webp" alt="895baf3616e104b423977f4804f6d785-imageonline.co-4801438"></p>
+<h2 id="第五层：会话层"><a href="#第五层：会话层" class="headerlink" title="第五层：会话层"></a>第五层：会话层</h2><p><strong>会话层</strong>不会直接对数据本身进行处理，在收到表示层送来的数据之后，负责在两台计算机之间建立数据连接，和负责维护连接，以保证这段数据不会因为中断而造成问题。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc60dab7.webp" alt="PixPin2024-03-2022-43-54-imageonline.co-4129330"></p>
+<h2 id="第四层：传输层"><a href="#第四层：传输层" class="headerlink" title="第四层：传输层"></a>第四层：传输层</h2><p>如果我们需要一次性传输单个非常大的文件，而我们的网络环境比恶劣，那么如果在这个传输过程中会话层所建立的链接中断了，就意味着需要重新传输。</p>
+<p>而传输层可以吧<strong>单个大</strong>的文件拆分为<strong>多个小</strong>的文件，同时配合中断重发机制，就可以解决重新传输问题；同时，由于数据包是通过传输层进行切片和控制的，进而它也可以对数据进行<strong>流量控制</strong>，这样就能避免堵塞和多路复用。</p>
+<p>此外，传输层还提供端口服务，通过给数据追加一个源头和目标端口，实现明确告知具体的包的具体的传输源头和目的。</p>
+<p><code>[源目端口] | 数据内容</code></p>
+<p>传输层最常用的协议有<strong>TCP</strong>和<strong>UDP</strong>，前者提供<strong>可靠</strong>的数据传输，后者提供<strong>不可靠</strong>的数据传输。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc4a9899.webp" alt="1803db9e69d1e74310e335ec83a698b9-imageonline.co-7343848"></p>
+<h2 id="第三层：网络层"><a href="#第三层：网络层" class="headerlink" title="第三层：网络层"></a>第三层：网络层</h2><p><strong>网络层</strong>提供了将<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Network_packet"><strong>数据包</strong></a>从一个节点传输到另一个节点的功能和程序手段，这些节点或者叫计算机处于不同的“网段”之中，我们需要依靠IP地址来确定异地的网段和目标 。</p>
+<p>网络层为传输层的数据追加一个原地址和目标地址<code>[源目ip地址] | [源目端口] | 数据内容</code>，这就解决了数据从何而来和道何而去的问题。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc63cdf1.webp" alt="R-C"></p>
+<p>网络层常用的协议有：</p>
+<ul>
+<li><p><strong>Internet 协议（IP）</strong>：IP 协议是网络层最重要的协议之一，用于在因特网中进行数据包的路由和转发。IPv4 和 IPv6 是两个主要版本的 IP 协议。</p>
+</li>
+<li><p><strong>Internet 控制报文协议（ICMP）</strong>：ICMP 协议用于在 IP 网络中发送控制消息，如网络不可达、主机不可达等，以便网络设备能够进行故障排除和错误通知。</p>
+</li>
+<li><p><strong>地址解析协议（ARP）</strong>：ARP 协议用于将 IP 地址映射到 MAC 地址，以便在局域网中进行通信时能够将 IP 数据包封装成帧并发送到目标设备。</p>
+</li>
+</ul>
+<p>至此为止，通过<strong>源IP地址</strong>、<strong>目标IP地址</strong>、<strong>协议号</strong>、<strong>源端口号</strong>和<strong>目标端口号</strong>（TCP/IP），就可以识别一个<strong>完整</strong>的通讯。</p>
+<p>IP地址除了可以解决异地网段的问题，同时还映射MAC地址，可以通过IP地址和路由表共同寻到具体设备的MAC地址</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc544654.webp" alt="0a6acfeda4e3966d66429982eb60c9ac"></p>
+<h2 id="第二层：数据链路层"><a href="#第二层：数据链路层" class="headerlink" title="第二层：数据链路层"></a>第二层：数据链路层</h2><p>  网络层和IP地址解决了异地网段的问题，但网络层无法确定要传递到该网段的下的某一台具体的机器。因此，链路层会将网络层的</p>
+<p><code>[源目ip地址] | [源目端口] | 数据内容</code>追加<strong>源目MAC地址</strong>变成<code>[源目MAC地址][源目ip地址] | [源目端口] | 数据内容</code>。</p>
+<p>与此同时，由于我们的数据是切片的，为了数据的完整性，链路层会用<strong>FSC帧校验</strong>对数据进行再次追加。</p>
+<p>至此，我们的数据已经完全追加并处理完成，得到的<code>[源目MAC地址] [源目ip地址] | [源目端口] | 数据内容 | [FSC帧校验]</code>就是我们的最终帧数据部分。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc577fe9.webp" alt="PixPin_2024-03-21_20-08-49"></p>
+<h2 id="第一层：物理层"><a href="#第一层：物理层" class="headerlink" title="第一层：物理层"></a>第一层：物理层</h2><p>物理层只考虑数据在物理上的传输，而不关心数据流里携带的信息。他将前六层得到的最终数据流编码或转换成0101的二进制形式，通过物理接口和传输介质，把数据发送到对端。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc3e6899.webp" alt="{F9E214ED-7739-442a-96BB-AA5A2967E84C}"></p>
+<h1 id="从数据流的接受端的流方向角度看"><a href="#从数据流的接受端的流方向角度看" class="headerlink" title="从数据流的接受端的流方向角度看"></a>从数据流的接受端的流方向角度看</h1><h2 id="第一层：物理层-1"><a href="#第一层：物理层-1" class="headerlink" title="第一层：物理层"></a>第一层：物理层</h2><p>收到<strong>主机A</strong>发来的二进制代码，并对代码进行解析，把数据转换为链路层能识别的数据。</p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc4e3093.webp" alt="4433c0ac912d42b901abd4fc3235196c-imageonline.co-2606786"></p>
+<h2 id="第二层：数据链路层-1"><a href="#第二层：数据链路层-1" class="headerlink" title="第二层：数据链路层"></a>第二层：数据链路层</h2><p>数据链路层收到由物理层解析后的数据，先进行<strong>FSC帧校验</strong>校验数据的完整性，然后检验目标<strong>MAC地址</strong>是否正确，最后剥离<strong>FSC帧校验</strong>和<strong>源目MAC地址</strong>，随后把处理过后的数据帧交给网络层。</p>
+<p><code>[源目Mac地址]|[源目ip地址]|[源目端口]|数据内容|[FSC帧校验]</code><strong>→</strong><code>[源目ip地址]|[源目端口]|数据内容</code></p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc652d4d.webp" alt="PixPin2024-03-2623-56-10-imageonline.co-9563388"></p>
+<h2 id="第三层：网络层-1"><a href="#第三层：网络层-1" class="headerlink" title="第三层：网络层"></a>第三层：网络层</h2><p><strong>网络层</strong>收到数据链路层传来的数据之后，确定设备的IP地址并准确无误且可以通过之后，<strong>剥离源目IP地址</strong>，并将数据包交给<strong>传输层</strong></p>
+<p><code>[源目ip地址]|[源目端口]|数据内容</code><strong>→</strong> <code>[源目端口]|数据内容</code></p>
+<h2 id="第四层：传输层-1"><a href="#第四层：传输层-1" class="headerlink" title="第四层：传输层"></a>第四层：传输层</h2><p><strong>传输层</strong>收到来自网络层的数据后，确认<strong>源目端口</strong>是否通畅可用，<strong>剥离源目端口</strong>，并把数据交给<strong>会话层</strong></p>
+<p><code>[源目端口]|数据内容</code>→<code>数据内容</code></p>
+<h2 id="第五层：会话层-1"><a href="#第五层：会话层-1" class="headerlink" title="第五层：会话层"></a>第五层：会话层</h2><p><strong>会话层</strong>拿到数据后，需要根据端口与相对应的应用建立会话连接，并维持这个连接关系，继续将数据交给<strong>表示层</strong>。<br><code>数据内容</code>→<code>数据内容</code></p>
+<h2 id="第六层：表示层-1"><a href="#第六层：表示层-1" class="headerlink" title="第六层：表示层"></a>第六层：表示层</h2><p><strong>表示层</strong>收到数据后，需要对数据做进一步的<strong>解码</strong>处理，以确保应用能够识别这段数据内容，解码成功后，将数据交给<strong>应用层</strong>。<br><code>数据内容</code>→<code>数据内容</code></p>
+<h2 id="第七层：应用层-1"><a href="#第七层：应用层-1" class="headerlink" title="第七层：应用层"></a>第七层：应用层</h2><p><strong>主机B</strong>最终收到了<strong>主机A</strong>发过来的消息。<br><code>数据内容</code>→<code>数据内容</code></p>
+<p><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abde4f716.gif" alt="2c484d271ceb71e677e5a1db371c2d30"></p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><a class="post-copyright__author_img" href="/copyright/"><img class="post-copyright__author_img_front" src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc539646.jpg"></a><div class="post-copyright__author_name">御枫林下的小站</div><div class="post-copyright__author_desc"></div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">御枫林下的小站</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tags-punctuation"><i class="solitude fa-solid fa-hashtag"></i>网络<span class="tagsPageCount">2</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/b8441c09/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">GPIO和输入输出模式</div></div></a></div><div class="next-post pull-right"><a href="/posts/6680ffdf/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">非小米电脑安装小米电脑管家</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="solitude fa-solid fa-star"></i><span>喜欢这篇的人也看了</span><div class="relatedPosts-link"><a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">随便逛逛</a></div></div><div class="relatedPosts-list"><div><a href="/posts/8e2d59a8/" title="旗帜鲜明地反对基于运营商PON方案的FTTR"><img class="cover" src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/07/03/66854bbdc6f73.webp" alt="cover"><div class="content is-center"><div class="title">旗帜鲜明地反对基于运营商PON方案的FTTR</div></div></a></div></div></div><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude fa-solid fa-comment"></i><span> 评论</span></div></div><div class="comment-wrap"><div id="twikoo-wrap"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-bg-top"><div class="is-center"><div class="author-info__top-group"><div class="author-info__sayhi" id="author-info__sayhi" onclick="sco.changeSayHelloText()">sayhello.morning</div></div></div></div><a class="card-info-avatar" href="/about/" title="头像"><div class="avatar-img"><img src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/12/6669abc539646.jpg" alt="头像"></div></a><div class="card-info__desc_group"><div class="author-info__name">御枫林下</div><div class="author-info__desc"></div><div class="card-info__data is-center"><a href="/archives/" title="累计文章数:27"><div class="length-num">27</div><div class="headline">文章</div></a><a href="/tags/" title="标签总数:19"><div class="length-num">19</div><div class="headline">标签</div></a><a href="/categories/" title="分类总数:6"><div class="length-num">6</div><div class="headline">分类</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/agen233" title="Github"><i class="solitude  fab fa-github"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fa-solid fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E8%A7%84%E8%8C%83%E6%80%A7%E6%96%87%E4%BB%B6"><span class="toc-text">标准规范性文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B1%82%E6%9E%84%E6%9E%B6"><span class="toc-text">层构架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E5%8F%91%E9%80%81%E7%AB%AF%E7%9A%84%E6%B5%81%E6%96%B9%E5%90%91%E8%A7%92%E5%BA%A6%E7%9C%8B"><span class="toc-text">从数据流的发送端的流方向角度看</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E5%B1%82%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-text">第七层：应用层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E5%B1%82%EF%BC%9A%E8%A1%A8%E7%A4%BA%E5%B1%82"><span class="toc-text">第六层：表示层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E5%B1%82%EF%BC%9A%E4%BC%9A%E8%AF%9D%E5%B1%82"><span class="toc-text">第五层：会话层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E5%B1%82%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-text">第四层：传输层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%B1%82%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-text">第三层：网络层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-text">第二层：数据链路层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-text">第一层：物理层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E6%8E%A5%E5%8F%97%E7%AB%AF%E7%9A%84%E6%B5%81%E6%96%B9%E5%90%91%E8%A7%92%E5%BA%A6%E7%9C%8B"><span class="toc-text">从数据流的接受端的流方向角度看</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%B1%82%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82-1"><span class="toc-text">第一层：物理层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B1%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82-1"><span class="toc-text">第二层：数据链路层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%B1%82%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82-1"><span class="toc-text">第三层：网络层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E5%B1%82%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82-1"><span class="toc-text">第四层：传输层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E5%B1%82%EF%BC%9A%E4%BC%9A%E8%AF%9D%E5%B1%82-1"><span class="toc-text">第五层：会话层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E5%B1%82%EF%BC%9A%E8%A1%A8%E7%A4%BA%E5%B1%82-1"><span class="toc-text">第六层：表示层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E5%B1%82%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82-1"><span class="toc-text">第七层：应用层</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fa-solid fa-map"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/16107/" title="Hello World"><img alt="Hello World" src= "/img/loading.avif" data-lazy-src="/img/default.avif"></a><div class="content"><span class="title" href="/posts/16107/" title="Hello World">Hello World</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b2ce6d03/" title="软件方向软考学习记录（一）"><img alt="软件方向软考学习记录（一）" src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/07/11/668fc0f50ee73.webp"></a><div class="content"><span class="title" href="/posts/b2ce6d03/" title="软件方向软考学习记录（一）">软件方向软考学习记录（一）</span><span class="article-recent_post_categories" href="/posts/b2ce6d03/">比赛、考证和学习记录</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/8e2d59a8/" title="旗帜鲜明地反对基于运营商PON方案的FTTR"><img alt="旗帜鲜明地反对基于运营商PON方案的FTTR" src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/07/03/66854bbdc6f73.webp"></a><div class="content"><span class="title" href="/posts/8e2d59a8/" title="旗帜鲜明地反对基于运营商PON方案的FTTR">旗帜鲜明地反对基于运营商PON方案的FTTR</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/824ac3d0/" title="上手GY-30(BH1750)光强度传感器和相关程序代码"><img alt="上手GY-30(BH1750)光强度传感器和相关程序代码" src= "/img/loading.avif" data-lazy-src="https://bu.dusays.com/2024/06/17/666f25704406c.webp"></a><div class="content"><span class="title" href="/posts/824ac3d0/" title="上手GY-30(BH1750)光强度传感器和相关程序代码">上手GY-30(BH1750)光强度传感器和相关程序代码</span><span class="article-recent_post_categories" href="/posts/824ac3d0/">嵌入式和单片机</span></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b8ae5ec7/" title="imgtp图床寄了"><img alt="imgtp图床寄了" src= "/img/loading.avif" data-lazy-src="/posts/b8ae5ec7/top.webp"></a><div class="content"><span class="title" href="/posts/b8ae5ec7/" title="imgtp图床寄了">imgtp图床寄了</span><span class="article-recent_post_categories" href="/posts/b8ae5ec7/">碎碎念</span></div></div></div></div></div></div></main><footer id="footer"><div id="footer_deal"></div><div id="st-footer"><div class="footer-group"><h3 class="footer-title">导航</h3><div class="footer-links"><a class="footer-item" href="/archives/" title="归档">归档</a><a class="footer-item" href="/categories/" title="分类">分类</a><a class="footer-item" href="/tags/" title="标签">标签</a><a class="footer-item" href="/about/" title="关于">关于</a></div></div><div class="footer-group"><h3 class="footer-title">服务</h3><div class="footer-links"><a class="footer-item" href="/baidu.com" title="开往">开往</a><a class="footer-item" target="_blank" rel="noopener" href="https://storeweb.cn/s/2125" title="个站虫洞">个站虫洞</a><a class="footer-item" target="_blank" rel="noopener" href="https://zhblogs.ohyee.cc/go" title="中文博客导航">中文博客导航</a><a class="footer-item" target="_blank" rel="noopener" href="https://www.boyouquan.com/planet-shuttle" title="星球穿梭">星球穿梭</a></div></div></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2022 - 2024 By&nbsp;<a class="footer-bar-link" href="/">御枫林下</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="Theme">Theme</a><a class="footer-bar-link cc" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="solitude fa-solid fa-copyright"></i><i class="solitude fa-brands fa-creative-commons-by"></i><i class="solitude fa-brands fa-creative-commons-nc"></i><i class="solitude fa-brands fa-creative-commons-nd"></i></a></div></div></div></footer></div><!-- right_menu--><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude fa-solid fa-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude fa-solid fa-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude fa-solid fa-arrow-rotate-right"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude fa-solid fa-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude fa-solid fa-clone"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude fa-solid fa-clipboard"></i><span>粘贴文本</span></div><div class="rightMenu-item" id="menu-commenttext"><i class="solitude fa-solid fa-comment-medical"></i><span>引用到评论</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude fa-regular fa-window-maximize"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude fa-solid fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude fa-solid fa-clone"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude fa-solid fa-cloud-arrow-down"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-search"><i class="solitude fa-solid fa-magnifying-glass"></i><span>站内搜索</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude fa-solid fa-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></div><div class="rightMenu-item" id="menu-translate"><i class="solitude fa-solid fa-language"></i><span>轉為繁體</span></div></div></div><div id="rightmenu-mask"></div><!-- inject body--><div><script src="/js/utils.js?v=2.0.12"></script><script src="/js/main.js?v=2.0.12"></script><script src="/js/third_party/waterfall.min.js?v=2.0.12"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pjax/0.2.8/pjax.min.js"></script><script src="/js/tw_cn.js?v=2.0.12"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/19.1.3/lazyload.iife.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/node-snackbar/0.1.16/snackbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.36/fancybox/fancybox.umd.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.min.js"></script><script src="/js/covercolor/local.js?v=2.0.12"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/instantsearch.js/4.73.3/instantsearch.production.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/4.24.0/algoliasearch-lite.umd.min.js"></script><script src="/js/right_menu.js?v=2.0.12"></script><div class="js-pjax"><script>(() => {
+    const getCount = () => {
+        const ele = document.querySelectorAll('.twikoo-count')
+        if (!ele) return
+        twikoo.getCommentsCount({
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            urls: [window.location.pathname],
+            includeReply: false
+        }).then(res => {
+            ele.forEach(item => item.textContent = res[0].count)
+        }).catch(err => {
+            console.error(err)
+        })
+    }
+    const init = () => {
+        twikoo.init(Object.assign({
+            el: '#twikoo-wrap',
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            path: window.location.pathname,
+            onCommentLoaded: () => {
+                GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+            }
+        }, null))
+
+        
+        sco.owoBig({
+            body: '.OwO-body',
+            item: '.OwO-items li'
+        })
+
+        false && barrageTwikoo()
+    }
+
+    const loadTwikoo = () => {
+        if (typeof twikoo === 'object') setTimeout(init,0)
+        else utils.getScript('https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.39/twikoo.all.min.js').then(init)
+    }
+
+    if ('Twikoo' === 'Twikoo' || true) {
+        if (true) utils.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+        else loadTwikoo()
+    } else {
+        window.loadTwoComment = loadTwikoo
+    }
+})()
+</script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ['title','#body-wrap','#site-config','meta[name="description"]','.js-pjax','meta[property^="og:"]','#config-diff'],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- google adsense--><!-- search--><div id="algolia-search"><div class="search-dialog"><div class="algolia-navbar"><div class="search-dialog__title" id="algolia-search-title">搜索</div><span class="search-close-button"><i class="solitude fa-solid fa-xmark"></i></span></div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><div id="search-results"><div id="algolia-hits"></div></div><div id="algolia-tips"><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div><div id="search-mask"></div></div><script src="/js/search/algolia.js?v=2.0.12"></script><!-- Tianli-Talk--><!-- music--></body></html><script>const posts=["posts/16107/","posts/b2ce6d03/","posts/8e2d59a8/","posts/824ac3d0/","posts/b8ae5ec7/","posts/ffd0ec44/","posts/3087054e/","posts/66b5bdfd/","posts/4dc3a1af/","posts/639e78a0/","posts/e4d8f98b/","posts/8406b2e/","posts/8884a040/","posts/5335a18c/","posts/4bcd4505/","posts/67432090/","posts/df9fba50/","posts/b8441c09/","posts/9ee79452/","posts/6680ffdf/","posts/28f20c60/","posts/88fe7ba4/","posts/d9334dc1/","posts/8be11e9d/","posts/bb683f89/","posts/d661a42a/","posts/de4a5a44/"];function toRandomPost(){ pjax.loadUrl(GLOBAL_CONFIG.root+posts[Math.floor(Math.random()*posts.length)]); }</script>
