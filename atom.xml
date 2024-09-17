@@ -6,7 +6,7 @@
   <link href="https://agen233.top/atom.xml" rel="self"/>
   
   <link href="https://agen233.top/"/>
-  <updated>2024-09-16T17:26:08.001Z</updated>
+  <updated>2024-09-17T08:25:51.162Z</updated>
   <id>https://agen233.top/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>风一样自由 | 豪爵 USR125 记</title>
+    <link href="https://agen233.top/posts/670529b6/"/>
+    <id>https://agen233.top/posts/670529b6/</id>
+    <published>2024-09-17T06:49:29.000Z</published>
+    <updated>2024-09-17T08:25:51.162Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html"></summary>
+        
+      
+    
+    
+    
+    <category term="碎碎念" scheme="https://agen233.top/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+    
+    <category term="踏板摩托车" scheme="https://agen233.top/tags/%E8%B8%8F%E6%9D%BF%E6%91%A9%E6%89%98%E8%BD%A6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>都市天际线政策面板简述</title>
-    <link href="https://agen233.top/posts/undefined/"/>
-    <id>https://agen233.top/posts/undefined/</id>
+    <link href="https://agen233.top/posts/1292e32b/"/>
+    <id>https://agen233.top/posts/1292e32b/</id>
     <published>2024-09-16T17:19:04.000Z</published>
-    <updated>2024-09-16T17:26:08.001Z</updated>
+    <updated>2024-09-17T07:28:36.542Z</updated>
     
     
       
@@ -162,9 +187,9 @@
     
     <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
     
-    <category term="传感器" scheme="https://agen233.top/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
-    
     <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="传感器" scheme="https://agen233.top/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
     
   </entry>
   
@@ -407,7 +432,7 @@
     <link href="https://agen233.top/posts/4bcd4505/"/>
     <id>https://agen233.top/posts/4bcd4505/</id>
     <published>2024-04-16T15:33:15.000Z</published>
-    <updated>2024-09-13T07:55:46.106Z</updated>
+    <updated>2024-09-17T08:04:42.394Z</updated>
     
     
       
@@ -594,9 +619,9 @@
     <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
     
     
-    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
     <category term="ESP32" scheme="https://agen233.top/tags/ESP32/"/>
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
   </entry>
   
