@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>枫林·浅羽·云梦</title>
-  
+  <icon>https://agen233.top/icon.png</icon>
   
   <link href="https://agen233.top/atom.xml" rel="self"/>
   
@@ -28,7 +28,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note warning modern&quot;&gt;&lt;i class=&quot;solitude fas fa-exclamation-circle&quot;&gt;&lt;/i&gt;&lt;p&gt;本文为体验测评纯主观内容，纯粹个人喜欢喝选择，无需理由，亦不是广告&lt;/p&gt;&lt;/div&gt;
+&lt;div</summary>
         
       
     
@@ -53,7 +54,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt;众嗦粥汁，政策是天际线经营玩法的精髓之所在，他是治理城市的有力工具，决定了你的城市包括但不限于收支、吸引度、幸福度等诸多功能。而各种政策，则是由政策面板提供&lt;/p&gt;
+&lt;h2 id=&quot;服务政策&quot;&gt;&lt;a href=&quot;# 服务政策&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -80,7 +82,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
         
       
     
@@ -122,7 +124,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note warning modern&quot;&gt;&lt;i class=&quot;solitude fas</summary>
         
       
     
@@ -151,7 +153,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h1&gt;&lt;p&gt; 现在三大运营商都在不竭余力地在 1000Mbps 以上的宽带中推行自己的基于 PON 的 FTTR 组网方案。FTTR 就是</summary>
         
       
     
@@ -176,7 +178,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h1&gt;&lt;p&gt; 最近在写比赛的文档的时候，写到了 BH1750 的参数之类的，于是想着想都想了，不如写下来玩玩。&lt;br&gt;emmmm，这边用的是</summary>
         
       
     
@@ -205,7 +207,9 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt; 一直很少量但是很经常的在用这个图床，之前貌似有提过因为资金问题无法维持，但是后面又能用了，想着能用就不动的原则没去管，现在他最终没坚持下去了，所以不得不考虑图床的问题。&lt;/p&gt;
+&lt;p&gt; 但是这几天发现博客的图标没了，找了半天发现是图床挂了，也是人麻。&lt;/p&gt;
+&lt;p&gt;</summary>
         
       
     
@@ -230,7 +234,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note info modern&quot;&gt;&lt;i class=&quot;solitude fas fa-info-circle&quot;&gt;&lt;/i&gt;&lt;p&gt; 本文转载自互联网，版权协议不明，侵权请联系！&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt; 我观察过很多 “争论”</summary>
         
       
     
@@ -255,7 +260,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h1&gt;&lt;p&gt; 昨晚开着电脑听歌的时候，突然发现过了两个小时还不会熄屏，这就奇了怪了，因为我的电脑是设置了 3 分钟熄屏的。&lt;/p&gt;
+&lt;p&gt;而</summary>
         
       
     
@@ -278,7 +284,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note info modern&quot;&gt;&lt;i class=&quot;solitude fas fa-info-circle&quot;&gt;&lt;/i&gt;&lt;p&gt;封面在基于作者 &lt;a</summary>
         
       
     
@@ -299,7 +305,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt; 一开始是闲的没事干，然后想找点乐子，顺便因为是双男主比较喜欢看小正太才看的。看了之后才发现不是那么一回事，根本不是所谓的乐子片。天知道我最后一集哭了多少次（（（&lt;/p&gt;
+&lt;p&gt;&lt;img</summary>
         
       
     
@@ -335,7 +342,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt;跟着教程把 algolia 搞出来了，但是发现每次修改完三连上传的时候，都不会自动更新 algolia 的 index，必须手动 hexo algolia 一下，虽说问题不大，但是相当不优雅。&lt;/p&gt;
+&lt;p&gt;一开始是想着修改下能不能 hexo deploy</summary>
         
       
     
@@ -360,7 +368,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note info modern&quot;&gt;&lt;i class=&quot;solitude fas fa-info-circle&quot;&gt;&lt;/i&gt;&lt;p&gt;本文在得到 Olde 的同意下，非完整且带有演绎地转载，可能与 &lt;a</summary>
         
       
     
@@ -385,7 +393,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt;之前上课的时候，老师要求把指定的固件刷到开发版里面，但奇怪的是，有的板子可以刷入，有的不行，有的电脑可以，有的却不行。按理说工程文件、STLink 驱动、开发版都是一样的，不应该存在这种问题才对。于是 Google 了一轮，记录一下。&lt;/p&gt;
+&lt;h2</summary>
         
       
     
@@ -412,7 +421,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note success modern&quot;&gt;&lt;i class=&quot;solitude fas fa-check-circle&quot;&gt;&lt;/i&gt;&lt;p&gt;文章搭配 &lt;a href=&quot;../4bcd4505/&quot;&gt;Redmi Buds 4 Pro 偷渡和开启 LDAC&lt;/a&gt;</summary>
         
       
     
@@ -439,7 +448,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h1&gt;&lt;p&gt; 前几天用了很久的 OPPO Enco Air2 寄了，于是在当地的小米之家，原价入了 Redmi Buds 4</summary>
         
       
     
@@ -470,7 +479,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note info modern&quot;&gt;&lt;i class=&quot;solitude fas fa-info-circle&quot;&gt;&lt;/i&gt;&lt;p&gt;本文基于原文作者 &lt;a href=&quot;https://meuicat.com/&quot;&gt;MeuiCat&lt;/a&gt; 声明的 &lt;a</summary>
         
       
     
@@ -497,7 +506,9 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt;&lt;strong&gt;hexo-abbrlink&lt;/strong&gt;：给每篇文章生成十六进制的非中文路径&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;hexo-asset-image&lt;/strong&gt;：给图片添加一个绝对路径&lt;/p&gt;
+&lt;p&gt;当</summary>
         
       
     
@@ -541,7 +552,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;开放式系统互联模型 &lt;/strong&gt;（英语：&lt;strong&gt;O&lt;/strong&gt;pen</summary>
         
       
     
@@ -564,7 +576,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h1&gt;&lt;p&gt; 小米电脑管家是一款专为小米笔记本用户设计的电脑管理软件，是小米 HyperConnect</summary>
         
       
     
@@ -610,7 +622,9 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;div class=&quot;note default modern&quot;&gt;&lt;i class=&quot;solitude flat&quot;&gt;&lt;/i&gt;&lt;p&gt;资源获取地址&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a</summary>
         
       
     
@@ -662,7 +676,8 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;p&gt;Emmm，这篇文章是基于广东省物联网技能大赛的样题，姑且算记录一下比赛的东西。这篇文章主要是工具性的，所以遇到过其他非比赛的策略组的东西，也会记录一下，就当是手册。&lt;/p&gt;
+&lt;h2 id=&quot;administrator 账号改名&quot;&gt;&lt;a</summary>
         
       
     
@@ -689,7 +704,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h2 id=&quot;通过 -netstat- 查询 - 端口是否被打开。&quot;&gt;&lt;a href=&quot;# 通过 -netstat- 查询 - 端口是否被打开。&quot; class=&quot;headerlink&quot; title=&quot;通过 netstat 查询  端口是否被打开。&quot;&gt;&lt;/a&gt;通过</summary>
         
       
     
@@ -718,7 +733,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;起因&quot;&gt;&lt;a href=&quot;# 起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因 &lt;/h1&gt;&lt;p&gt; 事情的起因是 &lt;a</summary>
         
       
     
@@ -743,7 +758,7 @@
       
         
         
-    <summary type="html"></summary>
+    <summary type="html">&lt;h1 id=&quot;效果&quot;&gt;&lt;a href=&quot;# 效果&quot; class=&quot;headerlink&quot; title=&quot;效果&quot;&gt;&lt;/a&gt;效果&lt;/h1&gt;&lt;img src=&quot;/posts/de4a5a44/f9d374cf3bc79f3dfe75ad80b6a1cd11708b29d3.jpg&quot;</summary>
         
       
     
