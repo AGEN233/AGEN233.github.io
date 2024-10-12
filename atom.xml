@@ -218,9 +218,9 @@
     
     <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
     
-    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
     <category term="传感器" scheme="https://agen233.top/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
   </entry>
   
@@ -662,9 +662,9 @@
     <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
     
     
-    <category term="ESP32" scheme="https://agen233.top/tags/ESP32/"/>
-    
     <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="ESP32" scheme="https://agen233.top/tags/ESP32/"/>
     
   </entry>
   
