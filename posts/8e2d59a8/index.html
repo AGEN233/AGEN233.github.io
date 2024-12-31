@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg">
+  <link rel="mask-icon" href="https://bu.dusays.com/2024/06/12/6669abc539646.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/black/pace-theme-flat-top.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"agen233.top","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":true,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"algolia":{"appID":"NTABD03MUI","apiKey":"b9edcdc52526245cf090759020f838cd","indexName":"HEXO","hits":{"per_page":10}}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="现在三大运营商都在不竭余力地在1000Mbps以上的宽带中推行自己的基于PON的FTTR组网方案。FTTR就是Fiber to the Room，说白了就是局域网从传统的双绞线电组网到全光组网。但是现在的FTTR用的是无源PON方案，实际上这种方案与无源PON要解决的问题背道而驰，不仅无法体现PON的技术优势，还极端明显地体现了其劣势。小且低速的局域网内采用PON方案的FTTR根本就是徒增成本。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="旗帜鲜明地反对基于运营商PON方案的FTTR">
+<meta property="og:url" content="https://agen233.top/posts/8e2d59a8/index.html">
+<meta property="og:site_name" content="枫林·浅羽·云梦">
+<meta property="og:description" content="现在三大运营商都在不竭余力地在1000Mbps以上的宽带中推行自己的基于PON的FTTR组网方案。FTTR就是Fiber to the Room，说白了就是局域网从传统的双绞线电组网到全光组网。但是现在的FTTR用的是无源PON方案，实际上这种方案与无源PON要解决的问题背道而驰，不仅无法体现PON的技术优势，还极端明显地体现了其劣势。小且低速的局域网内采用PON方案的FTTR根本就是徒增成本。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-03T20:59:41.000Z">
+<meta property="article:modified_time" content="2024-12-13T13:47:10.000Z">
+<meta property="article:author" content="御枫林下">
+<meta property="article:tag" content="网络">
+<meta property="article:tag" content="软路由">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://agen233.top/posts/8e2d59a8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://agen233.top/posts/8e2d59a8/","path":"posts/8e2d59a8/","title":"旗帜鲜明地反对基于运营商PON方案的FTTR"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>旗帜鲜明地反对基于运营商PON方案的FTTR | 枫林·浅羽·云梦</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="枫林·浅羽·云梦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+      <img class="custom-logo-image" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="https://bu.dusays.com/2024/12/10/6757d3d1c6907.webp" alt="枫林·浅羽·云梦">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-时轴"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时轴</a></li><li class="menu-item menu-item-标签"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-友人帐"><a href="/links/" rel="section"><i class="fas fa-user-group fa-fw"></i>友人帐</a></li><li class="menu-item menu-item-关于"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-开往"><span class="exturl" data-url="aHR0cHM6Ly93d3cudHJhdmVsbGluZ3MuY24vZ28uaHRtbA=="><i class="fas fa-subway fa-fw"></i>开往</span></li><li class="menu-item menu-item-个站xiu!"><span class="exturl" data-url="aHR0cHM6Ly9zdG9yZXdlYi5jbi9zLzIxMjU="><i class="fas fa-earth-americas fa-fw"></i>个站xiu!</span></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fab fa-algolia fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FTTR%E5%92%8CAPON"><span class="nav-number">1.</span> <span class="nav-text">FTTR和APON</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E6%BA%90AON"><span class="nav-number">1.1.</span> <span class="nav-text">有源AON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E6%BA%90PON"><span class="nav-number">1.2.</span> <span class="nav-text">无源PON</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%97%E5%B8%9C%E9%B2%9C%E6%98%8E%E5%9C%B0%E5%8F%8D%E5%AF%B9%E5%9F%BA%E4%BA%8E%E8%BF%90%E8%90%A5%E5%95%86%E6%96%B9%E6%A1%88%E7%9A%84PON-FTTR"><span class="nav-number">2.</span> <span class="nav-text">旗帜鲜明地反对基于运营商方案的PON FTTR</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="御枫林下"
+      src="https://bu.dusays.com/2024/06/12/6669abc539646.jpg">
+  <p class="site-author-name" itemprop="name">御枫林下</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0FHRU4yMzM=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;AGEN233"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOkFHRU4yMzNAaG90bWFpbC5jb20=" title="E-Mail → mailto:AGEN233@hotmail.com"><i class="fas fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zcGFjZS5iaWxpYmlsaS5jb20vMTQzNTE1MjE3" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;143515217"><i class="fab fa-brands fa-bilibili fa-fw"></i>Bilibili</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fas fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://agen233.top/posts/8e2d59a8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://bu.dusays.com/2024/06/12/6669abc539646.jpg">
+      <meta itemprop="name" content="御枫林下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="枫林·浅羽·云梦">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="旗帜鲜明地反对基于运营商PON方案的FTTR | 枫林·浅羽·云梦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          旗帜鲜明地反对基于运营商PON方案的FTTR
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-03 20:59:41" itemprop="dateCreated datePublished" datetime="2024-07-03T20:59:41+00:00">2024-07-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-13 13:47:10" itemprop="dateModified" datetime="2024-12-13T13:47:10+00:00">2024-12-13</time>
+    </span>
+
+  
+    <span id="/posts/8e2d59a8/" class="post-meta-item twikoo_visitors" data-flag-title="旗帜鲜明地反对基于运营商PON方案的FTTR" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>现在三大运营商都在不竭余力地在1000Mbps以上的宽带中推行自己的基于PON的FTTR组网方案。FTTR就是Fiber to the Room，说白了就是局域网从传统的双绞线电组网到全光组网。但是现在的FTTR用的是无源PON方案，实际上这种方案与无源PON要解决的问题背道而驰，不仅无法体现PON的技术优势，还极端明显地体现了其劣势。小且低速的局域网内采用PON方案的FTTR根本就是徒增成本。</p>
+<span id="more"></span>
+<h1 id="FTTR和APON"><a href="#FTTR和APON" class="headerlink" title="FTTR和APON"></a>FTTR和APON</h1><p>FTTR即光纤到房，其根本实现原理就是入户光猫除了作为ONU下联设备外，还作为OLT上位机使用，下链二级子ONU（子光猫），进而从子光猫进行光电转换，转换出RJ45接口和WIFI，以供传统无直接光接入的设备和WIFI无线设备使用。</p>
+<h2 id="有源AON"><a href="#有源AON" class="headerlink" title="有源AON"></a>有源AON</h2><p>光接入分为有源AON网和无源PON网。有源光网络是一种点对点的光纤接入网络，依赖于中间有源设备如光交换机进行信号的放大和分配。</p>
+<p>在AON系统中，类似于现在的路由器-交换机-终端的形式，每一个设备都有一个独立的光纤连接到光交换机，在独立的光纤内，独享其内部全部带宽，实现了更高的带宽和更强有力的管理方式。</p>
+<h2 id="无源PON"><a href="#无源PON" class="headerlink" title="无源PON"></a>无源PON</h2><p>无源PON经历了从APON到EPON再到现在的XGPON。早期的无源光网络标准APON由ITU提出，采用异步通讯进行通讯。无源光网络共享着一个最显著的特征：无源（Passive）即不需要有源设备进行分配，采用TDMA分时复用的方式，使得一条OLT线路上可以承载多个ONU设备，这些设备统一在OLT的管理下，根据给定时隙(TDMA方式)进行数据传输，从而避免干扰和冲突。我们可以通过光分路器把光平均分配给多个用户，正是因为如此，光分路器是存粹的物理结构，不含有电子元件，亦不需要供电，因此它可以工作在各种环境。</p>
+<h1 id="旗帜鲜明地反对基于运营商方案的PON-FTTR"><a href="#旗帜鲜明地反对基于运营商方案的PON-FTTR" class="headerlink" title="旗帜鲜明地反对基于运营商方案的PON FTTR"></a>旗帜鲜明地反对基于运营商方案的PON FTTR</h1><p>前面已经提到了PON无源光网络的优势和原理。家庭网络是一个可控的、简单的、低速的、小规模的局域网环境，布线距离短，房间数量少。即便是需要的终端多，部署有源光交换机的方案成本也不高。这就否决了PON的最大优势：工作环境简单、维护成本低、阔拓展性强。</p>
+<p>其次，PON方案严重阻碍普通用户的局域网内使用，不像传统的以太网方案，OLT网关内下的设备ONU并没有直接沟通的能力，所有数据必须经由OLT转发，那么就意味着，所有数据必须经由OLT路由，而不能像传统以太网那样通过光分路器(交换机)直接进行链路层通讯，而是必须经由OLT(路由器)进行转换，这样一来，局域网内设备的局域网内数据交换延迟变高且线路复杂。</p>
+<p>进而严重阻碍局域网内的速度，8145XR+K662c为例，下行光口为GPON方案，受限于此，内网间的速度仅有2Gbps左右，根本达不到10Gbps万兆。而且即便K662C支持EPON，其RJ45速度也仅有1Gbps，完全无法支持10Gbps内网需求。</p>
+<p>最后，也是最大的问题，PON FTTR并不是一个统一且开放的方案，各个运营商之间的方案完全不同，各家的设备也是相当封闭，这就导致了设备、制造商、运营商和私有协议之间的强绑定，不存在互操作性，用户完全无法自由地选择自己的局域网设备，这就导致了用户对局域网的完全且彻底的不可控。在现行基于运营商的PON FTTR方案下，在软件强相关+硬件强关联的模式下，所有设备均由一个厂家生产，除非替换全部设备，否则完全不能动。</p>
+<p>又由于硬件强相关，必然造成的软件强相关，那么，运营商、设备制造商在局域网内动手脚就成为不可避免地担忧，因为此时，局域网对于用户本身已经是完全不可控的了，用什么设备、设备采用什么系统、设备内跑什么插件，用户完全不可控，这也就成为了拒绝“基于运营商方案的PON FTTR”的最大理由。</p>
+<p><strong>借用 <span class="exturl" data-url="aHR0cHM6Ly93d3cudjJleC5jb20vbWVtYmVyL2ljeTM3Nzg1">@icy37785<i class="fa fa-external-link-alt"></i></span> 的<span class="exturl" data-url="aHR0cHM6Ly93d3cudjJleC5jb20vdC85MzI5NzU=">一句话<i class="fa fa-external-link-alt"></i></span>总结：“FTTR 是一套很神奇的几乎没有任何优点的方案。很少见到这样全是缺点几乎没优点的方案”。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>御枫林下
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://agen233.top/posts/8e2d59a8/" title="旗帜鲜明地反对基于运营商PON方案的FTTR">https://agen233.top/posts/8e2d59a8/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本站包括本文章在内的所有文章, 除在此特别声明外, 均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可授权; 转载注明来自枫林·浅羽·云梦!
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag"># 网络</a>
+              <a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/" rel="tag"># 软路由</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/7f0447f2/" rel="prev" title="上手GY-30(BH1750)光强度传感器和相关程序代码">
+                  <i class="fa fa-angle-left"></i> 上手GY-30(BH1750)光强度传感器和相关程序代码
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/b2ce6d03/" rel="next" title="软件方向软考学习记录（一）">
+                  软件方向软考学习记录（一） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+<div class="footer-title">
+  枫林·浅羽·云梦 已勉强维持 <span id="timeFullData"></span>
+</div>
+<div class="powered-by">
+  © <span id="timeYearData"></span> <span class="rgb-text">御枫林下</span> Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">Next.Gemini</a>
+</div>
+<script>
+  var time = new Date();
+  var grt = new Date("10/01/2022 00:00:00");
+  var years = time.getFullYear();
+  function getTimeData() {
+    time.setTime(time.getTime() + 250);
+    
+    var ynum = Math.floor(years);
+    var days = (time - grt) / 1000 / 60 / 60 / 24;
+    var dnum = Math.floor(days);
+
+    var hours = (time - grt) / 1000 / 60 / 60 - (24 * dnum);
+    var hnum = Math.floor(hours);
+    if (String(hnum).length == 1) { hnum = "0" + hnum; }
+
+    var minutes = (time - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    var mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) { mnum = "0" + mnum; }
+
+    var seconds = (time - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    var snum = Math.round(seconds);
+    if (String(snum).length == 1) { snum = "0" + snum; }
+
+    document.getElementById("timeFullData").innerHTML = `${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒`;
+  }; 
+
+  window.onload = function () {
+    getTimeData();
+    document.getElementById("timeYearData").innerHTML = `${years}`;
+    setInterval(getTimeData, 250);
+  };
+</script>
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/algoliasearch/4.24.0/algoliasearch-lite.umd.js" integrity="sha256-b2n6oSgG4C1stMT/yc/ChGszs9EY/Mhs6oltEjQbFCQ=" crossorigin="anonymous"></script><script src="/js/third-party/search/algolia-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://agen233.top/posts/8e2d59a8/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"https://blogverceltwkioo.agen233.top","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: true,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>
