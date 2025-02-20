@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>上手 GY-30(BH1750) 光强度传感器和相关程序代码 | 枫林·浅羽·云梦</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=3.0.10"><!-- inject head--><link rel="canonical" href="https://agen233.top/posts/7f0447f2/index.html"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><!-- aplayer--><!-- swiper--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css"><!-- fancybox ui--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="最近在写比赛的文档的时候，写到了 BH1750 的参数之类的，于是想着想都想了，不如写下来玩玩。emmmm，这边用的是 STM32F103C8T6 的芯片的标准库，其他 MCU 也大同小异，如果是用 hal 库就更好了，无需管 GPIO 口初始化那堆零碎的事情了。 模块和芯片 而 BH1750 是"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="枫林·浅羽·云梦"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><link rel="apple-touch-icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp" sizes="180x180"><script>console.log(' %c Solitude %c ' + '3.0.10' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+          },
+        }
+    })()</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: {"appId":"NTABD03MUI","apiKey":"b9edcdc52526245cf090759020f838cd","indexName":"HEXO","hits":{"per_page":6}},
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: true,
+        error: '/img/error_load.avif'
+    },
+    copyright: false,
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。","loading":"搜索中..."},"barrage":{"title":"热评"}},
+    aside: {
+        state: {
+            morning: "🌅 晨安，风起之时，万事皆已就绪。",
+            noon: "🍽️ 午膳时分，风随心动，心逐风行。",
+            afternoon: "🌤️ 午安，微风轻拂，心亦随之弛然。",
+            night: "🌙 夜幕低垂，幽幽清风，携来安宁。",
+            goodnight: "😴 晚安，风柔梦远，明朝再会。",
+        },
+        witty_words: ["风的自由","心的向往"],
+        witty_comment: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: true
+    },
+    comment: {"avatar":"https://gravatar.com/avatar","commentBarrage":true},
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: false,
+    translate: {"translateDelay":0,"defaultEncoding":2},
+    lure: false,
+    expire: {"time":60,"position":"top","text_prev":"This article expired ","text_next":" day ago, if the content does not match, please contact the webmaster to update it."},
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false,
+    color: false,
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="枫林·浅羽·云梦" type="application/atom+xml">
+</head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- background img--><div id="global_bg"></div><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/recentcomments/"><div class="headline">评论</div><div class="length-num" id="twikoo_allcount"><i class="solitude fas fa-spinner fa-spin"></i></div><script pjax="pjax">(async () => {
+  await fetch('https://blogverceltwkioo.agen233.top/', {
+    method: "POST",
+    body: JSON.stringify({
+      "event": "GET_RECENT_COMMENTS",
+      "includeReply": true,
+      "pageSize": 999
+    }),
+    headers: {'Content-Type': 'application/json'}
+  }).then(res => res.json()).then(async ({data}) => {
+    document.querySelector('#twikoo_allcount').innerHTML = data.length
+  })
+})()</script></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文章</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>社交</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人帐</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-comment-nodes"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>其他</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fab fa-react"></i><span>杂谈漫语</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/copyright/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-star-of-david"></i><span>杂谈漫语</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="card-tag-cloud"><a href="/tags/ESP32/">ESP32<sup>1</sup></a><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式<sup>5</sup></a><a href="/tags/STM32/">STM32<sup>4</sup></a><a href="/tags/ESP8266-ESP32/">ESP8266/ESP32<sup>2</sup></a><a href="/tags/Windows/">Windows<sup>6</sup></a><a href="/tags/ChinaSkills/">ChinaSkills<sup>2</sup></a><a href="/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">持续更新<sup>3</sup></a><a href="/tags/Hexo/">Hexo<sup>3</sup></a><a href="/tags/%E5%9B%BE%E5%BA%8A/">图床<sup>1</sup></a><a href="/tags/%E9%99%88%E8%87%B4%E9%80%B8/">陈致逸<sup>1</sup></a><a href="/tags/%E6%96%B0%E4%B8%93%E8%BE%91/">新专辑<sup>1</sup></a><a href="/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/">传感器<sup>2</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0/">学习<sup>3</sup></a><a href="/tags/I2C/">I2C<sup>1</sup></a><a href="/tags/%E6%9D%8E%E5%85%8B%E5%8B%A4/">李克勤<sup>1</sup></a><a href="/tags/%E5%93%88%E8%82%AF/">哈肯<sup>1</sup></a><a href="/tags/%E8%93%9D%E8%AE%AFAB202X/">蓝讯AB202X<sup>1</sup></a><a href="/tags/SPI%E5%8D%8F%E8%AE%AE/">SPI协议<sup>1</sup></a><a href="/tags/%E5%BC%80%E5%8F%91%E7%89%88/">开发版<sup>1</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/">网络<sup>2</sup></a><a href="/tags/%E5%8D%9A%E9%80%9ABK/">博通BK<sup>1</sup></a><a href="/tags/%E8%80%B3%E6%9C%BA/">耳机<sup>1</sup></a><a href="/tags/I2C%E5%8D%8F%E8%AE%AE/">I2C协议<sup>1</sup></a><a href="/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/">开发板<sup>1</sup></a><a href="/tags/%E8%BF%BD%E7%95%AA/">追番<sup>1</sup></a><a href="/tags/%E7%B1%B3%E5%A5%87%E4%B8%8E%E8%BE%BE%E5%88%A9/">米奇与达利<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/">软考<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/">计算机系统基础<sup>1</sup></a><a href="/tags/%E9%83%BD%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF/">都市天际线<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6/">游戏机制<sup>1</sup></a><a href="/tags/BRICS/">BRICS<sup>1</sup></a><a href="/tags/AI/">AI<sup>1</sup></a><a href="/tags/%E6%BE%8E%E6%B9%83OS-HyperOS/">澎湃OS|HyperOS<sup>1</sup></a><a href="/tags/%E5%B0%8F%E7%B1%B3/">小米<sup>1</sup></a><a href="/tags/%E6%91%A9%E6%89%98%E8%BD%A6/">摩托车<sup>1</sup></a><a href="/tags/%E8%B1%AA%E7%88%B5USR125/">豪爵USR125<sup>1</sup></a></div></div></div></div><!-- keyboard--><!-- righhtside--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">枫林·浅羽·云梦</span><i class="solitude fas fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">上手 GY-30(BH1750) 光强度传感器和相关程序代码</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文章</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>社交</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人帐</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-comment-nodes"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>其他</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fab fa-react"></i><span>杂谈漫语</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/copyright/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-star-of-david"></i><span>杂谈漫语</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="solitude fas fa-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="solitude fas fa-dice-d6"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude fas fa-magnifying-glass"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fas fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fas fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://bu.dusays.com/2024/06/17/666f25704406c.webp" alt="上手 GY-30(BH1750) 光强度传感器和相关程序代码"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/">嵌入式和单片机</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>嵌入式</span></a><a class="post-meta__tags" href="/tags/STM32/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>STM32</span></a><a class="post-meta__tags" href="/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>传感器</span></a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>学习</span></a><a class="post-meta__tags" href="/tags/I2C/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>I2C</span></a></div></div></div></div><h1 class="post-title">上手 GY-30(BH1750) 光强度传感器和相关程序代码</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-06-17 16:17:59"><i class="post-meta-icon solitude fas fa-calendar-days"></i><time datetime="2024-06-17T16:17:59.000Z">2024-06-17T16:17:59.000Z</time></span><span class="post-meta-date" title="最后更新于 2025-02-11 15:39:55"><i class="post-meta-icon solitude fas fa-arrows-rotate"></i><time datetime="2025-02-11T15:39:55.000Z">2025-02-11T15:39:55.000Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fas fa-file-word" title="文章字数"></i><span class="word-count">2.5k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fas fa-clock" title="阅读耗时"></i><span>11 min</span></span><span class="post-meta-position" title="作者IP归属地为中国·广东"><i class="post-meta-icon solitude fas fa-location-dot"></i><span>中国·广东</span></span><a class="post-meta-pv" href="/posts/7f0447f2/" title="文章热度"><i class="post-meta-icon solitude fas fa-fire-flame-curved"></i><span id="twikoo_visitors"><i class="solitude fas fa-spinner fa-spin"></i></span></a><span class="post-meta-commentcount" title="评论数" onclick="sco.scrollTo('post-comment')"><i class="solitude fas fa-comment"></i><a href="/posts/7f0447f2/#post-comment"><span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span></a></span></div></div></div><div id="post-info-bottom"></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content article-container"><p>最近在写比赛的文档的时候，写到了 BH1750 的参数之类的，于是想着想都想了，不如写下来玩玩。<br>emmmm，这边用的是 STM32F103C8T6 的芯片的标准库，其他 MCU 也大同小异，如果是用 hal 库就更好了，无需管 GPIO 口初始化那堆零碎的事情了。</p>
+<h1 id="模块和芯片"><a href="# 模块和芯片" class="headerlink" title="模块和芯片"></a>模块和芯片 </h1><p> 而 BH1750 是一款数字型的光强传感器片上集成芯片，采用标准 I2C 总线协议与 MCU 进行链接。</p>
+<p>GY-30 模块的实质是 BH1750，只是把外围诸如滤波和电容之类的电路整合进去了而已，其实都是用的 BH1750 芯片。</p>
+<p>BH1750 内部电路是由：光敏二极管、运算放大器、AD 转换器等组成。光敏二极管通过光伏效应接收光信号产生电信号，经过运算放大后，由 AD 转换器采集电压数据并转换为数字信号，然后储存在寄存器之中。BH1750 支持完全的 I2C 协议，使用 I2C 总线发送特定的控制位，即可读取光强度数据，亦可以修改 BH1750 的采集模式。</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2024/06/17/666fcc8833ccd.png" alt="BH1750 内部"></p>
+<h2 id="引脚定义"><a href="# 引脚定义" class="headerlink" title="引脚定义"></a>引脚定义</h2><p>BH1750 支持且仅支持完整的 I2C 总线，采用四线传输方式，但由于 BH1750 模块本身可以从硬件对其设备地址进行修改，所以还多一个修改位。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VCC</td>
+<td>接入 3.3V 电源正极</td>
+</tr>
+<tr>
+<td>SCL</td>
+<td>I2C 时钟同步总线</td>
+</tr>
+<tr>
+<td>SDA</td>
+<td>I2C 实际数据总线</td>
+</tr>
+<tr>
+<td>ADDR</td>
+<td>I2C 设备地址切换线；低电平：0x23，高电平：0x5C</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>接地或者电源负极</td>
+</tr>
+</tbody></table>
+<h1 id="I2C 协议"><a href="#I2C 协议" class="headerlink" title="I2C 协议"></a>I2C 协议 </h1><p> 前面说到，BH1750 模块支持完整的 I2C 总线协议。I2C 总线是由飞利浦公司推出的串行、半双工总线，它是总线通讯，可以在总线上最高挂载 112 个设备（含保留地址则为 127 个设备）。</p>
+<p>I2C 总线是一种多主机总线，连接在 I2C 总线上的器件分为主机和从机。 主机有权发起和结束一次通信，从机只能被动呼叫。每个 I2C 设备有一个唯一的 7bit 地址，由于需要告知从机是读取还是写入，所以在实际使用中会增加一个 bit 作为控制，实际使用中是 8 个 bit 地址。BH1750 的通讯过程</p>
+<p>首先我们看数据手册，可以发现 BH1750 的数据收发分为两个 8bit 合共 16 个 bit 的数据（不算 ACK）。数据结构于英文文档之下表如下：</p>
+<p>在实际使用中，Slave Address 与 R&#x2F;W 数据可以一起传输，即 7bit+1bit &#x3D; 8bit</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2024/06/17/666fd52221aca.png" alt="BH1750 之 I2C 数据结构"></p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2024/06/17/666fd8229e907.png" alt="以 Continuously H 模式为例"></p>
+<p>传输路径跟其他 I2C 设备一样，发送 Slave Address → 等 ACK 应答 → 发送 Opecode 数据 → 等 ACK 应答。</p>
+<p><strong>第一步：发送上电指令 (0x01)</strong></p>
+<p>假设 ADDR 为低电平，BH1750 设备地址为 0x23 + R0 &#x3D; 0x46。数据结构为：<code>0x46 WaitACK 0x01 WaitACK</code></p>
+<p><strong>第二步：发送测量模式指令 (0x10)</strong></p>
+<p>根据图片上和第一步的例子，我们假定 ADDR 低电平且采用连续 H 分辨率测量的模式(0x10)</p>
+<p>数据结构为：<code>0x46 WaitACK 0x10 WaitAC</code></p>
+<p><strong>第三步：等测量和读数据</strong></p>
+<p>手册上对每个测量模式的时间有说，连续 H 分辨率需要的时间最长，平均为 120ms，但是为了数据最新，最好是隔 200ms 读取一次。值得一提的是，寄存器数据不会清零，因此亦可以不延迟直接读取，只是有点误差。</p>
+<p>现在，是读取模式，与之前的 0x23 + R0 &#x3D; 0x46 的地址不同，读取模式是 0x23 + W1 &#x3D; 0x47 的地址。</p>
+<p>因此数据结构为：<code>0x47 WaitACK 读出的数据 WaitACK</code></p>
+<p><strong>第四步：计算实际光照值</strong></p>
+<p>前面读出来的值，显然的是 BH1750 内部传感器的值，并不是真实的光照强度值，根据手册，我们需要转换一下。</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2024/06/17/666fda9d3449d.png" alt="Clip_2024-06-17_14-41-30"></p>
+<p>H 模式： 光照强度 &#x3D; <code>1 / 1.2 * (寄存器值 [15:0] * 分辨率)</code> 单位是 lx</p>
+<p>H2 模式：光照强度 &#x3D; <code>1 / 1.2 * (寄存器值 [15:0] * 分辨率) / 2</code> 单位是 lx</p>
+<h1 id="BH1750 的指令和测量模式"><a href="#BH1750 的指令和测量模式" class="headerlink" title="BH1750 的指令和测量模式"></a>BH1750 的指令和测量模式 </h1><h2 id="所有指令"><a href="# 所有指令" class="headerlink" title="所有指令"></a> 所有指令</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>地址</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>断电 Power Down</td>
+<td>0000_0000</td>
+<td>无激活状态 No active state.</td>
+</tr>
+<tr>
+<td>上电 Power On</td>
+<td>0000_0001</td>
+<td>通电等待测量指令 Waiting for measurement command.</td>
+</tr>
+<tr>
+<td>重置 Reset</td>
+<td>0000_0111</td>
+<td>重置寄存器的所有值 Reset Data register value. Reset command is not acceptable in Power Down mode.</td>
+</tr>
+<tr>
+<td>连续 H 分辨率模式 Continuously H-Resolution Mode</td>
+<td>0001_0000</td>
+<td>在 1lx 分辨率下开始连续测量 Start measurement at 1lx resolution. Measurement Time is typically 120ms.</td>
+</tr>
+<tr>
+<td>连续 H 分辨率模式 2 Continuously H-Resolution Mode2</td>
+<td>0001_0001</td>
+<td>在 0.5lx 分辨率下开始连续测量 Start measurement at 0.5lx resolution. Measurement Time is typically 120ms.</td>
+</tr>
+<tr>
+<td>连续 L 分辨率模式 Continuously L-Resolution Mode</td>
+<td>0001_0011</td>
+<td>在 4lx 分辨率下开始连续测量 Start measurement at 4lx resolution. Measurement Time is typically 16ms.</td>
+</tr>
+<tr>
+<td>一次 H 分辨率模式 One Time H-Resolution Mode</td>
+<td>0010_0000</td>
+<td>在 1lx 分辨率下开始测量一次，完成后进入断电模式 Start measurement at 1lx resolution. Measurement Time is typically 120ms. It is automatically set to Power Down mode after measurement.</td>
+</tr>
+<tr>
+<td>一次 H 分辨率模式 2 One Time H-Resolution Mode2</td>
+<td>0010_0001</td>
+<td>在 0.5lx 分辨率下开始测量一次，完成后进入断电模式 Start measurement at 0.5lx resolution. Measurement Time is typically 120ms. It is automatically set to Power Down mode after measurement.</td>
+</tr>
+<tr>
+<td>一次 L 分辨率模式 One Time L-Resolution Mode</td>
+<td>0010_0011</td>
+<td>在 4lx 分辨率下开始测量一次，完成后进入断电模式 Start measurement at 4lx resolution. Measurement Time is typically 16ms. It is automatically set to Power Down mode after measurement.</td>
+</tr>
+<tr>
+<td>Change Measurement time (High bit)</td>
+<td>01000_MT[7,6,5]</td>
+<td>Change measurement time. ※ Please refer “adjust measurement result for influence of optical window.”</td>
+</tr>
+<tr>
+<td>Change Masurement time (Low bit)</td>
+<td>011_MT[4,3,2,1,0]</td>
+<td>Change measurement time. ※ Please refer “adjust measurement result for influence of optical window.”</td>
+</tr>
+</tbody></table>
+<h2 id="各类测量模式"><a href="# 各类测量模式" class="headerlink" title="各类测量模式"></a>各类测量模式</h2><table>
+<thead>
+<tr>
+<th>测量模式</th>
+<th>精度</th>
+<th>测量时间</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一次 H 分辨率模式</td>
+<td>1 lx</td>
+<td>120ms</td>
+<td>进行一次测量，测量完成后会切换到断电模式</td>
+</tr>
+<tr>
+<td>一次 H 分辨率模式 2</td>
+<td>0.5 lx</td>
+<td>120ms</td>
+<td>进行一次测量，测量完成后会切换到断电模式</td>
+</tr>
+<tr>
+<td>一次 L 分辨率模式</td>
+<td>4 lx</td>
+<td>16ms</td>
+<td>进行一次测量，测量完成后会切换到断电模式</td>
+</tr>
+<tr>
+<td>连续 H 分辨率模式</td>
+<td>1 lx</td>
+<td>120ms</td>
+<td>会自动进行连续测量，无需重复配置</td>
+</tr>
+<tr>
+<td>连续 H 分辨率模式 2</td>
+<td>0.5 lx</td>
+<td>120ms</td>
+<td>会自动进行连续测量，无需重复配置</td>
+</tr>
+<tr>
+<td>连续 L 分辨率模式</td>
+<td>4 lx</td>
+<td>16ms</td>
+<td>会自动进行连续测量，无需重复配置</td>
+</tr>
+</tbody></table>
+<h1 id="编程和代码部分"><a href="# 编程和代码部分" class="headerlink" title="编程和代码部分"></a>编程和代码部分 </h1><p> 下面的编程我以 stm32 为例，I2C 和 BH1750 都是标准协议，其实换成其他单片机或者系统，程序也是基本一样的，不同的只是 GPIO 口的不同。</p>
+<p>这边用的就还是软件模拟 I2C 的方式，没有用硬件 I2C。</p>
+<h2 id="1- 头文件定义部分"><a href="#1- 头文件定义部分" class="headerlink" title="1. 头文件定义部分"></a>1. 头文件定义部分</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#ifndef __BH1750_H__</span><br><span class="line">#define __BH1750_H__</span><br><span class="line">#include &quot;stm32f10x.h&quot;</span><br><span class="line">#include &quot;Delay.h&quot;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * author: 御枫林下 on Tue, 28 May 2024</span><br><span class="line"> * brief: 宏定义 GOIO 引脚</span><br><span class="line"> * param: void</span><br><span class="line"> * return: void</span><br><span class="line"> **/</span><br><span class="line">#define BH1750_I2C_GPIO_Port GPIOB</span><br><span class="line">#define BH1750_I2C_SCL_GPIOPin GPIO_Pin_6</span><br><span class="line">#define BH1750_I2C_SDA_GPIOPin GPIO_Pin_7</span><br><span class="line">#define BH1750_I2C_SCL(x) GPIO_WriteBit(BH1750_I2C_GPIO_Port, BH1750_I2C_SCL_GPIOPin, (x))</span><br><span class="line">#define BH1750_I2C_SDA(x) GPIO_WriteBit(BH1750_I2C_GPIO_Port, BH1750_I2C_SDA_GPIOPin, (x))</span><br><span class="line">#define BH1750_I2C_SDARead() GPIO_ReadInputDataBit(BH1750_I2C_GPIO_Port, BH1750_I2C_SDA_GPIOPin)</span><br><span class="line">#define HIGH Bit_SET</span><br><span class="line">#define LOW Bit_RESET</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * author: 御枫林下 on Tue, 28 May 2024</span><br><span class="line"> * brief: 宏定义 BH1750 相关地址</span><br><span class="line"> **/</span><br><span class="line">#define BH1750_ADDRESS 0x46</span><br><span class="line">#define BH1750_CMD_AddWrite 0x46</span><br><span class="line">#define BH1750_CMD_AddRead 0x47</span><br><span class="line">#define BH1750_CMD_PowOn 0x01</span><br><span class="line">#define BH1750_CMD_ModeH1 0x10</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * author: 御枫林下 on Wed, 21 May 2024</span><br><span class="line"> * brief: 过滤需要用到的函数</span><br><span class="line"> * note: 不在此列的函数，无法在外部调用。为了保证函数在本体的可用性，在源文件内会重新定义一次。</span><br><span class="line"> **/</span><br><span class="line">void BH1750_Init(void);</span><br><span class="line">uint16_t BH1750_FluxValue(void);</span><br><span class="line">uint16_t BH1750_ReadData(void);</span><br><span class="line"></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-BH1750 部分"><a href="#2-BH1750 部分" class="headerlink" title="2. BH1750 部分"></a>2. BH1750 部分 </h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;BH1750.h&quot;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * author: 御枫林下 on Wed, 21 May 2024</span><br><span class="line"> * brief: 定义所有函数</span><br><span class="line"> **/</span><br><span class="line">static void BH1750_I2C_GPIOInit(void);</span><br><span class="line">void BH1750_I2C_Start(void);</span><br><span class="line">void BH1750_I2C_Stop(void);</span><br><span class="line">void BH1750_I2C_SendByte(uint8_t Byte);</span><br><span class="line">uint8_t BH1750_I2C_ReadByte(void);</span><br><span class="line">uint8_t BH1750_I2C_WaitAck(void);</span><br><span class="line">uint16_t BH1750_FluxValue(void);</span><br><span class="line">void BH1750_Init(void);</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * author: 御枫林下 on Wed, 21 May 2024</span><br><span class="line"> * brief: GPIO 初始化函数</span><br><span class="line"> * param: void</span><br><span class="line"> * return: void</span><br><span class="line"> **/</span><br><span class="line">static void BH1750_I2C_GPIOInit(void)</span><br><span class="line">&#123;</span><br><span class="line">    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);</span><br><span class="line"></span><br><span class="line">    GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">    GPIO_InitStructure.GPIO_Pin = BH1750_I2C_SCL_GPIOPin | BH1750_I2C_SDA_GPIOPin;</span><br><span class="line">    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;</span><br><span class="line">    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">    GPIO_Init(BH1750_I2C_GPIO_Port, &amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line">    BH1750_I2C_SDA(HIGH);</span><br><span class="line">    BH1750_I2C_SCL(HIGH);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void BH1750_I2C_Start(void)</span><br><span class="line">&#123;</span><br><span class="line">    BH1750_I2C_SDA(HIGH);</span><br><span class="line">    BH1750_I2C_SCL(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SDA(LOW);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SCL(LOW);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void BH1750_I2C_Stop(void)</span><br><span class="line">&#123;</span><br><span class="line">    BH1750_I2C_SCL(LOW);</span><br><span class="line">    BH1750_I2C_SDA(LOW);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SCL(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SDA(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void BH1750_I2C_SendByte(uint8_t Byte)</span><br><span class="line">&#123;</span><br><span class="line">    for (uint8_t i = 0; i &lt; 8; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        BH1750_I2C_SDA(Byte &amp; (0x80 &gt;&gt; i) ? HIGH : LOW);</span><br><span class="line">        BH1750_I2C_SCL(HIGH);</span><br><span class="line">        Delay_us(10);</span><br><span class="line">        BH1750_I2C_SCL(LOW);</span><br><span class="line">        Delay_us(10);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">uint8_t BH1750_I2C_ReadByte(void)</span><br><span class="line">&#123;</span><br><span class="line">    uint8_t byte = 0x00;</span><br><span class="line">    BH1750_I2C_SDA(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    for (uint8_t i = 0; i &lt; 8; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        BH1750_I2C_SCL(HIGH);</span><br><span class="line">        Delay_us(10);</span><br><span class="line">        if (BH1750_I2C_SDARead())</span><br><span class="line">        &#123;</span><br><span class="line">            byte |= (0x80 &gt;&gt; i);</span><br><span class="line">        &#125;</span><br><span class="line">        BH1750_I2C_SCL(LOW);</span><br><span class="line">        Delay_us(10);</span><br><span class="line">    &#125;</span><br><span class="line">    return byte;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">uint8_t BH1750_I2C_WaitAck(void)</span><br><span class="line">&#123;</span><br><span class="line">    uint8_t AckTag = 0;</span><br><span class="line">    BH1750_I2C_SDA(HIGH);</span><br><span class="line">    BH1750_I2C_SCL(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    if (BH1750_I2C_SDARead())</span><br><span class="line">    &#123;</span><br><span class="line">        AckTag = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    BH1750_I2C_SCL(LOW);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    return AckTag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void BH1750_I2C_SendAck(void)</span><br><span class="line">&#123;</span><br><span class="line">    BH1750_I2C_SDA(LOW);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SCL(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SCL(LOW);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void BH1750_I2C_SendNAck(void)</span><br><span class="line">&#123;</span><br><span class="line">    BH1750_I2C_SDA(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SCL(HIGH);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">    BH1750_I2C_SCL(LOW);</span><br><span class="line">    Delay_us(10);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">uint8_t BH1750_SendData(uint8_t data)</span><br><span class="line">&#123;</span><br><span class="line">    BH1750_I2C_Start();</span><br><span class="line">    BH1750_I2C_SendByte(BH1750_CMD_AddWrite);</span><br><span class="line">    if (BH1750_I2C_WaitAck())</span><br><span class="line">    &#123;</span><br><span class="line">        BH1750_I2C_Stop();</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    BH1750_I2C_SendByte(data);</span><br><span class="line">    if (BH1750_I2C_WaitAck())</span><br><span class="line">    &#123;</span><br><span class="line">        BH1750_I2C_Stop();</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line">    BH1750_I2C_Stop();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">uint16_t BH1750_ReadData(void)</span><br><span class="line">&#123;</span><br><span class="line">    uint8_t MSB, LSB;</span><br><span class="line">    BH1750_I2C_Start();</span><br><span class="line">    BH1750_I2C_SendByte(BH1750_CMD_AddRead);</span><br><span class="line">    if (BH1750_I2C_WaitAck())</span><br><span class="line">    &#123;</span><br><span class="line">        BH1750_I2C_Stop();</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    MSB = BH1750_I2C_ReadByte();</span><br><span class="line">    BH1750_I2C_SendAck();</span><br><span class="line">    LSB = BH1750_I2C_ReadByte();</span><br><span class="line">    BH1750_I2C_SendNAck();</span><br><span class="line">    BH1750_I2C_Stop();</span><br><span class="line">    return (MSB &lt;&lt; 8) | LSB;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * author: 御枫林下 on Wed, 21 May 2024</span><br><span class="line"> * brief: BH1750 读取并转换光照值函数</span><br><span class="line"> * param: void</span><br><span class="line"> * return: float temp 返回 Flux 单位的光照值</span><br><span class="line"> * note: 需要先调用 BH1750_Init() 函数初始化整个 BH1750 后，才能调用.</span><br><span class="line"> **/</span><br><span class="line">uint16_t BH1750_FluxValue(void)</span><br><span class="line">&#123;</span><br><span class="line">    uint16_t temp = 0;</span><br><span class="line">    uint16_t raw_data = BH1750_ReadData();</span><br><span class="line">    temp = raw_data / 1.2;</span><br><span class="line">    return temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void BH1750_Init(void)</span><br><span class="line">&#123;</span><br><span class="line">    BH1750_I2C_GPIOInit();</span><br><span class="line">    BH1750_SendData(BH1750_CMD_PowOn);</span><br><span class="line">    BH1750_SendData(BH1750_CMD_ModeH1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Delay 函数"><a href="#3-Delay 函数" class="headerlink" title="3. Delay 函数"></a>3. Delay 函数</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;Delay.h&quot;</span><br><span class="line">/**</span><br><span class="line">  * @brief  微秒级延时</span><br><span class="line">  * @param  xus 延时时长，范围：0~233015</span><br><span class="line">  * @retval 无</span><br><span class="line">  */</span><br><span class="line">void Delay_us(uint32_t xus)</span><br><span class="line">&#123;</span><br><span class="line">	SysTick-&gt;LOAD = 72 * xus;				// 设置定时器重装值</span><br><span class="line">	SysTick-&gt;VAL = 0x00;					// 清空当前计数值</span><br><span class="line">	SysTick-&gt;CTRL = 0x00000005;				// 设置时钟源为 HCLK，启动定时器</span><br><span class="line">	while(!(SysTick-&gt;CTRL &amp; 0x00010000));	// 等待计数到 0</span><br><span class="line">	SysTick-&gt;CTRL = 0x00000004;				// 关闭定时器</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * @brief  毫秒级延时</span><br><span class="line">  * @param  xms 延时时长，范围：0~4294967295</span><br><span class="line">  * @retval 无</span><br><span class="line">  */</span><br><span class="line">void Delay_ms(uint32_t xms)</span><br><span class="line">&#123;</span><br><span class="line">	while(xms--)</span><br><span class="line">	&#123;</span><br><span class="line">		Delay_us(1000);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line">  * @brief  秒级延时</span><br><span class="line">  * @param  xs 延时时长，范围：0~4294967295</span><br><span class="line">  * @retval 无</span><br><span class="line">  */</span><br><span class="line">void Delay_s(uint32_t xs)</span><br><span class="line">&#123;</span><br><span class="line">	while(xs--)</span><br><span class="line">	&#123;</span><br><span class="line">		Delay_ms(1000);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h2 id="4- 主函数"><a href="#4- 主函数" class="headerlink" title="4. 主函数"></a>4. 主函数</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &quot;stm32f10x.h&quot; // Device header</span><br><span class="line">#include &quot;USART1.h&quot;</span><br><span class="line">#include &quot;BH1750.h&quot;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	USART1_Init();</span><br><span class="line">    BH1750_Init();</span><br><span class="line">    </span><br><span class="line">    while(1)</span><br><span class="line">    &#123;</span><br><span class="line">        USART1_Printf(&quot;BH1750: %d  \r&quot;, BH1750_FluxValue());</span><br><span class="line">        Delay_ms(500);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>读取的时候直接调用 <code>BH1750_FluxValue()</code> 函数即可以直接读取出数值。</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><div class="post-copyright__author_img"><img class="post-copyright__author_img_front" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="post-copyright__author_name">御枫林下</div><div class="post-copyright__author_desc">枫浅羽，云浅语</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">枫林·浅羽·云梦</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>嵌入式<span class="tagsPageCount">5</span></span></a><a class="post-meta__tags" href="/tags/STM32/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>STM32<span class="tagsPageCount">4</span></span></a><a class="post-meta__tags" href="/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>传感器<span class="tagsPageCount">2</span></span></a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>学习<span class="tagsPageCount">3</span></span></a><a class="post-meta__tags" href="/tags/I2C/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>I2C<span class="tagsPageCount">1</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/8e2d59a8/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">旗帜鲜明地反对基于运营商 PON 方案的 FTTR</div></div></a></div><div class="next-post pull-right"><a href="/posts/b8ae5ec7/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">imgtp 图床寄了</div></div></a></div></nav>
+        <div class="relatedPosts">
+            <div class="headline">
+                <i class="solitude fas fa-star"></i>
+                <span>喜欢这篇的人也看了</span>
+                <div class="relatedPosts-link">
+                    <a onclick="event.preventDefault(); toRandomPost();" href="javascript:void(0);" rel="external nofollow" data-pjax-state="">随便逛逛</a>
+                </div>
+            </div>
+            <div class="relatedPosts-list">
+            <div>
+                <a href="/posts/65212637/" title="基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试">
+                    <img class="cover" src= "" data-lazy-src="https://bu.dusays.com/2024/11/26/6745530409dbd.webp" alt="cover">
+                    <div class="content is-center">
+                        <div class="title">基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试</div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="/posts/617a7db7/" title="中科蓝讯 AB2027 开发兼踩坑备忘录">
+                    <img class="cover" src= "" data-lazy-src="https://bu.dusays.com/2025/02/16/67b1aeb0456bd.webp" alt="cover">
+                    <div class="content is-center">
+                        <div class="title">中科蓝讯 AB2027 开发兼踩坑备忘录</div>
+                    </div>
+                </a>
+            </div>
+            </div>
+        </div><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude fas fa-comment"></i><span> 评论</span><span class="count"> (<span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span>)</span></div></div><div class="comment-wrap"><div id="twikoo-wrap"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="top-group"><div class="sayhi" id="sayhi" onclick="sco.changeWittyWord()"></div></div></div><div class="avatar"><img alt="头像" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="description"></div><div class="bottom-group"><span class="left"><div class="name">御枫林下</div><div class="desc">理智乃解決問題之鑰匙 <br>思考為解決一切之工具</div></span><div class="social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/AGEN233" title="Github"><i class="solitude  fab fa-github"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fas fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%92%8C%E8%8A%AF%E7%89%87"><span class="toc-text">模块和芯片 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%84%9A%E5%AE%9A%E4%B9%89"><span class="toc-text">引脚定义</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I2C%20%E5%8D%8F%E8%AE%AE"><span class="toc-text">I2C 协议 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BH1750%20%E7%9A%84%E6%8C%87%E4%BB%A4%E5%92%8C%E6%B5%8B%E9%87%8F%E6%A8%A1%E5%BC%8F"><span class="toc-text">BH1750 的指令和测量模式 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%8C%87%E4%BB%A4"><span class="toc-text"> 所有指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E7%B1%BB%E6%B5%8B%E9%87%8F%E6%A8%A1%E5%BC%8F"><span class="toc-text">各类测量模式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E5%92%8C%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="toc-text">编程和代码部分 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%20%E5%A4%B4%E6%96%87%E4%BB%B6%E5%AE%9A%E4%B9%89%E9%83%A8%E5%88%86"><span class="toc-text">1. 头文件定义部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-BH1750%20%E9%83%A8%E5%88%86"><span class="toc-text">2. BH1750 部分 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Delay%20%E5%87%BD%E6%95%B0"><span class="toc-text">3. Delay 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%20%E4%B8%BB%E5%87%BD%E6%95%B0"><span class="toc-text">4. 主函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fas fa-map"></i><span>最近发布</span></div><div class="aside-list"><a class="aside-list-item" href="/posts/4a17b156/" title="Hello World"><div class="content"><span class="title" href="/posts/4a17b156/" title="Hello World">Hello World</span></div></a><a class="aside-list-item" href="/posts/617a7db7/" title="中科蓝讯 AB2027 开发兼踩坑备忘录"><div class="thumbnail"><img alt="中科蓝讯 AB2027 开发兼踩坑备忘录" src= "" data-lazy-src="https://bu.dusays.com/2025/02/16/67b1aeb0456bd.webp"></div><div class="content"><span class="title" href="/posts/617a7db7/" title="中科蓝讯 AB2027 开发兼踩坑备忘录">中科蓝讯 AB2027 开发兼踩坑备忘录</span><span class="categories" href="/posts/617a7db7/">嵌入式和单片机</span></div></a><a class="aside-list-item" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件"><div class="thumbnail"><img alt="博通编译脚本和编译器找不到相关文件" src= "" data-lazy-src="https://bu.dusays.com/2025/02/11/67ab67d5b301b.webp"></div><div class="content"><span class="title" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件">博通编译脚本和编译器找不到相关文件</span><span class="categories" href="/posts/15d61602/">嵌入式和单片机</span></div></a><a class="aside-list-item" href="/posts/65212637/" title="基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试"><div class="thumbnail"><img alt="基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试" src= "" data-lazy-src="https://bu.dusays.com/2024/11/26/6745530409dbd.webp"></div><div class="content"><span class="title" href="/posts/65212637/" title="基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试">基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试</span><span class="categories" href="/posts/65212637/">嵌入式和单片机</span></div></a><a class="aside-list-item" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还"><div class="thumbnail"><img alt="不得原谅、不得解脱、无人生还" src= "" data-lazy-src="https://bu.dusays.com/2024/10/16/670f520882631.jpg"></div><div class="content"><span class="title" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还">不得原谅、不得解脱、无人生还</span><span class="categories" href="/posts/32331f7/">随笔</span></div></a></div></div></div></div></main><footer id="footer"><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2025 御枫林下 Power By&thinsp;<a class="footbar-hexo" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" alt=" Hexo ">Hexo&thinsp;& </a>
+<a class="footbar-Solitude" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="Solitude"> &thinsp;Solitude</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" href="/atom.xml" alt="RSS">RSS</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude/blob/main/LICENSE" alt="CC BY-SA 4.0 License"><i class="solitude fas fa-copyright"></i><i class="solitude fab fa-creative-commons-by"></i><i class="solitude fab fa-creative-commons-nc"></i><i class="solitude fab fa-creative-commons-sa"></i></a></div></div></div><div class="comment-barrage needEndHide"></div></footer></div><!-- right_menu--><!-- inject body--><div><script src="/js/utils.js?v=3.0.10"></script><script src="/js/main.js?v=3.0.10"></script><script src="/js/third_party/waterfall.min.js?v=3.0.10"></script><script src="https://fastly.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="https://fastly.jsdelivr.net/npm/typeit@8.8.7/dist/index.umd.min.js"></script><script src="/js/third_party/universe.min.js?v=3.0.10"></script><script>dark()
+</script><script src="/js/tw_cn.js?v=3.0.10"></script><script src="https://fastly.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://fastly.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script><script>const coverColorConfig = {
+  api: 'https://api.qjqq.cn/api/Imgcolor?img=',
+  time: 43200000
+}</script><script src="/js/covercolor/api.js?v=3.0.10"></script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+utils.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+</script><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script src="https://fastly.jsdelivr.net/npm/instantsearch.js@4.75.7/dist/instantsearch.production.min.js"></script><script src="https://fastly.jsdelivr.net/npm/algoliasearch@5.19.0/dist/algoliasearch.umd.min.js"></script><div class="js-pjax"><script>(() => {
+    const getCount = () => {
+        const ele = document.querySelectorAll('.twikoo-count')
+        if (!ele) return
+        twikoo.getCommentsCount({
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            urls: [window.location.pathname],
+            includeReply: false
+        }).then(res => {
+            ele.forEach(item => item.textContent = res[0].count)
+        }).catch(err => {
+            console.error(err)
+        })
+    }
+    const init = () => {
+        twikoo.init(Object.assign({
+            el: '#twikoo-wrap',
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            path: window.location.pathname,
+            onCommentLoaded: () => {
+                GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+            }
+        }, null))
+
+         && getCount()
+        sco.owoBig({
+            body: '.OwO-body',
+            item: '.OwO-items li'
+        })
+
+        true && barrageTwikoo()
+    }
+
+    const loadTwikoo = () => {
+        if (typeof twikoo === 'object') setTimeout(init,0)
+        else utils.getScript('https://fastly.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js').then(init)
+    }
+
+    if ('Twikoo' === 'Twikoo' || true) {
+        if (true) utils.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+        else loadTwikoo()
+    } else {
+        window.loadTwoComment = loadTwikoo
+    }
+})()
+</script><script>async function barrageTwikoo() {
+    await fetch("https://blogverceltwkioo.agen233.top/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            event: "COMMENT_GET",
+            accessToken: "",
+            url: window.location.pathname
+        })
+    }).then(async res => {
+        if (!res.ok) throw new Error("HTTP error! status: " + res.status)
+        const data = await res.json();
+        const init = () => {
+            initializeCommentBarrage((data.data).map(item => Object.assign({
+                content: item.comment,
+                nick: item.nick,
+                mailMd5: item.mailMd5,
+                id: item.id
+            })))
+        }
+        if (typeof initializeCommentBarrage === "undefined") await utils.getScript('/js/third_party/barrage.min.js?v=3.0.10').then(init)
+        else init()
+    }).catch(error => console.error("An error occurred while fetching comments: ", error))
+}</script><script defer pjax src="https://fastly.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ["title","#body-wrap","#site-config","meta[name=\"description\"]",".js-pjax","meta[property^=\"og:\"]","#config-diff",".rs_show",".rs_hide"],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- google adsense--><!-- search--><div id="algolia-search"><div class="search-dialog"><div class="algolia-navbar"><div class="search-dialog__title" id="algolia-search-title">搜索</div><div class="algolia-tips"><i class="solitude fab fa-algolia"></i><span class="algolia-tips-text">Algolia</span></div><span class="search-close-button"><i class="solitude fas fa-xmark"></i></span></div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><div id="search-results"><div id="algolia-hits"></div></div><div id="algolia-tips"><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div><div id="search-mask"></div></div><script src="/js/search/algolia.js?v=3.0.10"></script><!-- Tianli-Talk--><!-- music--></body></html>
+        <script>
+            const posts = ["posts/4a17b156/","posts/617a7db7/","posts/15d61602/","posts/65212637/","posts/32331f7/","posts/a7154660/","posts/670529b6/","posts/1292e32b/","posts/bd9973bb/","posts/b2ce6d03/","posts/8e2d59a8/","posts/7f0447f2/","posts/b8ae5ec7/","posts/3087054e/","posts/66b5bdfd/","posts/4dc3a1af/","posts/639e78a0/","posts/e4d8f98b/","posts/8884a040/","posts/5335a18c/","posts/df9fba50/","posts/b8441c09/","posts/9ee79452/","posts/6680ffdf/","posts/28f20c60/","posts/88fe7ba4/","posts/8be11e9d/","posts/bb683f89/","posts/de4a5a44/"];
+            function toRandomPost() {
+                const randomPost = posts[Math.floor(Math.random() * posts.length)];
+                pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
+            }
+        </script>

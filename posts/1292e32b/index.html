@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>都市天际线政策面板指北 | 枫林·浅羽·云梦</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=3.0.10"><!-- inject head--><link rel="canonical" href="https://agen233.top/posts/1292e32b/index.html"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><!-- aplayer--><!-- swiper--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css"><!-- fancybox ui--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="众嗦粥汁，政策是天际线经营玩法的精髓之所在，他是治理城市的有力工具，决定了你的城市包括但不限于收支、吸引度、幸福度等诸多功能。而各种政策，则是由政策面板提供 ( 服务政策 政策 DLC 需求 解锁等级 正作用 维护费用 &amp;#x2F; 副作用 特别描述 节水措施 &amp;#x2F; 富有的村庄 中"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="枫林·浅羽·云梦"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><link rel="apple-touch-icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp" sizes="180x180"><script>console.log(' %c Solitude %c ' + '3.0.10' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+          },
+        }
+    })()</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: {"appId":"NTABD03MUI","apiKey":"b9edcdc52526245cf090759020f838cd","indexName":"HEXO","hits":{"per_page":6}},
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: true,
+        error: '/img/error_load.avif'
+    },
+    copyright: false,
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。","loading":"搜索中..."},"barrage":{"title":"热评"}},
+    aside: {
+        state: {
+            morning: "🌅 晨安，风起之时，万事皆已就绪。",
+            noon: "🍽️ 午膳时分，风随心动，心逐风行。",
+            afternoon: "🌤️ 午安，微风轻拂，心亦随之弛然。",
+            night: "🌙 夜幕低垂，幽幽清风，携来安宁。",
+            goodnight: "😴 晚安，风柔梦远，明朝再会。",
+        },
+        witty_words: ["风的自由","心的向往"],
+        witty_comment: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: true
+    },
+    comment: {"avatar":"https://gravatar.com/avatar","commentBarrage":true},
+    lightbox: 'fancybox',
+    post_ai: false,
+    right_menu: false,
+    translate: {"translateDelay":0,"defaultEncoding":2},
+    lure: false,
+    expire: {"time":60,"position":"top","text_prev":"This article expired ","text_next":" day ago, if the content does not match, please contact the webmaster to update it."},
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false,
+    color: false,
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="枫林·浅羽·云梦" type="application/atom+xml">
+</head><body id="body"><!-- universe--><canvas id="universe"></canvas><!-- background img--><div id="global_bg"></div><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/recentcomments/"><div class="headline">评论</div><div class="length-num" id="twikoo_allcount"><i class="solitude fas fa-spinner fa-spin"></i></div><script pjax="pjax">(async () => {
+  await fetch('https://blogverceltwkioo.agen233.top/', {
+    method: "POST",
+    body: JSON.stringify({
+      "event": "GET_RECENT_COMMENTS",
+      "includeReply": true,
+      "pageSize": 999
+    }),
+    headers: {'Content-Type': 'application/json'}
+  }).then(res => res.json()).then(async ({data}) => {
+    document.querySelector('#twikoo_allcount').innerHTML = data.length
+  })
+})()</script></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文章</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>社交</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人帐</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-comment-nodes"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>其他</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fab fa-react"></i><span>杂谈漫语</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/copyright/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-star-of-david"></i><span>杂谈漫语</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="card-tag-cloud"><a href="/tags/ESP32/">ESP32<sup>1</sup></a><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式<sup>5</sup></a><a href="/tags/STM32/">STM32<sup>4</sup></a><a href="/tags/ESP8266-ESP32/">ESP8266/ESP32<sup>2</sup></a><a href="/tags/Windows/">Windows<sup>6</sup></a><a href="/tags/ChinaSkills/">ChinaSkills<sup>2</sup></a><a href="/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">持续更新<sup>3</sup></a><a href="/tags/Hexo/">Hexo<sup>3</sup></a><a href="/tags/%E5%9B%BE%E5%BA%8A/">图床<sup>1</sup></a><a href="/tags/%E9%99%88%E8%87%B4%E9%80%B8/">陈致逸<sup>1</sup></a><a href="/tags/%E6%96%B0%E4%B8%93%E8%BE%91/">新专辑<sup>1</sup></a><a href="/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/">传感器<sup>2</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0/">学习<sup>3</sup></a><a href="/tags/I2C/">I2C<sup>1</sup></a><a href="/tags/%E6%9D%8E%E5%85%8B%E5%8B%A4/">李克勤<sup>1</sup></a><a href="/tags/%E5%93%88%E8%82%AF/">哈肯<sup>1</sup></a><a href="/tags/%E8%93%9D%E8%AE%AFAB202X/">蓝讯AB202X<sup>1</sup></a><a href="/tags/SPI%E5%8D%8F%E8%AE%AE/">SPI协议<sup>1</sup></a><a href="/tags/%E5%BC%80%E5%8F%91%E7%89%88/">开发版<sup>1</sup></a><a href="/tags/%E7%BD%91%E7%BB%9C/">网络<sup>2</sup></a><a href="/tags/%E5%8D%9A%E9%80%9ABK/">博通BK<sup>1</sup></a><a href="/tags/%E8%80%B3%E6%9C%BA/">耳机<sup>1</sup></a><a href="/tags/I2C%E5%8D%8F%E8%AE%AE/">I2C协议<sup>1</sup></a><a href="/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/">开发板<sup>1</sup></a><a href="/tags/%E8%BF%BD%E7%95%AA/">追番<sup>1</sup></a><a href="/tags/%E7%B1%B3%E5%A5%87%E4%B8%8E%E8%BE%BE%E5%88%A9/">米奇与达利<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/">软路由<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/">软考<sup>1</sup></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/">计算机系统基础<sup>1</sup></a><a href="/tags/%E9%83%BD%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF/">都市天际线<sup>1</sup></a><a href="/tags/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6/">游戏机制<sup>1</sup></a><a href="/tags/BRICS/">BRICS<sup>1</sup></a><a href="/tags/AI/">AI<sup>1</sup></a><a href="/tags/%E6%BE%8E%E6%B9%83OS-HyperOS/">澎湃OS|HyperOS<sup>1</sup></a><a href="/tags/%E5%B0%8F%E7%B1%B3/">小米<sup>1</sup></a><a href="/tags/%E6%91%A9%E6%89%98%E8%BD%A6/">摩托车<sup>1</sup></a><a href="/tags/%E8%B1%AA%E7%88%B5USR125/">豪爵USR125<sup>1</sup></a></div></div></div></div><!-- keyboard--><!-- righhtside--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">枫林·浅羽·云梦</span><i class="solitude fas fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">都市天际线政策面板指北</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>文章</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>社交</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人帐</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-comment-nodes"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>其他</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fab fa-react"></i><span>杂谈漫语</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>我的</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/copyright/"><i class="solitude  fas fa-copyright"></i><span>版权声明</span></a></li><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>我和本站</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-star-of-david"></i><span>杂谈漫语</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button" id="travellings_button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="solitude fas fa-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="solitude fas fa-dice-d6"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude fas fa-magnifying-glass"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fas fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fas fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://bu.dusays.com/2024/09/17/66e869c6c5937.png" alt="都市天际线政策面板指北"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%83%BD%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>都市天际线</span></a><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>游戏机制</span></a></div></div></div></div><h1 class="post-title">都市天际线政策面板指北</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-09-17 01:19:04"><i class="post-meta-icon solitude fas fa-calendar-days"></i><time datetime="2024-09-17T01:19:04.000Z">2024-09-17T01:19:04.000Z</time></span><span class="post-meta-date" title="最后更新于 2025-02-11 15:39:55"><i class="post-meta-icon solitude fas fa-arrows-rotate"></i><time datetime="2025-02-11T15:39:55.000Z">2025-02-11T15:39:55.000Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fas fa-file-word" title="文章字数"></i><span class="word-count">1.3k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fas fa-clock" title="阅读耗时"></i><span>4 min</span></span><span class="post-meta-position" title="作者IP归属地为中国·广东"><i class="post-meta-icon solitude fas fa-location-dot"></i><span>中国·广东</span></span><a class="post-meta-pv" href="/posts/1292e32b/" title="文章热度"><i class="post-meta-icon solitude fas fa-fire-flame-curved"></i><span id="twikoo_visitors"><i class="solitude fas fa-spinner fa-spin"></i></span></a><span class="post-meta-commentcount" title="评论数" onclick="sco.scrollTo('post-comment')"><i class="solitude fas fa-comment"></i><a href="/posts/1292e32b/#post-comment"><span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span></a></span></div></div></div><div id="post-info-bottom"></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content article-container"><p>众嗦粥汁，政策是天际线经营玩法的精髓之所在，他是治理城市的有力工具，决定了你的城市包括但不限于收支、吸引度、幸福度等诸多功能。而各种政策，则是由政策面板提供 (</p>
+<h2 id="服务政策"><a href="# 服务政策" class="headerlink" title="服务政策"></a>服务政策</h2><table>
+<thead>
+<tr>
+<th align="center">政策</th>
+<th align="center">DLC 需求</th>
+<th align="center">解锁等级</th>
+<th align="center">正作用</th>
+<th align="center">维护费用 &#x2F; 副作用</th>
+<th>特别描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">节水措施</td>
+<td align="center">&#x2F;</td>
+<td align="center">富有的村庄</td>
+<td align="center">中度减少水资源消耗（减少 15%）</td>
+<td align="center">5 科朗 &#x2F; 周 &#x2F; 建筑</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">节电措施</td>
+<td align="center">&#x2F;</td>
+<td align="center">富有的村庄</td>
+<td align="center">中度减少电力消耗（减少 15%）</td>
+<td align="center">5 科朗 &#x2F; 周 &#x2F; 建筑</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">安装烟雾探测器</td>
+<td align="center">&#x2F;</td>
+<td align="center">富有的村庄</td>
+<td align="center">显著降低火灾发生机率</td>
+<td align="center">5 科朗 &#x2F; 周 &#x2F; 建筑</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">禁养宠物</td>
+<td align="center">&#x2F;</td>
+<td align="center">小城镇</td>
+<td align="center">轻度减少垃圾排放量</td>
+<td align="center">轻度减少幸福度</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">资源回收</td>
+<td align="center">&#x2F;</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">轻度减少垃圾排放量</td>
+<td align="center">轻度减少税收收入</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">禁烟令</td>
+<td align="center">&#x2F;</td>
+<td align="center">小城镇</td>
+<td align="center">轻度增加健康度</td>
+<td align="center">轻度减少幸福度</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">景观美化</td>
+<td align="center">&#x2F;</td>
+<td align="center">小城镇</td>
+<td align="center">公园和购物广场周围的土地适度升值</td>
+<td align="center">公园和购物广场的预算增加 20%</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">加强教育</td>
+<td align="center">&#x2F;</td>
+<td align="center">大型城镇</td>
+<td align="center">年轻人优先考虑接受教育而非工作</td>
+<td align="center">增加 25% 教育预算</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">允许娱乐活动</td>
+<td align="center">&#x2F;</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">轻度增加税收。中度增加游客。轻度减少犯罪</td>
+<td align="center">+15% 警察预算</td>
+<td>指美式特殊娱乐，比如吸叶子和特殊服务等</td>
+</tr>
+<tr>
+<td align="center">免费公共运输</td>
+<td align="center">&#x2F;</td>
+<td align="center">忙碌的城镇</td>
+<td align="center">增加公共交通使用量</td>
+<td align="center">公交车、有轨电车、地铁、本地列车或单轨列车将没有收入</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">走出校园</td>
+<td align="center">夜生活（After Dark）</td>
+<td align="center">小城镇</td>
+<td align="center">市民比求学更喜欢就业，并且只有一小部分符合资格的市民会去就读大学</td>
+<td align="center">受过高等教育的市民变得更少</td>
+<td>先找工作 &gt; 读书；贴吧翻译：读书无用</td>
+</tr>
+<tr>
+<td align="center">严酷监禁刑罚</td>
+<td align="center">夜生活（After Dark）</td>
+<td align="center">大型城镇</td>
+<td align="center">将监狱刑期延长至原来的两倍，用严刑峻法让坏蛋们离开街头更长的时间</td>
+<td align="center">监狱刑期加倍；占用牢房更久</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">加装额外隔热计划</td>
+<td align="center">冰天雪地（Snowfall）</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">由于建筑物的墙上及天花板上安装有额外隔热层，使得其对暖气的需求降低</td>
+<td align="center">因建设 &#x2F; 维护费用增加，导致税收减少</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">禁止电力供暖</td>
+<td align="center">冰天雪地（Snowfall）</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">建筑只能通过供暖站供暖。降低电力消耗</td>
+<td align="center">增加对城市供热服务的需求</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">纯电力供暖</td>
+<td align="center">冰天雪地（Snowfall）</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">建筑被禁止使用暖气；只能使用电力取暖</td>
+<td align="center">寒冷天气中的电力需求急剧增加</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">直升机优先权</td>
+<td align="center">大灾难（Natural Disasters）</td>
+<td align="center">忙碌的城镇</td>
+<td align="center">应急服务设施将启用直升机而不是地面载具</td>
+<td align="center">&#x2F;</td>
+<td>一般情况下，直升机只管森林大火；开启后允许直升机对非森林建筑进行灭火</td>
+</tr>
+<tr>
+<td align="center">偏好渡轮</td>
+<td align="center">公共交通（Mass Transit）</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">市民更喜欢乘坐渡船在城市中活动</td>
+<td align="center">2 科朗 &#x2F; 使用中的渡船</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">高票价</td>
+<td align="center">公共交通（Mass Transit）</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">将公共交通票价提高 25% 可获得更多的利润。</td>
+<td align="center">导致乘客减少。</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">教育飞艇</td>
+<td align="center">公共交通（Mass Transit）</td>
+<td align="center">大型城镇</td>
+<td align="center">将飞艇上的广告切换为教育公告，以稍微促进教育事业。</td>
+<td align="center">&#x2F;</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">塑料回收</td>
+<td align="center">绿色都市（Green Cities）</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">回收中心效率 +20%</td>
+<td align="center">100 科朗 &#x2F; 回收中心 &#x2F; 周</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">偏爱公园</td>
+<td align="center">公园生活（Parklife）</td>
+<td align="center">小城镇</td>
+<td align="center">公园，广场与公园区域吸引游客量提升 10%</td>
+<td align="center">100 科朗 &#x2F; 政策生效范围内的公园，广场及公园区域</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">公园维护提升</td>
+<td align="center">公园生活（Parklife）</td>
+<td align="center">小城镇</td>
+<td align="center">公园维护车值班时间增加 50%</td>
+<td align="center">80 科朗 &#x2F; 公园维护部门建筑</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">免费 Wi-Fi</td>
+<td align="center">工业（Industries）</td>
+<td align="center">快速发展的城镇</td>
+<td align="center">降低 15% 邮件积累速度</td>
+<td align="center">2 科朗 &#x2F; 建筑</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">自动分拣系统</td>
+<td align="center">工业（Industries）</td>
+<td align="center">大型城镇</td>
+<td align="center">增加 10% 邮件处理容量</td>
+<td align="center">300 科朗 &#x2F; 每邮件服务建筑</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">营利教育</td>
+<td align="center">校园（Campus）</td>
+<td align="center">大型城镇</td>
+<td align="center">教育建筑的维护减少 50%</td>
+<td align="center">市民幸福度减少</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">书展</td>
+<td align="center">校园（Campus）</td>
+<td align="center">忙碌的城镇</td>
+<td align="center">公共图书馆范围内增加幸福度和娱乐</td>
+<td align="center">公共图书馆维护费用增加 100%</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">基于水藻的水过滤</td>
+<td align="center">日落港口（Sunset Harbor)</td>
+<td align="center">忙碌的城镇</td>
+<td align="center">进水的过滤和排水管道的净化水平提高 45%</td>
+<td align="center">海藻养殖场产量减少 50%；水设施的维护费用增加 15%</td>
+<td>需要海藻养殖场</td>
+</tr>
+<tr>
+<td align="center">捕鱼许可证</td>
+<td align="center">日落港口（Sunset Harbor)</td>
+<td align="center">小城镇</td>
+<td align="center">所有住宅税收增加 5%</td>
+<td align="center">市民的幸福度降低 5% ；犯罪增加 5% 。</td>
+<td></td>
+</tr>
+<tr>
+<td align="center">游客旅游卡</td>
+<td align="center">日落港口（Sunset Harbor)</td>
+<td align="center">大型城镇</td>
+<td align="center">城市的游客数量将增加 8%</td>
+<td align="center">城际公交网络维护费用提高 15%</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="税收"><a href="# 税收" class="headerlink" title="税收"></a>税收 </h2><h2 id="城市规划"><a href="# 城市规划" class="headerlink" title="城市规划"></a> 城市规划</h2></article><div class="post-copyright"><div class="post-copyright__author_group"><div class="post-copyright__author_img"><img class="post-copyright__author_img_front" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="post-copyright__author_name">御枫林下</div><div class="post-copyright__author_desc">枫浅羽，云浅语</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">枫林·浅羽·云梦</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%83%BD%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>都市天际线<span class="tagsPageCount">1</span></span></a><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>游戏机制<span class="tagsPageCount">1</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/670529b6/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">风、诗歌和远方 | 豪爵 USR125 记</div></div></a></div><div class="next-post pull-right"><a href="/posts/bd9973bb/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">「幻想乐园」| 陈致逸全新专辑试听体验</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude fas fa-comment"></i><span> 评论</span><span class="count"> (<span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span>)</span></div></div><div class="comment-wrap"><div id="twikoo-wrap"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="top-group"><div class="sayhi" id="sayhi" onclick="sco.changeWittyWord()"></div></div></div><div class="avatar"><img alt="头像" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="description"></div><div class="bottom-group"><span class="left"><div class="name">御枫林下</div><div class="desc">理智乃解決問題之鑰匙 <br>思考為解決一切之工具</div></span><div class="social-icons is-center"><a class="social-icon" target="_blank" rel="noopener" href="https://github.com/AGEN233" title="Github"><i class="solitude  fab fa-github"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fas fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%94%BF%E7%AD%96"><span class="toc-text">服务政策</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8E%E6%94%B6"><span class="toc-text">税收 </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%8E%E5%B8%82%E8%A7%84%E5%88%92"><span class="toc-text"> 城市规划</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fas fa-map"></i><span>最近发布</span></div><div class="aside-list"><a class="aside-list-item" href="/posts/4a17b156/" title="Hello World"><div class="content"><span class="title" href="/posts/4a17b156/" title="Hello World">Hello World</span></div></a><a class="aside-list-item" href="/posts/617a7db7/" title="中科蓝讯 AB2027 开发兼踩坑备忘录"><div class="thumbnail"><img alt="中科蓝讯 AB2027 开发兼踩坑备忘录" src= "" data-lazy-src="https://bu.dusays.com/2025/02/16/67b1aeb0456bd.webp"></div><div class="content"><span class="title" href="/posts/617a7db7/" title="中科蓝讯 AB2027 开发兼踩坑备忘录">中科蓝讯 AB2027 开发兼踩坑备忘录</span><span class="categories" href="/posts/617a7db7/">嵌入式和单片机</span></div></a><a class="aside-list-item" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件"><div class="thumbnail"><img alt="博通编译脚本和编译器找不到相关文件" src= "" data-lazy-src="https://bu.dusays.com/2025/02/11/67ab67d5b301b.webp"></div><div class="content"><span class="title" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件">博通编译脚本和编译器找不到相关文件</span><span class="categories" href="/posts/15d61602/">嵌入式和单片机</span></div></a><a class="aside-list-item" href="/posts/65212637/" title="基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试"><div class="thumbnail"><img alt="基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试" src= "" data-lazy-src="https://bu.dusays.com/2024/11/26/6745530409dbd.webp"></div><div class="content"><span class="title" href="/posts/65212637/" title="基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试">基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试</span><span class="categories" href="/posts/65212637/">嵌入式和单片机</span></div></a><a class="aside-list-item" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还"><div class="thumbnail"><img alt="不得原谅、不得解脱、无人生还" src= "" data-lazy-src="https://bu.dusays.com/2024/10/16/670f520882631.jpg"></div><div class="content"><span class="title" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还">不得原谅、不得解脱、无人生还</span><span class="categories" href="/posts/32331f7/">随笔</span></div></a></div></div></div></div></main><footer id="footer"><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2025 御枫林下 Power By&thinsp;<a class="footbar-hexo" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" alt=" Hexo ">Hexo&thinsp;& </a>
+<a class="footbar-Solitude" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude" alt="Solitude"> &thinsp;Solitude</a></div></div><div class="footer-bar-right"><a class="footer-bar-link" href="/atom.xml" alt="RSS">RSS</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude/blob/main/LICENSE" alt="CC BY-SA 4.0 License"><i class="solitude fas fa-copyright"></i><i class="solitude fab fa-creative-commons-by"></i><i class="solitude fab fa-creative-commons-nc"></i><i class="solitude fab fa-creative-commons-sa"></i></a></div></div></div><div class="comment-barrage needEndHide"></div></footer></div><!-- right_menu--><!-- inject body--><div><script src="/js/utils.js?v=3.0.10"></script><script src="/js/main.js?v=3.0.10"></script><script src="/js/third_party/waterfall.min.js?v=3.0.10"></script><script src="https://fastly.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="https://fastly.jsdelivr.net/npm/typeit@8.8.7/dist/index.umd.min.js"></script><script src="/js/third_party/universe.min.js?v=3.0.10"></script><script>dark()
+</script><script src="/js/tw_cn.js?v=3.0.10"></script><script src="https://fastly.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://fastly.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script><script>const coverColorConfig = {
+  api: 'https://api.qjqq.cn/api/Imgcolor?img=',
+  time: 43200000
+}</script><script src="/js/covercolor/api.js?v=3.0.10"></script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+utils.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+</script><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script src="https://fastly.jsdelivr.net/npm/instantsearch.js@4.75.7/dist/instantsearch.production.min.js"></script><script src="https://fastly.jsdelivr.net/npm/algoliasearch@5.19.0/dist/algoliasearch.umd.min.js"></script><div class="js-pjax"><script>(() => {
+    const getCount = () => {
+        const ele = document.querySelectorAll('.twikoo-count')
+        if (!ele) return
+        twikoo.getCommentsCount({
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            urls: [window.location.pathname],
+            includeReply: false
+        }).then(res => {
+            ele.forEach(item => item.textContent = res[0].count)
+        }).catch(err => {
+            console.error(err)
+        })
+    }
+    const init = () => {
+        twikoo.init(Object.assign({
+            el: '#twikoo-wrap',
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            path: window.location.pathname,
+            onCommentLoaded: () => {
+                GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+            }
+        }, null))
+
+         && getCount()
+        sco.owoBig({
+            body: '.OwO-body',
+            item: '.OwO-items li'
+        })
+
+        true && barrageTwikoo()
+    }
+
+    const loadTwikoo = () => {
+        if (typeof twikoo === 'object') setTimeout(init,0)
+        else utils.getScript('https://fastly.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js').then(init)
+    }
+
+    if ('Twikoo' === 'Twikoo' || true) {
+        if (true) utils.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+        else loadTwikoo()
+    } else {
+        window.loadTwoComment = loadTwikoo
+    }
+})()
+</script><script>async function barrageTwikoo() {
+    await fetch("https://blogverceltwkioo.agen233.top/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            event: "COMMENT_GET",
+            accessToken: "",
+            url: window.location.pathname
+        })
+    }).then(async res => {
+        if (!res.ok) throw new Error("HTTP error! status: " + res.status)
+        const data = await res.json();
+        const init = () => {
+            initializeCommentBarrage((data.data).map(item => Object.assign({
+                content: item.comment,
+                nick: item.nick,
+                mailMd5: item.mailMd5,
+                id: item.id
+            })))
+        }
+        if (typeof initializeCommentBarrage === "undefined") await utils.getScript('/js/third_party/barrage.min.js?v=3.0.10').then(init)
+        else init()
+    }).catch(error => console.error("An error occurred while fetching comments: ", error))
+}</script><script defer pjax src="https://fastly.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ["title","#body-wrap","#site-config","meta[name=\"description\"]",".js-pjax","meta[property^=\"og:\"]","#config-diff",".rs_show",".rs_hide"],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- google adsense--><!-- search--><div id="algolia-search"><div class="search-dialog"><div class="algolia-navbar"><div class="search-dialog__title" id="algolia-search-title">搜索</div><div class="algolia-tips"><i class="solitude fab fa-algolia"></i><span class="algolia-tips-text">Algolia</span></div><span class="search-close-button"><i class="solitude fas fa-xmark"></i></span></div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><div id="search-results"><div id="algolia-hits"></div></div><div id="algolia-tips"><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div><div id="search-mask"></div></div><script src="/js/search/algolia.js?v=3.0.10"></script><!-- Tianli-Talk--><!-- music--></body></html>
+        <script>
+            const posts = ["posts/4a17b156/","posts/617a7db7/","posts/15d61602/","posts/65212637/","posts/32331f7/","posts/a7154660/","posts/670529b6/","posts/1292e32b/","posts/bd9973bb/","posts/b2ce6d03/","posts/8e2d59a8/","posts/7f0447f2/","posts/b8ae5ec7/","posts/3087054e/","posts/66b5bdfd/","posts/4dc3a1af/","posts/639e78a0/","posts/e4d8f98b/","posts/8884a040/","posts/5335a18c/","posts/df9fba50/","posts/b8441c09/","posts/9ee79452/","posts/6680ffdf/","posts/28f20c60/","posts/88fe7ba4/","posts/8be11e9d/","posts/bb683f89/","posts/de4a5a44/"];
+            function toRandomPost() {
+                const randomPost = posts[Math.floor(Math.random() * posts.length)];
+                pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
+            }
+        </script>
