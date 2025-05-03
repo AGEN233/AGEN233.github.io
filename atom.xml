@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>枫林·浅羽·云梦</title>
+  <icon>https://agen233.top/icon.png</icon>
+  <subtitle>枫浅羽，云浅语</subtitle>
+  <link href="https://agen233.top/atom.xml" rel="self"/>
+  
+  <link href="https://agen233.top/"/>
+  <updated>2025-05-03T12:51:08.000Z</updated>
+  <id>https://agen233.top/</id>
+  
+  <author>
+    <name>御枫林下</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>更先进的终极看番解决方案</title>
+    <link href="https://agen233.top/posts/8e2890be/"/>
+    <id>https://agen233.top/posts/8e2890be/</id>
+    <published>2025-04-01T21:04:11.000Z</published>
+    <updated>2025-05-03T12:51:08.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h1&gt;&lt;p&gt; 前阵子趁着国补买了台电视，一直苦于没有相当优雅的全自动本地追番追剧方案，一直看码率高达 1Mbps</summary>
+        
+      
+    
+    
+    
+    <category term="折腾录" scheme="https://agen233.top/categories/%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="NAS" scheme="https://agen233.top/tags/NAS/"/>
+    
+    <category term="Linux" scheme="https://agen233.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中科蓝讯 AB2027 开发兼踩坑备忘录</title>
+    <link href="https://agen233.top/posts/617a7db7/"/>
+    <id>https://agen233.top/posts/617a7db7/</id>
+    <published>2025-02-16T17:06:56.000Z</published>
+    <updated>2025-04-12T02:55:14.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;# 前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言 &lt;/h1&gt;&lt;div class=&quot;note info flat no-icon&quot;&gt;&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="蓝讯AB202X" scheme="https://agen233.top/tags/%E8%93%9D%E8%AE%AFAB202X/"/>
+    
+    <category term="SPI" scheme="https://agen233.top/tags/SPI/"/>
+    
+    <category term="开发板" scheme="https://agen233.top/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博通编译脚本和编译器找不到相关文件</title>
+    <link href="https://agen233.top/posts/15d61602/"/>
+    <id>https://agen233.top/posts/15d61602/</id>
+    <published>2024-12-30T21:30:10.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;之前学习博通的时候，一直是在 Windows 克隆的代码，然后复制到共享文件夹中进行操作，修改文件后，在 linux 下进行编译，进而出现了编译脚本找不到部分文本文件的情况。&lt;/p&gt;
+&lt;p&gt;实际上这和 Linux 是 LR 换行而 Windows 是 CRLR</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="博通BK" scheme="https://agen233.top/tags/%E5%8D%9A%E9%80%9ABK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于 STM32F103 软件模拟 I2C 的纯粹 C 语言面向对象尝试</title>
+    <link href="https://agen233.top/posts/65212637/"/>
+    <id>https://agen233.top/posts/65212637/</id>
+    <published>2024-11-25T22:13:51.000Z</published>
+    <updated>2025-04-12T02:55:14.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近也是秋招收到 offer 了，嵌软方向，本地企业，于是闲的没事干在学校开摆，顺便提升下代码水平。&lt;/p&gt;
+&lt;p&gt;于是首当其冲的就是指针和面向对象思维，emmmm 怎么说呢，这方面蛮薄弱的，于是刚学了一点结构体指针的皮毛，结合之前比赛因为用了许多 I2C</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
+    
+    <category term="传感器" scheme="https://agen233.top/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
+    
+    <category term="I2C" scheme="https://agen233.top/tags/I2C/"/>
+    
+    <category term="开发板" scheme="https://agen233.top/tags/%E5%BC%80%E5%8F%91%E6%9D%BF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>不得原谅、不得解脱、无人生还</title>
+    <link href="https://agen233.top/posts/32331f7/"/>
+    <id>https://agen233.top/posts/32331f7/</id>
+    <published>2024-10-16T13:35:25.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt; 偶然看到哈肯出新歌了，原来是参加了综艺（不追剧人.jpgs&lt;/p&gt;
+&lt;p&gt; 刚开始试听，鸡皮疙瘩就起来了，哈肯果然是哈肯，宝刀未老（火了大半个世纪的男人.jpg&lt;/p&gt;
+&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="https://agen233.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="李克勤" scheme="https://agen233.top/tags/%E6%9D%8E%E5%85%8B%E5%8B%A4/"/>
+    
+    <category term="哈肯" scheme="https://agen233.top/tags/%E5%93%88%E8%82%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>金砖创新 - 云边端应用开发学习记录</title>
+    <link href="https://agen233.top/posts/a7154660/"/>
+    <id>https://agen233.top/posts/a7154660/</id>
+    <published>2024-10-10T13:00:00.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;被拉去参加一个没听过的奇奇怪怪的比赛，学习了一些奇奇怪怪的深度学习的东西，记录一下奇奇怪怪的事情&lt;/p&gt;
+&lt;div class=&quot;note success no-icon&quot;&gt;&lt;p&gt;配合 &lt;a href=&quot;https://weixuna.github.io/&quot;&gt; 为巽</summary>
+        
+      
+    
+    
+    
+    <category term="比赛考证和学习记录" scheme="https://agen233.top/categories/%E6%AF%94%E8%B5%9B%E8%80%83%E8%AF%81%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="持续更新" scheme="https://agen233.top/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    
+    <category term="学习" scheme="https://agen233.top/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="BRICS" scheme="https://agen233.top/tags/BRICS/"/>
+    
+    <category term="AI" scheme="https://agen233.top/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>风、诗歌和远方 | 豪爵 USR125 记</title>
+    <link href="https://agen233.top/posts/670529b6/"/>
+    <id>https://agen233.top/posts/670529b6/</id>
+    <published>2024-09-17T14:49:29.000Z</published>
+    <updated>2024-09-17T14:49:29.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;note warning flat&quot;&gt;&lt;i class=&quot;solitude fas fa-info-circle&quot;&gt;&lt;/i&gt;&lt;p&gt;本文为体验测评纯主观内容, 纯粹个人喜欢喝选择, 无需理由, 亦不是广告。&lt;/p&gt;&lt;/div&gt;
+
+&lt;div</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="https://agen233.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="摩托车" scheme="https://agen233.top/tags/%E6%91%A9%E6%89%98%E8%BD%A6/"/>
+    
+    <category term="豪爵USR125" scheme="https://agen233.top/tags/%E8%B1%AA%E7%88%B5USR125/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>都市天际线政策面板指北</title>
+    <link href="https://agen233.top/posts/1292e32b/"/>
+    <id>https://agen233.top/posts/1292e32b/</id>
+    <published>2024-09-17T01:19:04.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;众嗦粥汁，政策是天际线经营玩法的精髓之所在，他是治理城市的有力工具，决定了你的城市包括但不限于收支、吸引度、幸福度等诸多功能。而各种政策，则是由政策面板提供 (&lt;/p&gt;
+&lt;h2 id=&quot;服务政策&quot;&gt;&lt;a href=&quot;# 服务政策&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="游戏" scheme="https://agen233.top/categories/%E6%B8%B8%E6%88%8F/"/>
+    
+    
+    <category term="都市天际线" scheme="https://agen233.top/tags/%E9%83%BD%E5%B8%82%E5%A4%A9%E9%99%85%E7%BA%BF/"/>
+    
+    <category term="游戏机制" scheme="https://agen233.top/tags/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「幻想乐园」| 陈致逸全新专辑试听体验</title>
+    <link href="https://agen233.top/posts/bd9973bb/"/>
+    <id>https://agen233.top/posts/bd9973bb/</id>
+    <published>2024-07-25T16:40:58.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt; 刷 b 站的时候突然发现陈老师出新专辑了，当场就把数字专辑买了（&lt;/p&gt;
+&lt;p&gt; 一开始还以为是原神出新 OST 了，后来才发现陈老师已经离开米哈游了（&lt;/p&gt;
+&lt;p&gt; 之前听了 MV，很浓的枫丹感涌上来，这是初听。&lt;/p&gt;
+&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="https://agen233.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="陈致逸" scheme="https://agen233.top/tags/%E9%99%88%E8%87%B4%E9%80%B8/"/>
+    
+    <category term="新专辑" scheme="https://agen233.top/tags/%E6%96%B0%E4%B8%93%E8%BE%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件方向软考学习记录（一）</title>
+    <link href="https://agen233.top/posts/b2ce6d03/"/>
+    <id>https://agen233.top/posts/b2ce6d03/</id>
+    <published>2024-07-11T18:18:40.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;note warning flat&quot;&gt;&lt;i class=&quot;solitude fas</summary>
+        
+      
+    
+    
+    
+    <category term="比赛考证和学习记录" scheme="https://agen233.top/categories/%E6%AF%94%E8%B5%9B%E8%80%83%E8%AF%81%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="持续更新" scheme="https://agen233.top/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    
+    <category term="学习" scheme="https://agen233.top/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="软考" scheme="https://agen233.top/tags/%E8%BD%AF%E8%80%83/"/>
+    
+    <category term="计算机系统基础" scheme="https://agen233.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>旗帜鲜明地反对基于运营商 PON 方案的 FTTR</title>
+    <link href="https://agen233.top/posts/8e2d59a8/"/>
+    <id>https://agen233.top/posts/8e2d59a8/</id>
+    <published>2024-07-03T20:59:41.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;现在三大运营商都在不竭余力地在 1000Mbps 以上的宽带中推行自己的基于 PON 的 FTTR 组网方案。FTTR 就是 Fiber to the Room，说白了就是局域网从传统的双绞线电组网到全光组网。但是现在的 FTTR 用的是无源 PON</summary>
+        
+      
+    
+    
+    
+    
+    <category term="网络" scheme="https://agen233.top/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="软路由" scheme="https://agen233.top/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>上手 GY-30(BH1750) 光强度传感器和相关程序代码</title>
+    <link href="https://agen233.top/posts/7f0447f2/"/>
+    <id>https://agen233.top/posts/7f0447f2/</id>
+    <published>2024-06-17T16:17:59.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近在写比赛的文档的时候，写到了 BH1750 的参数之类的，于是想着想都想了，不如写下来玩玩。&lt;br&gt;emmmm，这边用的是 STM32F103C8T6 的芯片的标准库，其他 MCU 也大同小异，如果是用 hal 库就更好了，无需管 GPIO</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
+    
+    <category term="传感器" scheme="https://agen233.top/tags/%E4%BC%A0%E6%84%9F%E5%99%A8/"/>
+    
+    <category term="学习" scheme="https://agen233.top/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="I2C" scheme="https://agen233.top/tags/I2C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>imgtp 图床寄了</title>
+    <link href="https://agen233.top/posts/b8ae5ec7/"/>
+    <id>https://agen233.top/posts/b8ae5ec7/</id>
+    <published>2024-06-11T01:14:26.000Z</published>
+    <updated>2024-12-13T13:47:10.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt; 一直很少量但是很经常的在用这个图床，之前貌似有提过因为资金问题无法维持，但是后面又能用了，想着能用就不动的原则没去管，现在他最终没坚持下去了，所以不得不考虑图床的问题。&lt;/p&gt;
+&lt;p&gt; 但是这几天发现博客的图标没了，找了半天发现是图床挂了，也是人麻。&lt;/p&gt;
+&lt;p&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="博客" scheme="https://agen233.top/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="Hexo" scheme="https://agen233.top/tags/Hexo/"/>
+    
+    <category term="图床" scheme="https://agen233.top/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>揪出 Windows 上阻止你屏幕自动睡眠的程序</title>
+    <link href="https://agen233.top/posts/3087054e/"/>
+    <id>https://agen233.top/posts/3087054e/</id>
+    <published>2024-05-23T00:59:31.000Z</published>
+    <updated>2025-04-01T15:53:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;昨晚开着电脑听歌的时候，突然发现过了两个小时还不会熄屏，这就奇了怪了，因为我的电脑是设置了 3 分钟熄屏的。&lt;/p&gt;
+&lt;p&gt;而 Win32API  Winbase.h 里面的 &lt;strong&gt;SetThreadExecutionState&lt;/strong&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“送去大学的外卖基本没有差评”</title>
+    <link href="https://agen233.top/posts/66b5bdfd/"/>
+    <id>https://agen233.top/posts/66b5bdfd/</id>
+    <published>2024-05-15T00:53:05.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;虽然我平时点外卖并不多（基本不是在校内买就是直接出去吃），但回想一下自己点外卖的时候，似乎一直是对外卖小哥抱着 “理解”“体谅”</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>我们那丢人又幸福的不完美的人生 | 米奇与达利</title>
+    <link href="https://agen233.top/posts/4dc3a1af/"/>
+    <id>https://agen233.top/posts/4dc3a1af/</id>
+    <published>2024-05-07T16:17:59.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt; 一开始是闲的没事干，然后想找点乐子，顺便因为是双男主比较喜欢看小正太才看的。看了之后才发现不是那么一回事，根本不是所谓的乐子片。天知道我最后一集哭了多少次（（（&lt;/p&gt;
+&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="https://agen233.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="追番" scheme="https://agen233.top/tags/%E8%BF%BD%E7%95%AA/"/>
+    
+    <category term="米奇与达利" scheme="https://agen233.top/tags/%E7%B1%B3%E5%A5%87%E4%B8%8E%E8%BE%BE%E5%88%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ESP-01S 基于 AT+MQTT 速通华为云</title>
+    <link href="https://agen233.top/posts/639e78a0/"/>
+    <id>https://agen233.top/posts/639e78a0/</id>
+    <published>2024-05-04T22:21:47.000Z</published>
+    <updated>2024-12-13T13:47:10.000Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于 algolia 自动上传</title>
+    <link href="https://agen233.top/posts/e4d8f98b/"/>
+    <id>https://agen233.top/posts/e4d8f98b/</id>
+    <published>2024-05-03T23:47:29.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;跟着教程把 algolia 搞出来了，但是发现每次修改完三连上传的时候，都不会自动更新 algolia 的 index，必须手动 hexo algolia 一下，虽说问题不大，但是相当不优雅。&lt;/p&gt;
+&lt;p&gt;一开始是想着修改下能不能 hexo deploy</summary>
+        
+      
+    
+    
+    
+    <category term="博客" scheme="https://agen233.top/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="Hexo" scheme="https://agen233.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Keil5 烧录报错 Connection refused due to device mismatch 的玄学问题</title>
+    <link href="https://agen233.top/posts/8884a040/"/>
+    <id>https://agen233.top/posts/8884a040/</id>
+    <published>2024-04-18T20:42:00.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;之前上课的时候，老师要求把指定的固件刷到开发版里面，但奇怪的是，有的板子可以刷入，有的不行，有的电脑可以，有的却不行。按理说工程文件、STLink 驱动、开发版都是一样的，不应该存在这种问题才对。于是 Google 了一轮，记录一下。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
+    
+    <category term="ESP8266/ESP32" scheme="https://agen233.top/tags/ESP8266-ESP32/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 Win10 及 Win11 下开启蓝牙耳机的 LADC 和 aptXHD 高质量音频协议</title>
+    <link href="https://agen233.top/posts/5335a18c/"/>
+    <id>https://agen233.top/posts/5335a18c/</id>
+    <published>2024-04-17T01:05:19.000Z</published>
+    <updated>2025-04-01T15:53:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;之前说到，通过偷渡到国际版的方法，成功开启了 RB4P 的 LDAC 模式。但是 Win10 仍然只支持低质量的 SBC，而 Win11 也只是只支持 48Khz 的 AAC，更不提 LDAC 这些高品质音频协议。但是经过我的一番 Google 和 Gihub</summary>
+        
+      
+    
+    
+    
+    <category term="折腾录" scheme="https://agen233.top/categories/%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+    <category term="耳机" scheme="https://agen233.top/tags/%E8%80%B3%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于 abbrlink 和 asset-image 不兼容问题</title>
+    <link href="https://agen233.top/posts/df9fba50/"/>
+    <id>https://agen233.top/posts/df9fba50/</id>
+    <published>2024-04-13T22:26:59.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;之前在把博客主题从 butterfly</summary>
+        
+      
+    
+    
+    
+    <category term="博客" scheme="https://agen233.top/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+    <category term="Hexo" scheme="https://agen233.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GPIO 和输入输出模式</title>
+    <link href="https://agen233.top/posts/b8441c09/"/>
+    <id>https://agen233.top/posts/b8441c09/</id>
+    <published>2024-03-22T15:12:37.000Z</published>
+    <updated>2024-12-13T13:47:10.000Z</updated>
+    
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="STM32" scheme="https://agen233.top/tags/STM32/"/>
+    
+    <category term="ESP8266/ESP32" scheme="https://agen233.top/tags/ESP8266-ESP32/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于 OSI 七层模型</title>
+    <link href="https://agen233.top/posts/9ee79452/"/>
+    <id>https://agen233.top/posts/9ee79452/</id>
+    <published>2024-03-20T00:43:48.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近学了计网和 OSI 模型，对这个有了点初步的了解，在这里聊聊个人的理解和看法。&lt;/p&gt;
+&lt;p&gt;OSI 为计算机网络通信提供了一个 &lt;strong&gt; 标准的体系结构</summary>
+        
+      
+    
+    
+    
+    
+    <category term="网络" scheme="https://agen233.top/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>非小米电脑安装小米电脑管家</title>
+    <link href="https://agen233.top/posts/6680ffdf/"/>
+    <id>https://agen233.top/posts/6680ffdf/</id>
+    <published>2024-02-27T13:40:37.000Z</published>
+    <updated>2025-04-01T15:53:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;小米电脑管家是一款专为小米笔记本用户设计的电脑管理软件，是小米 HyperConnect 生态的重要一环。它提供了一系列强大的功能，包括驱动管理、硬件信息、设备互联等。其内置了小米的 HyperConnect</summary>
+        
+      
+    
+    
+    
+    <category term="折腾录" scheme="https://agen233.top/categories/%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="澎湃OS|HyperOS" scheme="https://agen233.top/tags/%E6%BE%8E%E6%B9%83OS-HyperOS/"/>
+    
+    <category term="小米" scheme="https://agen233.top/tags/%E5%B0%8F%E7%B1%B3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Win10LTSC 基于 MAS 工具的数字权利激活方案</title>
+    <link href="https://agen233.top/posts/28f20c60/"/>
+    <id>https://agen233.top/posts/28f20c60/</id>
+    <published>2024-02-16T02:13:28.000Z</published>
+    <updated>2025-04-01T15:53:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我个人日常用的操作系统主要是 Win11 和 Linux，但是最近 Win11 出现了各种诸如崩 explorer、崩环境变量等诸多问题，遂尝试返回 Win10。&lt;/p&gt;
+&lt;p&gt;但原生的 Win10 过于臃肿，带有许多诸如”‘Windows</summary>
+        
+      
+    
+    
+    
+    <category term="折腾录" scheme="https://agen233.top/categories/%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ESP-IDF+VSCODE 的若干项踩坑备忘录</title>
+    <link href="https://agen233.top/posts/88fe7ba4/"/>
+    <id>https://agen233.top/posts/88fe7ba4/</id>
+    <published>2024-02-04T17:01:36.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Python 版本问题&quot;&gt;&lt;a href=&quot;#Python 版本问题&quot; class=&quot;headerlink&quot; title=&quot;Python 版本问题&quot;&gt;&lt;/a&gt;Python 版本问题 &lt;/h1&gt;&lt;p&gt; 在&lt;strong&gt;配置 ESP-IDF 插件</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式和单片机" scheme="https://agen233.top/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%92%8C%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+    <category term="ESP32" scheme="https://agen233.top/tags/ESP32/"/>
+    
+    <category term="嵌入式" scheme="https://agen233.top/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 策略组维护</title>
+    <link href="https://agen233.top/posts/8be11e9d/"/>
+    <id>https://agen233.top/posts/8be11e9d/</id>
+    <published>2024-01-06T21:37:40.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Emmm，这篇文章是基于广东省物联网技能大赛的样题，姑且算记录一下比赛的东西。&lt;/p&gt;
+&lt;p&gt;这篇文章主要是工具性的，所以遇到过其他非比赛的策略组的东西，也会记录一下，就当是手册。&lt;/p&gt;
+&lt;h2 id=&quot;administrator 账号改名&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="比赛考证和学习记录" scheme="https://agen233.top/categories/%E6%AF%94%E8%B5%9B%E8%80%83%E8%AF%81%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+    <category term="ChinaSkills" scheme="https://agen233.top/tags/ChinaSkills/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 命令行维护</title>
+    <link href="https://agen233.top/posts/bb683f89/"/>
+    <id>https://agen233.top/posts/bb683f89/</id>
+    <published>2024-01-03T21:37:40.000Z</published>
+    <updated>2025-02-11T15:39:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;通过 -netstat- 查询 - 端口是否被打开。&quot;&gt;&lt;a href=&quot;# 通过 -netstat- 查询 - 端口是否被打开。&quot; class=&quot;headerlink&quot; title=&quot;通过 netstat 查询  端口是否被打开。&quot;&gt;&lt;/a&gt;通过</summary>
+        
+      
+    
+    
+    
+    <category term="比赛考证和学习记录" scheme="https://agen233.top/categories/%E6%AF%94%E8%B5%9B%E8%80%83%E8%AF%81%E5%92%8C%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+    <category term="ChinaSkills" scheme="https://agen233.top/tags/ChinaSkills/"/>
+    
+    <category term="持续更新" scheme="https://agen233.top/tags/%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WindowsME 开启 DOS 实模式</title>
+    <link href="https://agen233.top/posts/de4a5a44/"/>
+    <id>https://agen233.top/posts/de4a5a44/</id>
+    <published>2018-05-06T23:29:00.000Z</published>
+    <updated>2025-04-01T15:53:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;总所周知，尽管 MS 十分自信地把实 DOS 模式去掉了，但就系统底层而言，WindowsME 仍然是一个基于 DOS 的、16 混 32 位架构的系统，既然基于 DOS，那么必然有 DOS 实模式，因而通过奇淫怪巧，可以找回实模式（&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="折腾录" scheme="https://agen233.top/categories/%E6%8A%98%E8%85%BE%E5%BD%95/"/>
+    
+    
+    <category term="Windows" scheme="https://agen233.top/tags/Windows/"/>
+    
+  </entry>
+  
+</feed>
