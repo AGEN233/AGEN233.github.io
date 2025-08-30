@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="zh_CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试 | 御枫林下的小窝~</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=3.0.19"><!-- inject head--><link rel="canonical" href="https://agen233.top/posts/65212637/index.html"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><!-- aplayer--><!-- swiper--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css"><!-- fancybox ui--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="最近也是秋招收到offer了，嵌软方向，本地企业，于是闲的没事干在学校开摆，顺便提升下代码水平。 于是首当其冲的就是指针和面向对象思维，emmmm怎么说呢，这方面蛮薄弱的，于是刚学了一点结构体指针的皮毛，结合之前比赛因为用了许多I2C设备而多次反复的初始化GPIO口的麻烦，尝试了下把I2C面向对象化，顺便复习下I2C。 面向对象核心思想和C语言的实现众所周知，向对象编程（Object-Orient">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试">
+<meta property="og:url" content="https://agen233.top/posts/65212637/index.html">
+<meta property="og:site_name" content="御枫林下的小窝~">
+<meta property="og:description" content="最近也是秋招收到offer了，嵌软方向，本地企业，于是闲的没事干在学校开摆，顺便提升下代码水平。 于是首当其冲的就是指针和面向对象思维，emmmm怎么说呢，这方面蛮薄弱的，于是刚学了一点结构体指针的皮毛，结合之前比赛因为用了许多I2C设备而多次反复的初始化GPIO口的麻烦，尝试了下把I2C面向对象化，顺便复习下I2C。 面向对象核心思想和C语言的实现众所周知，向对象编程（Object-Orient">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2024/11/26/6745530409dbd.webp">
+<meta property="article:published_time" content="2024-11-25T22:13:51.000Z">
+<meta property="article:modified_time" content="2025-05-18T15:44:31.000Z">
+<meta property="article:author" content="御枫林下">
+<meta property="article:tag" content="I2C">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2024/11/26/6745530409dbd.webp"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="御枫林下的小窝~"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><link rel="apple-touch-icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp" sizes="180x180"><script>console.log(' %c Solitude %c ' + '3.0.19' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><link rel="canonical" href="https://agen233.top/" /><link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-SemiLightItalic/result.css' /><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+            },
+            diffDateFormat: (selector) => {
+                selector.forEach(item => {
+                    const date = new Date(item.getAttribute('datetime') || item.textContent);
+                    item.textContent = (date.getMonth() + 1).toString()+'/'+date.getDate().toString();
+                });
+            },
+        }
+    })()</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: {"appId":"NTABD03MUI","apiKey":"b9edcdc52526245cf090759020f838cd","indexName":"HEXO","hits":{"per_page":6}},
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: true,
+        error: '/img/error_load.avif'
+    },
+    copyright: {"limit":50,"author":"作者: 御枫林下","link":"链接: ","source":"来源: 御枫林下的小窝~","info":"著作权归作者所有。 商业转载请联系作者获得授权，非商业转载请注明出处。"},
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。","loading":"搜索中..."},"barrage":{"title":"热评"}},
+    aside: {
+        state: {
+            morning: "Good Lucky!",
+            noon: "Good Lucky!",
+            afternoon: "Good Lucky!",
+            night: "Good Lucky!",
+            goodnight: "Good Lucky!",
+        },
+        witty_words: ["别看了，又出BUG了","优优优优优优雅，极度优雅！"],
+        witty_comment: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {"avatar":"https://gravatar.com/avatar","commentBarrage":true},
+    lightbox: 'fancybox',
+    right_menu: {"mode":{"dark":"深色模式","light":"浅色模式"},"img_error":"此图片无法复制与下载","barrage":{"open":"显示热评","close":"关闭热评"},"translate":true,"ctrlOriginalMenu":"按住Ctrl+右键可打开浏览器右键菜单"},
+    translate: {"translateDelay":0,"defaultEncoding":2},
+    lure: {"jump":"404 Not Found","back":"malloc fail!!!"},
+    expire: {"time":30,"position":"top","text_prev":"This article expired ","text_next":" day ago, if the content does not match, please contact the webmaster to update it."},
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false,
+    color: false,
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="御枫林下的小窝~" type="application/atom+xml">
+</head><body id="body"><!-- universe--><!-- background img--><div id="global_bg"></div><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/recentcomments/"><div class="headline">评论</div><div class="length-num" id="twikoo_allcount"><i class="solitude fas fa-spinner fa-spin"></i></div><script pjax="pjax">(async () => {
+  await fetch('https://blogverceltwkioo.agen233.top/', {
+    method: "POST",
+    body: JSON.stringify({
+      "event": "GET_RECENT_COMMENTS",
+      "includeReply": true,
+      "pageSize": 999
+    }),
+    headers: {'Content-Type': 'application/json'}
+  }).then(res => res.json()).then(async ({data}) => {
+    document.querySelector('#twikoo_allcount').innerHTML = data.length
+  })
+})()</script></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>书斋阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>友人帐</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人录</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-envelope"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>藏宝阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位A</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位B</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位C</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>关于我</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>关于</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-lightbulb"></i><span>说说</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="card-tag-cloud"><a href="/tags/ESP32/">ESP32<sup>1</sup></a><a href="/tags/STM32/">STM32<sup>1</sup></a><a href="/tags/PHY6252/">PHY6252<sup>1</sup></a><a href="/tags/Windows/">Windows<sup>6</sup></a><a href="/tags/ChinaSkills/">ChinaSkills<sup>2</sup></a><a href="/tags/%E9%9F%B3%E4%B9%90/">音乐<sup>2</sup></a><a href="/tags/I2C/">I2C<sup>2</sup></a><a href="/tags/%E4%B8%AD%E7%A7%91%E8%93%9D%E8%AE%AFAB202X/">中科蓝讯AB202X<sup>1</sup></a><a href="/tags/SPI/">SPI<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/">博客<sup>2</sup></a><a href="/tags/BL602/">BL602<sup>1</sup></a><a href="/tags/%E8%80%B3%E6%9C%BA/">耳机<sup>1</sup></a><a href="/tags/%E7%B1%B3%E5%A5%87%E4%B8%8E%E8%BE%BE%E5%88%A9/">米奇与达利<sup>1</sup></a><a href="/tags/NAS/">NAS<sup>1</sup></a><a href="/tags/Jellyfin/">Jellyfin<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/">软考<sup>1</sup></a><a href="/tags/Cites-Skylines/">Cites:Skylines<sup>1</sup></a><a href="/tags/HyperOS/">HyperOS<sup>1</sup></a><a href="/tags/%E5%B0%8F%E7%B1%B3/">小米<sup>1</sup></a><a href="/tags/%E8%B1%AA%E7%88%B5USR125/">豪爵USR125<sup>1</sup></a></div></div><span class="sidebar-menu-item-title">网站信息</span><div class="webinfo"><div class="webinfo-item"><div class="item-name">全站字数 :</div><div class="item-count">20.5k</div></div></div></div></div><!-- keyboard--><!-- righhtside--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">御枫林下的小窝~</span><i class="solitude fas fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>书斋阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>友人帐</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人录</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-envelope"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>藏宝阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位A</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位B</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位C</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>关于我</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>关于</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-lightbulb"></i><span>说说</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button"><a class="site-page" target="_blank" rel="noopener" href="https://storeweb.cn/s/2125" title=""><i class="solitude fas fa-store"></i></a></div><div class="nav-button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="solitude fas fa-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="solitude fas fa-dice-d6"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude fas fa-magnifying-glass"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fas fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fas fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://bu.dusays.com/2024/11/26/6745530409dbd.webp" alt="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/%E8%8A%AF%E9%80%94%E6%BC%AB%E8%AE%B0/">芯途漫记</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/I2C/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>I2C</span></a></div></div></div></div><h1 class="post-title">基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2024-11-25 22:13:51"><i class="post-meta-icon solitude fas fa-calendar-days"></i><time datetime="2024-11-25T22:13:51.000Z">2024-11-25T22:13:51.000Z</time></span><span class="post-meta-date" title="最后更新于 2025-05-18 15:44:31"><i class="post-meta-icon solitude fas fa-arrows-rotate"></i><time datetime="2025-05-18T15:44:31.000Z">2025-05-18T15:44:31.000Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fas fa-file-word" title="文章字数"></i><span class="word-count">1.4k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fas fa-clock" title="阅读耗时"></i><span>5 分钟</span></span><span class="post-meta-position" title="作者IP归属地为Sunwui(Conton)"><i class="post-meta-icon solitude fas fa-location-dot"></i><span>Sunwui(Conton)</span></span><a class="post-meta-pv" href="/posts/65212637/" title="文章热度"><i class="post-meta-icon solitude fas fa-fire-flame-curved"></i><span id="twikoo_visitors"><i class="solitude fas fa-spinner fa-spin"></i></span></a><span class="post-meta-commentcount" title="评论数" onclick="sco.scrollTo('post-comment')"><i class="solitude fas fa-comment"></i><a href="/posts/65212637/#post-comment"><span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content article-container"><p>最近也是秋招收到offer了，嵌软方向，本地企业，于是闲的没事干在学校开摆，顺便提升下代码水平。</p>
+<p>于是首当其冲的就是指针和面向对象思维，emmmm怎么说呢，这方面蛮薄弱的，于是刚学了一点结构体指针的皮毛，结合之前比赛因为用了许多I2C设备而多次反复的初始化GPIO口的麻烦，尝试了下把I2C面向对象化，顺便复习下I2C。</p>
+<h1 id="面向对象核心思想和C语言的实现"><a href="#面向对象核心思想和C语言的实现" class="headerlink" title="面向对象核心思想和C语言的实现"></a>面向对象核心思想和C语言的实现</h1><p>众所周知，向对象编程（Object-Oriented Programming，OOP）是一种通过抽象和封装来提高代码复用性和可维护性的编程范式，但是C语言他原生是面向过程语言，并未向Python和Java那样原生支持面向对象的特性。</p>
+<p>C语言的精髓和核心是指针，通过指针直接操作内存，可以实现很多骚操作；加上C语言的struct结构体，以及typedef自定义类型，从而实现模拟类和对象；又因结构体支持结构体的嵌套，因此可以实现基于嵌套意义的类和方法继承；进而实现面向对象的思想和全部功能。</p>
+<h2 id="面向对象的核心思想"><a href="#面向对象的核心思想" class="headerlink" title="面向对象的核心思想"></a>面向对象的核心思想</h2><p>面向对象编程的核心包括以下几方面：</p>
+<ul>
+<li><p><strong>封装</strong>：将数据和操作封装到单一的模块中，对外仅暴露接口，隐藏实现细节。</p>
+</li>
+<li><p><strong>继承</strong>：通过复用已有模块的属性和方法来实现扩展，避免重复代码。</p>
+</li>
+<li><p><strong>多态</strong>：基于对象类型的不同，动态调用合适的方法。</p>
+</li>
+</ul>
+<h2 id="在C语言中模拟面向对象的方法"><a href="#在C语言中模拟面向对象的方法" class="headerlink" title="在C语言中模拟面向对象的方法"></a>在C语言中模拟面向对象的方法</h2><p>虽然 C 语言本身不支持类和对象，但可以通过结构体和函数指针模拟这些特性：</p>
+<p>但由于C是为面向过程设计的，本质上仍然是面向过程的语言，因此类方法必须严格按照面向过程的顺序。</p>
+<ul>
+<li><p><strong>结构体实现封装</strong><br>结构体（<code>struct</code>）是 C 语言中组织数据的核心工具。可以在结构体中包含数据和函数指针，从而将操作封装为模块化的对象。</p>
+</li>
+<li><p><strong>函数指针实现多态</strong><br>通过在结构体中嵌入函数指针，可以动态绑定不同对象的行为。例如，不同设备可以通过函数指针调用各自的初始化和操作方法。</p>
+</li>
+<li><p><strong>嵌套结构体模拟继承</strong><br>使用嵌套的方式，使一个结构体拥有另一个结构体的成员，达到继承属性和方法的效果。</p>
+</li>
+</ul>
+<h1 id="I2C——Inter-Integrated-Circuit集成电路总线"><a href="#I2C——Inter-Integrated-Circuit集成电路总线" class="headerlink" title="I2C——Inter-Integrated Circuit集成电路总线"></a>I2C——Inter-Integrated Circuit集成电路总线</h1><h2 id="I2C总线特性"><a href="#I2C总线特性" class="headerlink" title="I2C总线特性"></a>I2C总线特性</h2><p>I2C是一种广泛应用于嵌入式系统的串行通信协议，采用主从结构，通过两线完成数据传输。</p>
+<ul>
+<li><p>**两线结构：**SCL时钟、SDA数据。</p>
+</li>
+<li><p>**通讯可靠：**通过应答信号（ACK&#x2F;NACK）确认每次数据传输的成功</p>
+</li>
+<li><p>**开漏模式：**需要手动 &#x2F; 外部上拉，实现多设备同步半双攻。</p>
+</li>
+</ul>
+<h2 id="I2C通讯基本过程"><a href="#I2C通讯基本过程" class="headerlink" title="I2C通讯基本过程"></a>I2C通讯基本过程</h2><ol>
+<li><strong>启动条件（Start）</strong>：主机拉低 SDA 并拉高 SCL。</li>
+<li><strong>地址传输</strong>：主机发送从设备地址，等待应答。</li>
+<li><strong>数据读写</strong>：按字节传输数据，每字节后需要应答信号。</li>
+<li><strong>停止条件（Stop）</strong>：主机拉低 SCL 后拉高 SDA。</li>
+</ol>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __I2C_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __I2C_H__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;stm32f10x.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">SoftI2C_t</span>&#123;</span></span><br><span class="line">    GPIO_TypeDef *SCL_Port;     <span class="comment">/* SCL引脚的GPIO端口 */</span></span><br><span class="line">    <span class="type">uint16_t</span>     SCL_Pin;       <span class="comment">/* SCL引脚的GPIO引脚编号 */</span></span><br><span class="line">    GPIO_TypeDef *SDA_Port;     <span class="comment">/* SDA引脚的GPIO端口 */</span></span><br><span class="line">    <span class="type">uint16_t</span>     SDA_Pin;       <span class="comment">/* SDA引脚的GPIO引脚编号 */</span></span><br><span class="line">    <span class="type">uint32_t</span>     Delay;         <span class="comment">/* 延时参数，用于控制时序 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 各种I2C操作函数的指针 */</span></span><br><span class="line">    <span class="type">void</span>(*Start)(<span class="keyword">struct</span> SoftI2C_t *self);</span><br><span class="line">    <span class="type">void</span>(*Stop)(<span class="keyword">struct</span> SoftI2C_t *self);</span><br><span class="line">    <span class="type">uint8_t</span>(*WriteByte)(<span class="keyword">struct</span> SoftI2C_t *self, <span class="type">uint8_t</span> byte);</span><br><span class="line">    <span class="type">uint8_t</span>(*ReadByte)(<span class="keyword">struct</span> SoftI2C_t *self, <span class="type">uint8_t</span> ack);</span><br><span class="line"></span><br><span class="line">&#125; SoftI2C_t;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">SoftI2C_Init</span><span class="params">(SoftI2C_t *self)</span>;  <span class="comment">/* 初始化I2C */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;I2C.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 定义GPIO引脚操作 */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SCL_HIGH(self) GPIO_SetBits((self)-&gt;SCL_Port, (self)-&gt;SCL_Pin)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SCL_LOW(self)  GPIO_ResetBits((self)-&gt;SCL_Port, (self)-&gt;SCL_Pin)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SDA_HIGH(self) GPIO_SetBits((self)-&gt;SDA_Port, (self)-&gt;SDA_Pin)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SDA_LOW(self)  GPIO_ResetBits((self)-&gt;SDA_Port, (self)-&gt;SDA_Pin)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> SDA_READ(self) GPIO_ReadInputDataBit((self)-&gt;SDA_Port, (self)-&gt;SDA_Pin)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* SysTick内核延迟 */</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> _SoftI2C_Delay(SoftI2C_t *self)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!self-&gt;Delay)&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    SysTick-&gt;LOAD = <span class="number">72</span> * (self-&gt;Delay);		<span class="comment">/* 设置定时器重装值 */</span></span><br><span class="line">	SysTick-&gt;VAL = <span class="number">0x00</span>;					<span class="comment">/* 清空当前计数值 */</span></span><br><span class="line">	SysTick-&gt;CTRL = <span class="number">0x00000005</span>;				<span class="comment">/* 设置时钟源为HCLK，启动定时器 */</span></span><br><span class="line">	<span class="keyword">while</span>(!(SysTick-&gt;CTRL &amp; <span class="number">0x00010000</span>));	<span class="comment">/* 等待计数到0 */</span></span><br><span class="line">	SysTick-&gt;CTRL = <span class="number">0x00000004</span>;				<span class="comment">/* 关闭定时器 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> _SoftI2C_GPIO_Init(SoftI2C_t *self)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (self-&gt;SCL_Port == GPIOB || self-&gt;SDA_Port == GPIOB) &#123;</span><br><span class="line">        </span><br><span class="line">        RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (self-&gt;SCL_Port == GPIOA || self-&gt;SDA_Port == GPIOA) &#123;</span><br><span class="line">        </span><br><span class="line">        RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_OD;</span><br><span class="line">    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; </span><br><span class="line">    GPIO_InitStructure.GPIO_Pin   = self-&gt;SCL_Pin;</span><br><span class="line">    GPIO_Init(self-&gt;SCL_Port, &amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line">    GPIO_InitStructure.GPIO_Pin = self-&gt;SDA_Pin;</span><br><span class="line">    GPIO_Init(self-&gt;SDA_Port, &amp;GPIO_InitStructure);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    SDA_HIGH(self);</span><br><span class="line">    SCL_HIGH(self);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">SoftI2C_Start</span><span class="params">(SoftI2C_t *self)</span></span><br><span class="line">&#123;</span><br><span class="line">    SDA_HIGH(self);</span><br><span class="line">    SCL_HIGH(self);</span><br><span class="line">    _SoftI2C_Delay(self);</span><br><span class="line">    SDA_LOW(self);</span><br><span class="line">    _SoftI2C_Delay(self); </span><br><span class="line">    SCL_LOW(self);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">SoftI2C_Stop</span><span class="params">(SoftI2C_t *self)</span></span><br><span class="line">&#123;</span><br><span class="line">    SCL_LOW(self);</span><br><span class="line">    SDA_LOW(self);</span><br><span class="line">    _SoftI2C_Delay(self);</span><br><span class="line">    SCL_HIGH(self);</span><br><span class="line">    SDA_HIGH(self);</span><br><span class="line">    _SoftI2C_Delay(self);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">uint8_t</span> <span class="title function_">SoftI2C_WriteByte</span><span class="params">(SoftI2C_t *self, <span class="type">uint8_t</span> byte)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> ack = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint8_t</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (byte &amp; <span class="number">0x80</span>) &#123;</span><br><span class="line">            </span><br><span class="line">            SDA_HIGH(self);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            SDA_LOW(self);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        byte &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        SCL_HIGH(self);</span><br><span class="line">        _SoftI2C_Delay(self);</span><br><span class="line">        SCL_LOW(self);</span><br><span class="line">        _SoftI2C_Delay(self);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 等待ACK响应</span></span><br><span class="line">    SDA_HIGH(self);</span><br><span class="line">    SCL_HIGH(self);</span><br><span class="line">    _SoftI2C_Delay(self);</span><br><span class="line">    ack = !SDA_READ(self);</span><br><span class="line">    _SoftI2C_Delay(self);</span><br><span class="line">    SCL_LOW(self);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ack;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">uint8_t</span> <span class="title function_">SoftI2C_ReadByte</span><span class="params">(SoftI2C_t *self, <span class="type">uint8_t</span> ack)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> byte = <span class="number">0</span>;</span><br><span class="line">    SDA_HIGH(self);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">uint8_t</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)&#123;</span><br><span class="line">        byte &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        SCL_HIGH(self);</span><br><span class="line">        _SoftI2C_Delay(self);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (SDA_READ(self))&#123;</span><br><span class="line">            </span><br><span class="line">            byte |= <span class="number">0x01</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        SCL_LOW(self);</span><br><span class="line">        _SoftI2C_Delay(self);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (ack)&#123;</span><br><span class="line">        </span><br><span class="line">        SDA_LOW(self);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        SDA_HIGH(self);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    SCL_HIGH(self);</span><br><span class="line">    _SoftI2C_Delay(self);</span><br><span class="line">    SCL_LOW(self);</span><br><span class="line">    SDA_HIGH(self);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> byte;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 定义构造函数 */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">SoftI2C_Init</span><span class="params">(SoftI2C_t *self)</span></span><br><span class="line">&#123;</span><br><span class="line">    _SoftI2C_GPIO_Init(self); </span><br><span class="line"></span><br><span class="line">    self-&gt;Start     = SoftI2C_Start;</span><br><span class="line">    self-&gt;Stop      = SoftI2C_Stop;</span><br><span class="line">    self-&gt;WriteByte = SoftI2C_WriteByte;</span><br><span class="line">    self-&gt;ReadByte  = SoftI2C_ReadByte;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author_group"><div class="post-copyright__author_img"><img class="post-copyright__author_img_front" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="post-copyright__author_name">御枫林下</div><div class="post-copyright__author_desc">杂七杂八奇奇怪怪qwq</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">御枫林下的小窝~</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/I2C/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>I2C<span class="tagsPageCount">2</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/15d61602/"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">博通编译脚本和编译器找不到相关文件</div></div></a></div><div class="next-post pull-right"><a href="/posts/32331f7/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">不得原谅、不得解脱、无人生还</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude fas fa-comment"></i><span> 评论</span><span class="count"> (<span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span>)</span></div></div><div class="comment-wrap"><div id="twikoo-wrap"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="top-group"><div class="sayhi" id="sayhi" onclick="sco.changeWittyWord()"></div></div></div><div class="avatar"><img alt="头像" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="description"></div><div class="bottom-group"><span class="left"><div class="name">御枫林下</div><div class="desc">没必要的事不做，必要的事尽快解决</div></span><div class="social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fas fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E5%92%8CC%E8%AF%AD%E8%A8%80%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">面向对象核心思想和C语言的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-text">面向对象的核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8C%E8%AF%AD%E8%A8%80%E4%B8%AD%E6%A8%A1%E6%8B%9F%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">在C语言中模拟面向对象的方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#I2C%E2%80%94%E2%80%94Inter-Integrated-Circuit%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E6%80%BB%E7%BA%BF"><span class="toc-text">I2C——Inter-Integrated Circuit集成电路总线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#I2C%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7"><span class="toc-text">I2C总线特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#I2C%E9%80%9A%E8%AE%AF%E5%9F%BA%E6%9C%AC%E8%BF%87%E7%A8%8B"><span class="toc-text">I2C通讯基本过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-text">代码实现</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fas fa-map"></i><span>最近发布</span></div><div class="aside-list"><a class="aside-list-item" href="/posts/8e2890be/" title="更先进的终极看番解决方案"><div class="thumbnail"><img alt="更先进的终极看番解决方案" src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160eff184cf.webp"></div><div class="content"><span class="title" href="/posts/8e2890be/" title="更先进的终极看番解决方案">更先进的终极看番解决方案</span><span class="categories" href="/posts/8e2890be/">技研笔记</span></div></a><a class="aside-list-item" href="/posts/617a7db7/" title="中科蓝讯AB2027开发兼踩坑备忘录"><div class="thumbnail"><img alt="中科蓝讯AB2027开发兼踩坑备忘录" src= "" data-lazy-src="https://bu.dusays.com/2025/02/16/67b1aeb0456bd.webp"></div><div class="content"><span class="title" href="/posts/617a7db7/" title="中科蓝讯AB2027开发兼踩坑备忘录">中科蓝讯AB2027开发兼踩坑备忘录</span><span class="categories" href="/posts/617a7db7/">芯途漫记</span></div></a><a class="aside-list-item" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件"><div class="thumbnail"><img alt="博通编译脚本和编译器找不到相关文件" src= "" data-lazy-src="https://bu.dusays.com/2025/02/11/67ab67d5b301b.webp"></div><div class="content"><span class="title" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件">博通编译脚本和编译器找不到相关文件</span><span class="categories" href="/posts/15d61602/">芯途漫记</span></div></a><a class="aside-list-item" href="/posts/65212637/" title="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试"><div class="thumbnail"><img alt="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试" src= "" data-lazy-src="https://bu.dusays.com/2024/11/26/6745530409dbd.webp"></div><div class="content"><span class="title" href="/posts/65212637/" title="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试">基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试</span><span class="categories" href="/posts/65212637/">芯途漫记</span></div></a><a class="aside-list-item" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还"><div class="thumbnail"><img alt="不得原谅、不得解脱、无人生还" src= "" data-lazy-src="https://bu.dusays.com/2024/10/16/670f520882631.jpg"></div><div class="content"><span class="title" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还">不得原谅、不得解脱、无人生还</span><span class="categories" href="/posts/32331f7/">拾光笔记</span></div></a></div></div></div></div></main><footer id="footer"><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2025 By&nbsp;<a class="footer-bar-link" href="/"><img class="author-avatar" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp">御枫林下</a></div><div class="beian-group"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://hexo.io/">框架：Hexo</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude">主题：Solitude</a></div></div></div></div><div class="comment-barrage needEndHide"></div></footer></div><!-- right_menu--><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude fas fa-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude fas fa-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude fas fa-arrows-rotate"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude fas fa-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude fas fa-clone"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude fas fa-clipboard"></i><span>粘贴文本</span></div><div class="rightMenu-item" id="menu-commenttext"><i class="solitude fas fa-comment-medical"></i><span>引用到评论</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude far fa-window-maximize"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude fas fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude fas fa-clone"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude fas fa-cloud-arrow-down"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-search"><i class="solitude fas fa-magnifying-glass"></i><span>站内搜索</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-randomPost" onclick="toRandomPost()||rm.hideRightMenu()"><i class="solitude fas fa-cube"></i><span>随机文章</span></div><div class="rightMenu-item" onclick="pjax.loadUrl('/categories/')||rm.hideRightMenu()"><i class="solitude fas fa-layer-group"></i><span>全部分类</span></div><div class="rightMenu-item" onclick="pjax.loadUrl('https://www.travellings.cn/go.html')||rm.hideRightMenu()"><i class="solitude fas fa-train"></i><span>开往星球</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></div><div class="rightMenu-item" id="menu-translate"><i class="solitude fas fa-language"></i><span>轉為繁體</span></div></div></div><div id="rightmenu-mask"></div><!-- inject body--><div><script src="/js/utils.js?v=3.0.19"></script><script src="/js/main.js?v=3.0.19"></script><script src="/js/third_party/waterfall.min.js?v=3.0.19"></script><script src="https://fastly.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="https://fastly.jsdelivr.net/npm/typeit@8.8.7/dist/index.umd.min.js"></script><script src="/js/tw_cn.js?v=3.0.19"></script><script src="https://fastly.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://fastly.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+utils.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+</script><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script src="https://fastly.jsdelivr.net/npm/instantsearch.js@4.75.7/dist/instantsearch.production.min.js"></script><script src="https://fastly.jsdelivr.net/npm/algoliasearch@5.19.0/dist/algoliasearch.umd.min.js"></script><script src="/js/right_menu.js?v=3.0.19"></script><div class="js-pjax"><script>(() => {
+    const getCount = () => {
+        const ele = document.querySelectorAll('.twikoo-count')
+        if (!ele) return
+        twikoo.getCommentsCount({
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            urls: [window.location.pathname],
+            includeReply: false
+        }).then(res => {
+            ele.forEach(item => item.textContent = res[0].count)
+        }).catch(err => {
+            console.error(err)
+        })
+    }
+    const init = () => {
+        twikoo.init(Object.assign({
+            el: '#twikoo-wrap',
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            path: window.location.pathname,
+            onCommentLoaded: () => {
+                GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+            }
+        }, null))
+
+         && getCount()
+        sco.owoBig({
+            body: '.OwO-body',
+            item: '.OwO-items li'
+        })
+
+        true && barrageTwikoo()
+    }
+
+    const loadTwikoo = () => {
+        if (typeof twikoo === 'object') setTimeout(init,0)
+        else utils.getScript('https://fastly.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js').then(init)
+    }
+
+    if ('Twikoo' === 'Twikoo' || true) {
+        if (true) utils.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+        else loadTwikoo()
+    } else {
+        window.loadTwoComment = loadTwikoo
+    }
+})()
+</script><script>async function barrageTwikoo() {
+    await fetch("https://blogverceltwkioo.agen233.top/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            event: "COMMENT_GET",
+            accessToken: "",
+            url: window.location.pathname
+        })
+    }).then(async res => {
+        if (!res.ok) throw new Error("HTTP error! status: " + res.status)
+        const data = await res.json();
+        const init = () => {
+            initializeCommentBarrage((data.data).map(item => Object.assign({
+                content: item.comment,
+                nick: item.nick,
+                mailMd5: item.mailMd5,
+                id: item.id
+            })))
+        }
+        if (typeof initializeCommentBarrage === "undefined") await utils.getScript('/js/third_party/barrage.min.js?v=3.0.19').then(init)
+        else init()
+    }).catch(error => console.error("An error occurred while fetching comments: ", error))
+}</script><script defer pjax src="https://fastly.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ["title","#body-wrap","#site-config","meta[name=\"description\"]",".js-pjax","meta[property^=\"og:\"]","#config-diff",".rs_show",".rs_hide"],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- google adsense--><!-- search--><div id="algolia-search"><div class="search-dialog"><div class="algolia-navbar"><div class="search-dialog__title" id="algolia-search-title">搜索</div><div class="algolia-tips"><i class="solitude fab fa-algolia"></i><span class="algolia-tips-text">Algolia</span></div><span class="search-close-button"><i class="solitude fas fa-xmark"></i></span></div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><div id="search-results"><div id="algolia-hits"></div></div><div id="algolia-tips"><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div><div id="search-mask"></div></div><script src="/js/search/algolia.js?v=3.0.19"></script><!-- music--><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/barry-flynn/hexo-github-calendar/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://github-calendar-api.meta-code.top/api?user=AGEN233";
+            var git_color =['#ebedf0', '#a2f7af', '#6ce480', '#54ad63', '#469252', '#31753c', '#1f5f2a', '#13531f', '#084111', '#032b09', '#000000'];
+            var git_user ="AGEN233";
+            var parent_div_git = document.getElementById('todayCard');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('todayCard')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
+        <script>
+            const posts = ["posts/8e2890be/","posts/617a7db7/","posts/15d61602/","posts/65212637/","posts/32331f7/","posts/670529b6/","posts/1292e32b/","posts/bd9973bb/","posts/b2ce6d03/","posts/7f0447f2/","posts/3087054e/","posts/66b5bdfd/","posts/4dc3a1af/","posts/e4d8f98b/","posts/8884a040/","posts/5335a18c/","posts/df9fba50/","posts/6680ffdf/","posts/28f20c60/","posts/88fe7ba4/","posts/8be11e9d/","posts/bb683f89/","posts/de4a5a44/"];
+            function toRandomPost() {
+                const randomPost = posts[Math.floor(Math.random() * posts.length)];
+                pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
+            }
+        </script>

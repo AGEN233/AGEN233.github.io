@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="zh_CN" data-theme="light"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>更先进的终极看番解决方案 | 御枫林下的小窝~</title><noscript>开启JavaScript才能访问本站哦~</noscript><link rel="icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><!-- index.css--><link rel="stylesheet" href="/css/index.css?v=3.0.19"><!-- inject head--><link rel="canonical" href="https://agen233.top/posts/8e2890be/index.html"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"><!-- aplayer--><!-- swiper--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.css"><!-- fancybox ui--><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css"><!-- katex--><!-- Open Graph--><meta name="description" content="前言前阵子趁着国补买了台电视，一直苦于没有相当优雅的全自动本地追番追剧方案，一直看码率高达1Mbps的”超清”流媒体，原本想着既然电视本身自带USB3.0，那么用机械硬盘+KODI的方案也能勉强用一下。 实际强行用下来也是发现了诸如，机械硬盘移动容易坏、没有背景墙、字幕难找、不能全自动等相当不优雅的痛点，而后看到了CN大佬的比之前更进一步的终极看番工具栈 - ControlNet Blog于是萌生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="更先进的终极看番解决方案">
+<meta property="og:url" content="https://agen233.top/posts/8e2890be/index.html">
+<meta property="og:site_name" content="御枫林下的小窝~">
+<meta property="og:description" content="前言前阵子趁着国补买了台电视，一直苦于没有相当优雅的全自动本地追番追剧方案，一直看码率高达1Mbps的”超清”流媒体，原本想着既然电视本身自带USB3.0，那么用机械硬盘+KODI的方案也能勉强用一下。 实际强行用下来也是发现了诸如，机械硬盘移动容易坏、没有背景墙、字幕难找、不能全自动等相当不优雅的痛点，而后看到了CN大佬的比之前更进一步的终极看番工具栈 - ControlNet Blog于是萌生">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bu.dusays.com/2025/05/03/68160eff184cf.webp">
+<meta property="article:published_time" content="2025-04-01T21:04:11.000Z">
+<meta property="article:modified_time" content="2025-05-18T15:44:31.000Z">
+<meta property="article:author" content="御枫林下">
+<meta property="article:tag" content="NAS">
+<meta property="article:tag" content="Jellyfin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bu.dusays.com/2025/05/03/68160eff184cf.webp"><!-- pwa--><meta name="apple-mobile-web-app-capable" content="御枫林下的小窝~"><meta name="theme-color" content="var(--efu-main)"><meta name="apple-mobile-web-app-status-bar-style" content="var(--efu-main)"><link rel="bookmark" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"><link rel="apple-touch-icon" href="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp" sizes="180x180"><script>console.log(' %c Solitude %c ' + '3.0.19' + ' %c https://github.com/everfu/hexo-theme-solitude',
+    'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+    'background:#ff9a9a ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+    'background:unset ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff')
+</script><link rel="canonical" href="https://agen233.top/" /><link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkaibright/dist/LXGWBright-SemiLightItalic/result.css' /><script>(()=>{
+        const saveToLocal = {
+            set: function setWithExpiry(key, value, ttl) {
+                if (ttl === 0)
+                    return
+                const now = new Date()
+                const expiryDay = ttl * 86400000
+                const item = {
+                    value: value,
+                    expiry: now.getTime() + expiryDay
+                }
+                localStorage.setItem(key, JSON.stringify(item))
+            },
+            get: function getWithExpiry(key) {
+                const itemStr = localStorage.getItem(key)
+
+                if (!itemStr) {
+                    return undefined
+                }
+                const item = JSON.parse(itemStr)
+                const now = new Date()
+
+                if (now.getTime() > item.expiry) {
+                    localStorage.removeItem(key)
+                    return undefined
+                }
+                return item.value
+            }
+        };
+        window.utils = {
+            saveToLocal: saveToLocal,
+            getCSS: (url, id = false) => new Promise((resolve, reject) => {
+              const link = document.createElement('link')
+              link.rel = 'stylesheet'
+              link.href = url
+              if (id) link.id = id
+              link.onerror = reject
+              link.onload = link.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                link.onload = link.onreadystatechange = null
+                resolve()
+              }
+              document.head.appendChild(link)
+            }),
+            getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+              const script = document.createElement('script')
+              script.src = url
+              script.async = true
+              script.onerror = reject
+              script.onload = script.onreadystatechange = function() {
+                const loadState = this.readyState
+                if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+                script.onload = script.onreadystatechange = null
+                resolve()
+              }
+
+              Object.keys(attr).forEach(key => {
+                script.setAttribute(key, attr[key])
+              })
+
+              document.head.appendChild(script)
+            }),
+            addGlobalFn: (key, fn, name = false, parent = window) => {
+                const globalFn = parent.globalFn || {}
+                const keyObj = globalFn[key] || {}
+
+                if (name && keyObj[name]) return
+
+                name = name || Object.keys(keyObj).length
+                keyObj[name] = fn
+                globalFn[key] = keyObj
+                parent.globalFn = globalFn
+            },
+            addEventListenerPjax: (ele, event, fn, option = false) => {
+              ele.addEventListener(event, fn, option)
+              utils.addGlobalFn('pjax', () => {
+                  ele.removeEventListener(event, fn, option)
+              })
+            },
+            diffDateFormat: (selector) => {
+                selector.forEach(item => {
+                    const date = new Date(item.getAttribute('datetime') || item.textContent);
+                    item.textContent = (date.getMonth() + 1).toString()+'/'+date.getDate().toString();
+                });
+            },
+        }
+    })()</script><!-- theme--><script>initTheme = () => {
+    let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const cachedMode = utils.saveToLocal.get('theme');
+    if (cachedMode === undefined) {
+        const nowMode =
+            isDarkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', nowMode);
+    } else {
+        document.documentElement.setAttribute('data-theme', cachedMode);
+    }
+    typeof rm === 'object' && rm.mode(cachedMode === 'dark' && isDarkMode)
+}
+initTheme()</script><!-- global head--><script>const GLOBAL_CONFIG = {
+    root: '/',
+    algolia: {"appId":"NTABD03MUI","apiKey":"b9edcdc52526245cf090759020f838cd","indexName":"HEXO","hits":{"per_page":6}},
+    localsearch: undefined,
+    runtime: '2023-04-20 00:00:00',
+    lazyload: {
+        enable: true,
+        error: '/img/error_load.avif'
+    },
+    copyright: {"limit":50,"author":"作者: 御枫林下","link":"链接: ","source":"来源: 御枫林下的小窝~","info":"著作权归作者所有。 商业转载请联系作者获得授权，非商业转载请注明出处。"},
+    highlight: {"limit":200,"expand":true,"copy":true,"syntax":"highlight.js"},
+    randomlink: false,
+    lang: {"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"day":"天前","hour":"小时前","just":"刚刚","min":"分钟前","month":"个月前"},"day":" 天","f12":"开发者模式已打开，请遵循GPL协议。","totalk":"无需删除空行，直接输入评论即可","search":{"empty":"找不到你查询的内容：${query}","hit":"找到 ${hits} 条结果，用时 ${time} 毫秒","placeholder":"输入关键词快速查找","count":"共 <b>${count}</b> 条结果。","loading":"搜索中..."},"barrage":{"title":"热评"}},
+    aside: {
+        state: {
+            morning: "Good Lucky!",
+            noon: "Good Lucky!",
+            afternoon: "Good Lucky!",
+            night: "Good Lucky!",
+            goodnight: "Good Lucky!",
+        },
+        witty_words: ["别看了，又出BUG了","优优优优优优雅，极度优雅！"],
+        witty_comment: {
+            prefix: '好久不见，',
+            back: '欢迎再次回来，',
+        },
+    },
+    covercolor: {
+        enable: false
+    },
+    comment: {"avatar":"https://gravatar.com/avatar","commentBarrage":true},
+    lightbox: 'fancybox',
+    right_menu: {"mode":{"dark":"深色模式","light":"浅色模式"},"img_error":"此图片无法复制与下载","barrage":{"open":"显示热评","close":"关闭热评"},"translate":true,"ctrlOriginalMenu":"按住Ctrl+右键可打开浏览器右键菜单"},
+    translate: {"translateDelay":0,"defaultEncoding":2},
+    lure: {"jump":"404 Not Found","back":"malloc fail!!!"},
+    expire: {"time":30,"position":"top","text_prev":"This article expired ","text_next":" day ago, if the content does not match, please contact the webmaster to update it."},
+};</script><!-- page-config head--><script id="config-diff">var PAGE_CONFIG = {
+    is_post: true,
+    is_page: false,
+    is_home: false,
+    page: '',
+    toc: true,
+    comment: true,
+    ai_text: false,
+    color: false,
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="御枫林下的小窝~" type="application/atom+xml">
+</head><body id="body"><!-- universe--><!-- background img--><div id="global_bg"></div><!-- loading--><!-- console--><!-- sidebar--><div id="sidebar" style="zoom: 1;"><div id="menu-mask" style="display: none;"></div><div id="sidebar-menus"><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/recentcomments/"><div class="headline">评论</div><div class="length-num" id="twikoo_allcount"><i class="solitude fas fa-spinner fa-spin"></i></div><script pjax="pjax">(async () => {
+  await fetch('https://blogverceltwkioo.agen233.top/', {
+    method: "POST",
+    body: JSON.stringify({
+      "event": "GET_RECENT_COMMENTS",
+      "includeReply": true,
+      "pageSize": 999
+    }),
+    headers: {'Content-Type': 'application/json'}
+  }).then(res => res.json()).then(async ({data}) => {
+    document.querySelector('#twikoo_allcount').innerHTML = data.length
+  })
+})()</script></a></div></div></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span>显示模式</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>书斋阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>友人帐</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人录</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-envelope"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>藏宝阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位A</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位B</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位C</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>关于我</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>关于</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-lightbulb"></i><span>说说</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="card-tag-cloud"><a href="/tags/ESP32/">ESP32<sup>1</sup></a><a href="/tags/STM32/">STM32<sup>1</sup></a><a href="/tags/PHY6252/">PHY6252<sup>1</sup></a><a href="/tags/Windows/">Windows<sup>6</sup></a><a href="/tags/ChinaSkills/">ChinaSkills<sup>2</sup></a><a href="/tags/%E9%9F%B3%E4%B9%90/">音乐<sup>2</sup></a><a href="/tags/I2C/">I2C<sup>2</sup></a><a href="/tags/%E4%B8%AD%E7%A7%91%E8%93%9D%E8%AE%AFAB202X/">中科蓝讯AB202X<sup>1</sup></a><a href="/tags/SPI/">SPI<sup>1</sup></a><a href="/tags/%E5%8D%9A%E5%AE%A2/">博客<sup>2</sup></a><a href="/tags/BL602/">BL602<sup>1</sup></a><a href="/tags/%E8%80%B3%E6%9C%BA/">耳机<sup>1</sup></a><a href="/tags/%E7%B1%B3%E5%A5%87%E4%B8%8E%E8%BE%BE%E5%88%A9/">米奇与达利<sup>1</sup></a><a href="/tags/NAS/">NAS<sup>1</sup></a><a href="/tags/Jellyfin/">Jellyfin<sup>1</sup></a><a href="/tags/%E8%BD%AF%E8%80%83/">软考<sup>1</sup></a><a href="/tags/Cites-Skylines/">Cites:Skylines<sup>1</sup></a><a href="/tags/HyperOS/">HyperOS<sup>1</sup></a><a href="/tags/%E5%B0%8F%E7%B1%B3/">小米<sup>1</sup></a><a href="/tags/%E8%B1%AA%E7%88%B5USR125/">豪爵USR125<sup>1</sup></a></div></div><span class="sidebar-menu-item-title">网站信息</span><div class="webinfo"><div class="webinfo-item"><div class="item-name">全站字数 :</div><div class="item-count">20.5k</div></div></div></div></div><!-- keyboard--><!-- righhtside--><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav class="show" id="nav"><div id="nav-group"><div id="blog_name"><a id="site-name" href="/" title="返回博客主页"><span class="title">御枫林下的小窝~</span><i class="solitude fas fa-home"></i></a></div><div id="page-name-mask"><div id="page-name"><a id="page-name-text" onclick="sco.toTop()">更先进的终极看番解决方案</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>书斋阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="solitude  fas fa-folder-closed"></i><span>归档</span></a></li><li><a class="site-page child" href="/categories/"><i class="solitude  fas fa-clone"></i><span>分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="solitude  fas fa-tags"></i><span>标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>友人帐</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/friendsQ/"><i class="solitude  fas fa-comments"></i><span>朋友圈</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-user-group"></i><span>友人录</span></a></li><li><a class="site-page child" href="/message/"><i class="solitude  fas fa-envelope"></i><span>留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>藏宝阁</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位A</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位B</span></a></li><li><a class="site-page child" href="/links/"><i class="solitude  fas fa-address-card"></i><span>占位C</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span>关于我</span></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="solitude  fas fa-address-card"></i><span>关于</span></a></li><li><a class="site-page child" href="/essay"><i class="solitude  fas fa-lightbulb"></i><span>说说</span></a></li></ul></div></div></div><div id="nav-left"></div><div id="nav-right"><div class="nav-button"><a class="site-page" target="_blank" rel="noopener" href="https://storeweb.cn/s/2125" title=""><i class="solitude fas fa-store"></i></a></div><div class="nav-button"><a class="site-page" target="_blank" rel="noopener" href="https://www.travellings.cn/go.html" title=""><i class="solitude fas fa-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机一篇文章" href="javascript:void(0);"><i class="solitude fas fa-dice-d6"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索"><i class="solitude fas fa-magnifying-glass"></i></a></div><div class="nav-button" id="nav-totop" onclick="sco.toTop()"><a class="totopbtn"><i class="solitude fas fa-arrow-up"></i><span id="percent">0</span></a></div><div id="toggle-menu"><a class="site-page"><i class="solitude fas fa-bars"></i></a></div></div></div></nav><div class="coverdiv" id="coverdiv"><img class="nolazyload" id="post-cover" src="https://bu.dusays.com/2025/05/03/68160eff184cf.webp" alt="更先进的终极看番解决方案"></div><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original" title="该文章为原创文章，注意版权协议">原创</a><span class="post-meta-categories"><a class="post-meta-categories" href="/categories/%E6%8A%80%E7%A0%94%E7%AC%94%E8%AE%B0/">技研笔记</a></span><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NAS/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>NAS</span></a><a class="post-meta__tags" href="/tags/Jellyfin/"><span class="tags-name tags-punctuation"><i class="solitude fas fa-hashtag"></i>Jellyfin</span></a></div></div></div></div><h1 class="post-title">更先进的终极看番解决方案</h1><div id="post-meta"><div class="meta-secondline"><span class="post-meta-date" title="发布于 2025-04-01 21:04:11"><i class="post-meta-icon solitude fas fa-calendar-days"></i><time datetime="2025-04-01T21:04:11.000Z">2025-04-01T21:04:11.000Z</time></span><span class="post-meta-date" title="最后更新于 2025-05-18 15:44:31"><i class="post-meta-icon solitude fas fa-arrows-rotate"></i><time datetime="2025-05-18T15:44:31.000Z">2025-05-18T15:44:31.000Z</time></span><span class="post-meta-wordcount"><i class="post-meta-icon solitude fas fa-file-word" title="文章字数"></i><span class="word-count">2.6k</span><span class="post-meta-separator"></span><i class="post-meta-icon solitude fas fa-clock" title="阅读耗时"></i><span>9 分钟</span></span><span class="post-meta-position" title="作者IP归属地为Sunwui(Conton)"><i class="post-meta-icon solitude fas fa-location-dot"></i><span>Sunwui(Conton)</span></span><a class="post-meta-pv" href="/posts/8e2890be/" title="文章热度"><i class="post-meta-icon solitude fas fa-fire-flame-curved"></i><span id="twikoo_visitors"><i class="solitude fas fa-spinner fa-spin"></i></span></a><span class="post-meta-commentcount" title="评论数" onclick="sco.scrollTo('post-comment')"><i class="solitude fas fa-comment"></i><a href="/posts/8e2890be/#post-comment"><span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前阵子趁着国补买了台电视，一直苦于没有相当优雅的全自动本地追番追剧方案，一直看码率高达1Mbps的”超清”流媒体，原本想着既然电视本身自带USB3.0，那么用机械硬盘+KODI的方案也能勉强用一下。</p>
+<p>实际强行用下来也是发现了诸如，机械硬盘移动容易坏、没有背景墙、字幕难找、不能全自动等相当不优雅的痛点，而后看到了CN大佬的<a target="_blank" rel="noopener" href="https://controlnet.space/2024/07/06/note/media-server/">比之前更进一步的终极看番工具栈 - ControlNet Blog</a>于是萌生了上NAS的想法。</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160bca89a53.webp" alt="电视配置和信息"></p>
+<blockquote>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>为了解决以上问题，我们需要一个更加完善的系统，这个系统将会搭载在一个上24小时开机的家庭服务器上，这个服务器可以是NAS，也可是软路由，或者是存算分离的Linux服务器。</p>
+<p>考虑到不折腾，本人选择了自己DIY一个基于低功耗x86平台的NAS。考虑到折腾软路由可能会让网络没那么稳定，就没有打算在这套系统里使用软路由。家里现在是一台ASUS的硬路由，一台NAS，一台高性能的Linux服务器用于游戏服务器和爬虫脚本等等，然后是一台台式机用于日常游戏和学习。这样的设计是为了让每个设备都有自己的用途，不会因为一台设备的问题导致其他设备无法使用。这篇文章主要会讨论NAS上的部署。</p>
+</blockquote>
+<h1 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h1><p>综上所述各种痛点，<del>我们要对齐颗粒度，从痛点中来，到重点中去，为更优雅的观影方式赋能</del>打造更先进、更优雅和更进一步的完善系统，这个系统是7x24小时的、高可靠的、低能耗的家庭服务器，可以是NAS亦可以是其他树莓派等轻型Linux上。</p>
+<p>基于上班天天写代码~~~看着就烦~~~懒得折腾的实际，不考虑折腾，最终选择了自己DIY一套基于完整x86平台的低功耗服务器，同时考虑到公网IPV6+DDNS的方案会导致整个家庭网络处于极度不安全的全暴露状态，所以还需要可靠的私有组网方案。</p>
+<h1 id="硬件方案"><a href="#硬件方案" class="headerlink" title="硬件方案"></a>硬件方案</h1><p>这里使用了一台惠普800 G3 SFF准系统小主机，Q270方案，带奔腾G4560T，详细配置清单如下:</p>
+<ul>
+<li>CPU 英特尔奔腾G4560T, 双核四线程2.9G, 额定35WTDP</li>
+<li>内存: 三星 DDR4 2400Mhz 8G单条</li>
+<li>SSD: 卖家一并购买的, 来路不明的三星NVME 256G SSD</li>
+<li>显卡: UHD610</li>
+<li>电源: 惠普 80plus铂金 180W</li>
+<li>内置IO: 3个SATA, 一个M.2(系统盘占用), 1个CPU直通PCIE3.0x16, 一个PCIE3.0x1, 一个南桥PCIE1.0x16</li>
+<li>外部前置IO: 2个USB3.0(HightSpeed) 2个USB2.0(HightSpeed) 一个USB Type-C</li>
+</ul>
+<p>虽然里面只有三个SATA，但是胜在USB口多，后期真的不够用了，外接硬盘笼也是可以的。</p>
+<h1 id="系统选择"><a href="#系统选择" class="headerlink" title="系统选择"></a>系统选择</h1><p>NAS系统现在主要是四个：TrueNAS，Unraid和黑群晖</p>
+<ul>
+<li>TrueNAS，前身是FreeNAS(基于FreeBSD)，是FreeNAS在Debian上的重构，商业公司支持，开源软件，个人用户免费</li>
+<li>Unraid，基于Slackware Linux，有堪称完美的Docker和虚拟机支持，商业公司支持，闭源软件，个人用户收费，买断制</li>
+<li>黑群晖，界面UI友好，系统兼容性一般，而且不免费不开源也不接受收费，需要破解，系非正版软件</li>
+</ul>
+<p>综上所述，结合自己不折腾的想法，只是单纯看个视频和放个文件，对速度和性能毫无要求，能拖动4K HDR视频，能转码4K视频即可，选择了最方便部署的飞牛OS</p>
+<p>飞牛OS的部署非常简单，只需要找个U盘，上飞牛官网下载镜像，然后用rufus烧录进去，随后关闭安全启动用UEFI启动即可，过程是全图形化的。</p>
+<p>飞牛支持RAID模式、BASIC模式和Linear模式，现在只有一个硬盘，于是就选择最基础的BASIC模式了，等新硬盘到了之后再考虑用Linear模式或者RAID模式</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/04/01/67ec003d97b4d.webp" alt="飞牛WEB后台"></p>
+<h1 id="基础配置和基本服务"><a href="#基础配置和基本服务" class="headerlink" title="基础配置和基本服务"></a>基础配置和基本服务</h1><h2 id="qBittorrent下载和PeerBanHelper防吸血"><a href="#qBittorrent下载和PeerBanHelper防吸血" class="headerlink" title="qBittorrent下载和PeerBanHelper防吸血"></a>qBittorrent下载和PeerBanHelper防吸血</h2><p>qBittorrent直接使用飞牛商店提供的套件即可，直接跑在宿主机而的，即开即用。不过要针对自己的网络环境做一些配置，以及</p>
+<p>qBittorrent默认无限制做种，强烈建议打开分享率高于阈值则停止做种功能，否则上行吃满不说，还容易被运营商当成PCDN，被封网就得不偿失了。</p>
+<p>tracker可以加强种子检索能力，我用的是<a target="_blank" rel="noopener" href="https://github.com/adysec/tracker">adysec&#x2F;tracker</a>和<a target="_blank" rel="noopener" href="https://github.com/DeSireFire/animeTrackerList">(24年停止维护)animeTrackerList (๑•̀ㅂ•́)و✧</a></p>
+<h1 id="媒体库和电影墙"><a href="#媒体库和电影墙" class="headerlink" title="媒体库和电影墙"></a>媒体库和电影墙</h1><h2 id="飞牛影视？"><a href="#飞牛影视？" class="headerlink" title="飞牛影视？"></a>飞牛影视？</h2><p>蓝毛和CN大佬都极力推荐jellyfin，但是我觉得配置挺麻烦的，而且搜刮和字幕下载依赖各种插件而不是官方支持，以及动不动就服务器解码就很头痛。</p>
+<p>飞牛OS提供了一键解决方案即飞牛影视，页面优雅、简单上手、自动生成背景墙，虽然检索能力还有点问题，经常乱检索，以及TV端对字幕支持还有问题，但问题都不大，关键是全自动的，折腾难度大大降低。</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/04/01/67ec08467aaaa.webp" alt="飞牛影视 电影墙"></p>
+<h2 id="JellyFin"><a href="#JellyFin" class="headerlink" title="JellyFin!"></a>JellyFin!</h2><p>飞牛影视确实好用，页面优雅、简单上手，但是对杜比视界、8KHDR10等次时代格式支持不好，对ASS特效字幕支持不友好，文件搜刮设定也不够灵活。</p>
+<p>因此最后还是选择了JellyFin作为最终的影视管理工具，我承认，JellyFin这个海报屏保真的太戳我XP了，而且全平台客户端均为网页套壳，使得可以通过JellyFin提供的CSS接口，载入自己的CSS文件，进而实现全平台通用的页面高度定制。</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160bcab47a1.webp" alt="电视JellyFin媒体页"></p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160eff184cf.webp" alt="JellyFin屏保"></p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160bcb09769.webp" alt="JellyFin屏保"></p>
+<h3 id="MxPlay"><a href="#MxPlay" class="headerlink" title="MxPlay"></a>MxPlay</h3><p>前面提到，JellyFin全平台客户端均为网页套壳，播放器也是网页，所以对次时代格式和ASS特效字幕支持仍不友好，这里选择的是MxPlayPro作为电视端和手机端的外置播放器。</p>
+<p>至少在我的设备上，MxPlay可以完美兼容各类视频格式，同时对于JellyFin也能完美地加载来自服务器的字幕文件和字幕所需字体文件，至于进度回传亦没有问题， 一开始用的VLC就是因为进度回传才弃坑的（</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160bca84d92.webp" alt="MxPlay播放器"></p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160bcb11d29.webp" alt="外挂字幕字体文件 [拨雪寻春]葬送的芙莉莲"></p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160d5ce2f1a.webp" alt="外挂字幕ASS特效 [诸神字幕]忧国的莫里亚蒂"></p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160d5da9e3b.webp" alt="外挂字幕ASS特效 [诸神字幕]忧国的莫里亚蒂"></p>
+<h3 id="至于桌面端"><a href="#至于桌面端" class="headerlink" title="至于桌面端"></a>至于桌面端</h3><p>这边目前用电脑看比较少，到是没啥所谓，但值得一提的是，MicrosoftEdge并不（实际上）支持HEVC全硬解，但是用Chrome就没这个问题（ <del>微软果然还是不够巨硬</del></p>
+<h1 id="自动追番计划"><a href="#自动追番计划" class="headerlink" title="自动追番计划"></a>自动追番计划</h1><p>手动去找动画资源然后手动处理，是一件非常不优雅、非常难堪的事情，所以我们需要一些工具，将其彻底自动化。</p>
+<p>首先需要<a target="_blank" rel="noopener" href="https://mikanani.me/">蜜柑计划</a>，一个二次元动画动漫聚集平台，相对于更传统的<a target="_blank" rel="noopener" href="http://comicat.org/">漫猫动漫</a>我认为他的交互更优雅，访问更快，同时他提供其他平台不可企及的RSS订阅服务，可以根据订阅的内容，自动生成RSS链接，随即交给qBittorrent进行全自动下载。</p>
+<p>其次，需要<a target="_blank" rel="noopener" href="https://docs.wushuo.top/">ASS</a>，即便是蜜柑支持生成RSS链接，但因为每个字幕组的名字风格和资源内容都不同，手动整理就会很麻烦，这时候就需要ASS，他可以直接在后台选择番剧，亦或是通过RSS，自动获取蜜柑上的番剧信息，随后自动处理命名和归档使其符合自己的规范，然后自动推送给qBittorrent下载，并在下载完成(下载+做种)后，自动删除遗留在qBittorrent列表中的内容。</p>
+<p><img src= "" data-lazy-src="https://bu.dusays.com/2025/04/02/67ed39088ce88.webp" alt="ASS 番剧管理页面(图片来源于ASS官方)"></p>
+<h1 id="IPV6-DDNS？IPV6-组网？"><a href="#IPV6-DDNS？IPV6-组网？" class="headerlink" title="IPV6+DDNS？IPV6+组网？"></a>IPV6+DDNS？IPV6+组网？</h1><p>虽然NAS是内网为主，但终究还是要实现公网访问的，不然就没办法在公司备份文件<del>看番</del>了。我坐标广东新会，用的是移动的500Mbps&#x2F;50Mbps家庭宽带，且有公网IPV6而无公网IPV4，手机移动网络和公司网络同样提供公网IPV6。</p>
+<p>我一开始用的是IPV6+DDNS的方案，但一方面是HTTPS证书自动化很复杂，其次是路由器防火墙不能只针对某个端口放行，直接导致了整个局域网公网裸奔，毕竟<strong>HTTP无证书+DDNS+IPV6直通+关闭防火墙+SMB+RDP</strong>太危险了，只要设备本身的防火墙出现漏洞被打穿，特别是家里有众多智能家居设备，对于整个局域网来说就是灾难级的。</p>
+<p>后来看到<a target="_blank" rel="noopener" href="https://hin.cool/posts/tailscale.html">比zerotier更好的内网穿透方案——Tailscale | 瓦解的生活记事</a>的文章和JUP的极力推荐，进而上了TailScale进行组网，在双IPV6直通的情况下，延迟相当理想，只有40ms左右，而对于非双IPV6直通的情况下，由于我这靠近香港，再加上移动外网出口大，即便绕行中转，也才200ms左右。</p>
+<p>总之，用组网方案就是一劳永逸的，只要设备本地不中毒、TailScale官方不整蛊作怪、TailScale账密不泄露，组网就是绝对安全的，因为组网下，不再需要关闭防火墙、不再需要本地公网暴漏。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>emmmm，这篇文章实际上是收到CN大佬的文章启发的，很多内容无论是软件设置还是文章本身都是抄过来的， 与此同时分享一下自己的经验和不一样的地方，希望对大家有所帮助。</p>
+<p>也是上了班之后就对折腾这种东西越来越不上心了，相对于传统需要折腾的开源软件，现在还是更喜欢成熟的商业产品，即便是他收费的。</p>
+<p>虽然飞牛OS还有很多十分不完善的地方，比如文件是基于飞牛系统上的账号和“XX分享的文件”这种相对不灵活的方式，比如飞牛影视带特效的字幕文件加载不出来会卡掉或者没特效，比如还不支持音频直通等，不过话说回来，免费的要什么自行车(</p>
+</article><div class="post-copyright"><div class="post-copyright__author_group"><div class="post-copyright__author_img"><img class="post-copyright__author_img_front" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="post-copyright__author_name">御枫林下</div><div class="post-copyright__author_desc">杂七杂八奇奇怪怪qwq</div></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div id="quit-box" onclick="RemoveRewardMask()"></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans">CC BY-NC-SA 4.0</a>协议，完整转载请注明来自<a href="/">御枫林下的小窝~</a></span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NAS/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>NAS<span class="tagsPageCount">1</span></span></a><a class="post-meta__tags" href="/tags/Jellyfin/"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>Jellyfin<span class="tagsPageCount">1</span></span></a></div></div></div><nav class="needEndHide pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/617a7db7/"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">中科蓝讯AB2027开发兼踩坑备忘录</div></div></a></div></nav><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="solitude fas fa-comment"></i><span> 评论</span><span class="count"> (<span class="twikoo-count"><i class="solitude fas fa-spinner fa-spin"></i></span>)</span></div></div><div class="comment-wrap"><div id="twikoo-wrap"></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><div class="top-group"><div class="sayhi" id="sayhi" onclick="sco.changeWittyWord()"></div></div></div><div class="avatar"><img alt="头像" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp"></div><div class="description"></div><div class="bottom-group"><span class="left"><div class="name">御枫林下</div><div class="desc">没必要的事不做，必要的事尽快解决</div></span><div class="social-icons is-center"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="solitude fas fa-bars"></i><span>文章目录</span></div><div class="toc-content" id="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-1"><span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%A1%88"><span class="toc-text">硬件方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9"><span class="toc-text">系统选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%9C%8D%E5%8A%A1"><span class="toc-text">基础配置和基本服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#qBittorrent%E4%B8%8B%E8%BD%BD%E5%92%8CPeerBanHelper%E9%98%B2%E5%90%B8%E8%A1%80"><span class="toc-text">qBittorrent下载和PeerBanHelper防吸血</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E5%BA%93%E5%92%8C%E7%94%B5%E5%BD%B1%E5%A2%99"><span class="toc-text">媒体库和电影墙</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%9E%E7%89%9B%E5%BD%B1%E8%A7%86%EF%BC%9F"><span class="toc-text">飞牛影视？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JellyFin"><span class="toc-text">JellyFin!</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MxPlay"><span class="toc-text">MxPlay</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%B3%E4%BA%8E%E6%A1%8C%E9%9D%A2%E7%AB%AF"><span class="toc-text">至于桌面端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%BF%BD%E7%95%AA%E8%AE%A1%E5%88%92"><span class="toc-text">自动追番计划</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IPV6-DDNS%EF%BC%9FIPV6-%E7%BB%84%E7%BD%91%EF%BC%9F"><span class="toc-text">IPV6+DDNS？IPV6+组网？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="solitude fas fa-map"></i><span>最近发布</span></div><div class="aside-list"><a class="aside-list-item" href="/posts/8e2890be/" title="更先进的终极看番解决方案"><div class="thumbnail"><img alt="更先进的终极看番解决方案" src= "" data-lazy-src="https://bu.dusays.com/2025/05/03/68160eff184cf.webp"></div><div class="content"><span class="title" href="/posts/8e2890be/" title="更先进的终极看番解决方案">更先进的终极看番解决方案</span><span class="categories" href="/posts/8e2890be/">技研笔记</span></div></a><a class="aside-list-item" href="/posts/617a7db7/" title="中科蓝讯AB2027开发兼踩坑备忘录"><div class="thumbnail"><img alt="中科蓝讯AB2027开发兼踩坑备忘录" src= "" data-lazy-src="https://bu.dusays.com/2025/02/16/67b1aeb0456bd.webp"></div><div class="content"><span class="title" href="/posts/617a7db7/" title="中科蓝讯AB2027开发兼踩坑备忘录">中科蓝讯AB2027开发兼踩坑备忘录</span><span class="categories" href="/posts/617a7db7/">芯途漫记</span></div></a><a class="aside-list-item" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件"><div class="thumbnail"><img alt="博通编译脚本和编译器找不到相关文件" src= "" data-lazy-src="https://bu.dusays.com/2025/02/11/67ab67d5b301b.webp"></div><div class="content"><span class="title" href="/posts/15d61602/" title="博通编译脚本和编译器找不到相关文件">博通编译脚本和编译器找不到相关文件</span><span class="categories" href="/posts/15d61602/">芯途漫记</span></div></a><a class="aside-list-item" href="/posts/65212637/" title="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试"><div class="thumbnail"><img alt="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试" src= "" data-lazy-src="https://bu.dusays.com/2024/11/26/6745530409dbd.webp"></div><div class="content"><span class="title" href="/posts/65212637/" title="基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试">基于STM32F103软件模拟I2C的纯粹C语言面向对象尝试</span><span class="categories" href="/posts/65212637/">芯途漫记</span></div></a><a class="aside-list-item" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还"><div class="thumbnail"><img alt="不得原谅、不得解脱、无人生还" src= "" data-lazy-src="https://bu.dusays.com/2024/10/16/670f520882631.jpg"></div><div class="content"><span class="title" href="/posts/32331f7/" title="不得原谅、不得解脱、无人生还">不得原谅、不得解脱、无人生还</span><span class="categories" href="/posts/32331f7/">拾光笔记</span></div></a></div></div></div></div></main><footer id="footer"><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div class="copyright">© 2023 - 2025 By&nbsp;<a class="footer-bar-link" href="/"><img class="author-avatar" src= "" data-lazy-src="https://bu.dusays.com/2025/02/17/67b340e3a1fac.webp">御枫林下</a></div><div class="beian-group"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://hexo.io/">框架：Hexo</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/everfu/hexo-theme-solitude">主题：Solitude</a></div></div></div></div><div class="comment-barrage needEndHide"></div></footer></div><!-- right_menu--><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="solitude fas fa-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="solitude fas fa-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="solitude fas fa-arrows-rotate"></i></div><div class="rightMenu-item" id="menu-top"><i class="solitude fas fa-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="solitude fas fa-clone"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="solitude fas fa-clipboard"></i><span>粘贴文本</span></div><div class="rightMenu-item" id="menu-commenttext"><i class="solitude fas fa-comment-medical"></i><span>引用到评论</span></div><div class="rightMenu-item" id="menu-newwindow"><i class="solitude far fa-window-maximize"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="solitude fas fa-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="solitude fas fa-clone"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="solitude fas fa-cloud-arrow-down"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-search"><i class="solitude fas fa-magnifying-glass"></i><span>站内搜索</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-randomPost" onclick="toRandomPost()||rm.hideRightMenu()"><i class="solitude fas fa-cube"></i><span>随机文章</span></div><div class="rightMenu-item" onclick="pjax.loadUrl('/categories/')||rm.hideRightMenu()"><i class="solitude fas fa-layer-group"></i><span>全部分类</span></div><div class="rightMenu-item" onclick="pjax.loadUrl('https://www.travellings.cn/go.html')||rm.hideRightMenu()"><i class="solitude fas fa-train"></i><span>开往星球</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><div class="rightMenu-item" id="menu-darkmode" onclick="sco.switchDarkMode()"><i class="solitude fas fa-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></div><div class="rightMenu-item" id="menu-translate"><i class="solitude fas fa-language"></i><span>轉為繁體</span></div></div></div><div id="rightmenu-mask"></div><!-- inject body--><div><script src="/js/utils.js?v=3.0.19"></script><script src="/js/main.js?v=3.0.19"></script><script src="/js/third_party/waterfall.min.js?v=3.0.19"></script><script src="https://fastly.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="https://fastly.jsdelivr.net/npm/typeit@8.8.7/dist/index.umd.min.js"></script><script src="/js/tw_cn.js?v=3.0.19"></script><script src="https://fastly.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><script src="https://fastly.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://fastly.jsdelivr.net/npm/swiper@11.0.5/swiper-bundle.min.js"></script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+utils.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+</script><script src="https://fastly.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><script src="https://fastly.jsdelivr.net/npm/instantsearch.js@4.75.7/dist/instantsearch.production.min.js"></script><script src="https://fastly.jsdelivr.net/npm/algoliasearch@5.19.0/dist/algoliasearch.umd.min.js"></script><script src="/js/right_menu.js?v=3.0.19"></script><div class="js-pjax"><script>(() => {
+    const getCount = () => {
+        const ele = document.querySelectorAll('.twikoo-count')
+        if (!ele) return
+        twikoo.getCommentsCount({
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            urls: [window.location.pathname],
+            includeReply: false
+        }).then(res => {
+            ele.forEach(item => item.textContent = res[0].count)
+        }).catch(err => {
+            console.error(err)
+        })
+    }
+    const init = () => {
+        twikoo.init(Object.assign({
+            el: '#twikoo-wrap',
+            envId: 'https://blogverceltwkioo.agen233.top/',
+            region: '',
+            path: window.location.pathname,
+            onCommentLoaded: () => {
+                GLOBAL_CONFIG.lightbox && utils.lightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+            }
+        }, null))
+
+         && getCount()
+        sco.owoBig({
+            body: '.OwO-body',
+            item: '.OwO-items li'
+        })
+
+        true && barrageTwikoo()
+    }
+
+    const loadTwikoo = () => {
+        if (typeof twikoo === 'object') setTimeout(init,0)
+        else utils.getScript('https://fastly.jsdelivr.net/npm/twikoo@1.6.41/dist/twikoo.all.min.js').then(init)
+    }
+
+    if ('Twikoo' === 'Twikoo' || true) {
+        if (true) utils.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+        else loadTwikoo()
+    } else {
+        window.loadTwoComment = loadTwikoo
+    }
+})()
+</script><script>async function barrageTwikoo() {
+    await fetch("https://blogverceltwkioo.agen233.top/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            event: "COMMENT_GET",
+            accessToken: "",
+            url: window.location.pathname
+        })
+    }).then(async res => {
+        if (!res.ok) throw new Error("HTTP error! status: " + res.status)
+        const data = await res.json();
+        const init = () => {
+            initializeCommentBarrage((data.data).map(item => Object.assign({
+                content: item.comment,
+                nick: item.nick,
+                mailMd5: item.mailMd5,
+                id: item.id
+            })))
+        }
+        if (typeof initializeCommentBarrage === "undefined") await utils.getScript('/js/third_party/barrage.min.js?v=3.0.19').then(init)
+        else init()
+    }).catch(error => console.error("An error occurred while fetching comments: ", error))
+}</script><script defer pjax src="https://fastly.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.min.js"></script></div></div><!-- pjax--><script>const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: ["title","#body-wrap","#site-config","meta[name=\"description\"]",".js-pjax","meta[property^=\"og:\"]","#config-diff",".rs_show",".rs_hide"],
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+})
+
+document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+})
+
+document.addEventListener('pjax:complete', () => {
+    window.refreshFn()
+
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+        const newScript = document.createElement('script')
+        const content = item.text || item.textContent || item.innerHTML || ""
+        Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+        newScript.appendChild(document.createTextNode(content))
+        item.parentNode.replaceChild(newScript, item)
+    })
+
+    GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+})
+
+document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+        pjax.loadUrl('/404.html')
+    }
+})</script><!-- google adsense--><!-- search--><div id="algolia-search"><div class="search-dialog"><div class="algolia-navbar"><div class="search-dialog__title" id="algolia-search-title">搜索</div><div class="algolia-tips"><i class="solitude fab fa-algolia"></i><span class="algolia-tips-text">Algolia</span></div><span class="search-close-button"><i class="solitude fas fa-xmark"></i></span></div><div id="algolia-input-panel"><div id="algolia-search-input"></div></div><div id="search-results"><div id="algolia-hits"></div></div><div id="algolia-tips"><div id="algolia-pagination"></div><div id="algolia-stats"></div></div></div><div id="search-mask"></div></div><script src="/js/search/algolia.js?v=3.0.19"></script><!-- music--><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/barry-flynn/hexo-github-calendar/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://github-calendar-api.meta-code.top/api?user=AGEN233";
+            var git_color =['#ebedf0', '#a2f7af', '#6ce480', '#54ad63', '#469252', '#31753c', '#1f5f2a', '#13531f', '#084111', '#032b09', '#000000'];
+            var git_user ="AGEN233";
+            var parent_div_git = document.getElementById('todayCard');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log("已挂载hexo-github-calendar https://github.com/Barry-Flynn/hexo-github-calendar");
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('todayCard')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
+        <script>
+            const posts = ["posts/8e2890be/","posts/617a7db7/","posts/15d61602/","posts/65212637/","posts/32331f7/","posts/670529b6/","posts/1292e32b/","posts/bd9973bb/","posts/b2ce6d03/","posts/7f0447f2/","posts/3087054e/","posts/66b5bdfd/","posts/4dc3a1af/","posts/e4d8f98b/","posts/8884a040/","posts/5335a18c/","posts/df9fba50/","posts/6680ffdf/","posts/28f20c60/","posts/88fe7ba4/","posts/8be11e9d/","posts/bb683f89/","posts/de4a5a44/"];
+            function toRandomPost() {
+                const randomPost = posts[Math.floor(Math.random() * posts.length)];
+                pjax.loadUrl(GLOBAL_CONFIG.root + randomPost);
+            }
+        </script>
